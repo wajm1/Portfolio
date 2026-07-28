@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Wajahat Mahmood — Software Engineer · Robotics &amp; Real-Time Systems</title>
-<meta name="description" content="Wajahat Mahmood — software engineer building real-time systems and the tools that test the hardware they run on. Robotics, C++, Python, ROS 2. Open to 2027 SWE roles.">
+<title>Wajahat Mahmood · Software Engineer · Robotics &amp; Real-Time Systems</title>
+<meta name="description" content="Wajahat Mahmood · software engineer building real-time systems and the tools that test the hardware they run on. Robotics, C++, Python, ROS 2. Open to 2027 SWE roles.">
 <meta name="theme-color" content="#ECEDEA" id="theme-color">
 
 <!-- Open Graph (nice link previews when recruiters share the page) -->
-<meta property="og:title" content="Wajahat Mahmood — Software Engineer">
+<meta property="og:title" content="Wajahat Mahmood · Software Engineer">
 <meta property="og:description" content="Real-time systems, robotics, and the tools that test the hardware they run on.">
 <meta property="og:type" content="website">
 
@@ -31,7 +31,7 @@
 
 <style>
 /* ============================================================================
-   Wajahat Mahmood — personal portfolio
+   Wajahat Mahmood - personal portfolio
    Concept: the page is an engineering drawing / technical datasheet.
    Monospace annotations, corner ticks, measured-outcome callouts.
    Single file, no build step, no runtime dependencies (fonts aside).
@@ -229,6 +229,8 @@ section[id],footer[id]{scroll-margin-top:24px}
 .card-title{font-weight:600;font-size:clamp(20px,2.2vw,26px);letter-spacing:-.01em;text-wrap:balance}
 .card-kicker{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--ink-70);white-space:nowrap;text-align:right}
 .card-desc{font-size:15px;color:var(--ink-70);text-wrap:pretty;max-width:52ch}
+.card-desc a{white-space:nowrap;text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--line-2)}
+.card-desc a:hover{color:var(--accent-ink)}
 
 /* Pipeline diagram (glasses -> text -> note, gamepad -> ... -> arm) */
 .flow{
@@ -262,10 +264,13 @@ section[id],footer[id]{scroll-margin-top:24px}
   padding:9px 12px;border-bottom:1px solid var(--line);
   font-family:var(--mono);font-size:11px;letter-spacing:.03em;color:var(--ink-70);
 }
-.editor-dots{display:flex;align-items:center;gap:6px}
-.editor-dots span{width:8px;height:8px;border:1px solid var(--line-2)}
-.editor-file{margin-left:6px;color:var(--ink)}
-.editor-sync{display:inline-flex;align-items:center;gap:6px;transition:opacity .4s ease}
+.editor-dots{display:flex;align-items:center;gap:6px;min-width:0}
+.editor-dots > span:not(.editor-file){width:8px;height:8px;border:1px solid var(--line-2);flex:0 0 auto}
+.editor-file{
+  margin-left:6px;color:var(--ink);min-width:0;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+.editor-sync{display:inline-flex;align-items:center;gap:6px;transition:opacity .4s ease;flex:0 0 auto;white-space:nowrap}
 .code{padding:12px 14px;min-height:172px;overflow-x:auto;font-family:var(--mono);font-size:13px;line-height:23px}
 .code-line{display:flex;align-items:baseline;gap:14px;min-height:23px}
 .ln{width:22px;text-align:right;color:var(--ln);flex:0 0 auto;user-select:none}
@@ -275,7 +280,11 @@ section[id],footer[id]{scroll-margin-top:24px}
 .caret{display:inline-block;width:2px;height:15px;margin:0 1px;vertical-align:-3px;animation:blink 1s step-end infinite}
 .peer-tag{flex:0 0 auto;align-self:center;display:inline-flex;align-items:center;gap:5px;margin-left:12px;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-70)}
 .peer-tag .pd{width:6px;height:6px;border-radius:50%;flex:0 0 auto}
-.editor-foot{padding:8px 12px;border-top:1px solid var(--line);font-family:var(--mono);font-size:10.5px;letter-spacing:.03em;color:var(--ink-70)}
+.editor-foot{
+  padding:8px 12px;border-top:1px solid var(--line);
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.03em;color:var(--ink-70);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
 
 /* --- Experience ----------------------------------------------------------- */
 .xp-item{padding:clamp(22px,3vw,32px) 0;border-top:1px solid var(--line)}
@@ -283,16 +292,19 @@ section[id],footer[id]{scroll-margin-top:24px}
 .xp-head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px 24px}
 .xp-lead{flex:1 1 340px;min-width:260px}
 .xp-title{display:flex;align-items:baseline;flex-wrap:wrap;gap:8px 14px}
-.xp-title h3{font-weight:600;font-size:clamp(19px,2vw,24px)}
+.xp-title h3{font-weight:600;font-size:clamp(19px,2vw,24px);text-wrap:balance}
 .xp-role{font-family:var(--mono);font-size:12px;letter-spacing:.03em;color:var(--accent-ink)}
 .xp-meta{font-family:var(--mono);font-size:11.5px;letter-spacing:.03em;color:var(--ink-70);margin-top:6px}
 .xp-desc{margin-top:8px;font-size:15px;color:var(--ink-70);text-wrap:pretty;max-width:52ch}
 .xp-chips{display:flex;flex-wrap:wrap;gap:8px;align-content:flex-start;align-items:flex-start}
 .metrics{margin-top:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
-.metric{background:var(--paper);padding:16px 18px}
-.metric-num{font-weight:600;font-size:clamp(24px,3vw,36px);line-height:.94;letter-spacing:-.02em}
-.metric-num .u{font-size:.42em;font-weight:500;color:var(--ink-70);vertical-align:.42em}
-.metric-num .to{font-family:var(--mono);font-size:.34em;color:var(--accent-ink);vertical-align:.5em}
+.metric{background:var(--paper);padding:16px 18px;min-width:0}
+.metric-num{
+  font-weight:600;font-size:clamp(22px,3vw,36px);line-height:1.05;letter-spacing:-.02em;
+  display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 8px;
+}
+.metric-num .u{font-size:.42em;font-weight:500;color:var(--ink-70)}
+.metric-num .to{font-family:var(--mono);font-size:.38em;color:var(--accent-ink);letter-spacing:.02em}
 .metric-num .accent{color:var(--accent-ink)}
 .metric-label{font-family:var(--mono);font-size:11px;line-height:1.45;letter-spacing:.03em;text-transform:uppercase;color:var(--ink-70);margin-top:11px}
 
@@ -329,10 +341,37 @@ section[id],footer[id]{scroll-margin-top:24px}
 
 /* --- Responsive: tighten datasheet callouts on small screens -------------- */
 @media (max-width:560px){
+  .section-head{flex-wrap:wrap;gap:8px 12px;align-items:center}
+  .section-head .rule{display:none}
+  .head-note{white-space:nowrap;font-size:11px;margin-left:auto}
+
   .card-head{flex-direction:column;gap:4px}
   .card-kicker{text-align:left}
   /* keep pipeline diagrams from squeezing to unreadable widths */
   .flow{font-size:9.5px}
+
+  .editor-bar{flex-wrap:nowrap;gap:8px;padding:8px 10px}
+  .editor-sync{font-size:10px}
+  .editor-file{max-width:11ch}
+  .code{font-size:12px;line-height:20px;padding:10px;min-height:160px}
+  .code-line{gap:10px;min-height:20px}
+  .ln{width:18px}
+  .peer-tag{display:none} /* peer labels collide with code on narrow widths */
+  .code-mid{white-space:pre;overflow-x:auto;text-overflow:clip}
+  .editor-foot{white-space:nowrap;font-size:10px;padding:8px 10px}
+
+  .metrics{grid-template-columns:1fr 1fr}
+  .metric{padding:14px 12px}
+  .metric-num{font-size:clamp(20px,6.5vw,26px);gap:4px 6px}
+  .metric-label{font-size:10px;margin-top:8px}
+
+  .stack .row{grid-template-columns:1fr;gap:10px}
+  .xp-chips{margin-top:4px}
+}
+
+@media (max-width:380px){
+  .editor-file{max-width:9ch}
+  .nav{gap:12px 14px}
 }
 
 /* --- Reduced motion: freeze all the moving parts -------------------------- */
@@ -350,7 +389,7 @@ section[id],footer[id]{scroll-margin-top:24px}
 <!-- ======================= HEADER ======================= -->
 <header class="site-header">
   <div class="wrap">
-    <a class="brand" href="#top" aria-label="Wajahat Mahmood — home">
+    <a class="brand" href="#top" aria-label="Wajahat Mahmood, home">
       <span class="brand-mark" aria-hidden="true">WM</span>
       <span class="brand-name">Wajahat Mahmood</span>
     </a>
@@ -383,21 +422,21 @@ section[id],footer[id]{scroll-margin-top:24px}
       <div class="hero-grid">
         <div>
           <h1 class="name">Wajahat<br>Mahmood</h1>
-          <p class="lede">Software engineer building real-time systems &mdash; and the tools that test the hardware they run on.</p>
+          <p class="lede">Software engineer building real-time systems and the tools that test the hardware they run on.</p>
           <div class="tags">
             <span class="tag">C++</span>
             <span class="tag">Python</span>
-            <span class="tag">ROS 2</span>
             <span class="tag">TypeScript</span>
+            <span class="tag">OpenAI</span>
           </div>
         </div>
 
         <!--
-          Interactive demo #1 — inverse-kinematics arm.
+          Interactive demo #1 - inverse-kinematics arm.
           Tap / drag inside the box (or use arrow keys) to move the target;
           a FABRIK solver repositions the arm to reach it.
           GRACEFUL DEGRADATION: the <svg> below is a static arm that shows if
-          JS is disabled/slow or the canvas fails — the box is never blank.
+          JS is disabled/slow or the canvas fails - the box is never blank.
           The <canvas> is painted on top only once the solver is running.
         -->
         <figure id="ik" class="fig" tabindex="0" role="application"
@@ -437,7 +476,7 @@ section[id],footer[id]{scroll-margin-top:24px}
             <span class="dot"></span>
             <span class="txt" id="ik-state">IDLE</span>
           </div>
-          <div class="fig-read" id="ik-read" aria-hidden="true">&theta; &mdash; &mdash; &mdash; &middot; TCP &mdash;,&mdash; &middot; idle</div>
+          <div class="fig-read" id="ik-read" aria-hidden="true">&theta; &middot; &middot; &middot; &middot; TCP &middot;,&middot; &middot; idle</div>
         </figure>
       </div>
     </div>
@@ -454,13 +493,13 @@ section[id],footer[id]{scroll-margin-top:24px}
 
       <div class="work-grid">
 
-        <!-- Project 1 — GlanceScribe -->
+        <!-- Project 1 - GlanceScribe -->
         <article class="card">
           <div class="card-head">
             <h3 class="card-title">GlanceScribe</h3>
             <span class="card-kicker">AI MEDICAL SCRIBE</span>
           </div>
-          <p class="card-desc">AI medical scribe that turns a clinician&rsquo;s first-person Meta smart-glasses video into structured SOAP notes &mdash; eliminating manual note-taking during patient encounters.</p>
+          <p class="card-desc">AI medical scribe that turns a clinician&rsquo;s first-person Meta smart-glasses video into structured SOAP notes, eliminating manual note-taking during patient encounters.</p>
           <div class="flow" style="grid-template-columns:1fr auto 1fr auto 1fr">
             <div class="step">Meta<br>glasses</div>
             <div class="arrow" aria-hidden="true">&rarr;</div>
@@ -482,13 +521,13 @@ section[id],footer[id]{scroll-margin-top:24px}
           </div>
         </article>
 
-        <!-- Project 2 — Interbotix RX-200 Driver -->
+        <!-- Project 2 - Interbotix RX-200 Driver -->
         <article class="card">
           <div class="card-head">
             <h3 class="card-title">Interbotix RX-200<br>Driver</h3>
             <span class="card-kicker">MICHIGAN&nbsp;RESEARCH</span>
           </div>
-          <p class="card-desc">The C++ driver behind the research arm &mdash; game-controller input mapped through SDL2 to joint-velocity commands, then bridged to the lab&rsquo;s pub/sub robot OS. Shared state guarded with mutexes and atomics to kill the race conditions that crashed the vendor stack.</p>
+          <p class="card-desc">The C++ driver behind the research arm: game-controller input mapped through SDL2 to joint-velocity commands, then bridged to the lab&rsquo;s pub/sub robot OS. Shared state guarded with mutexes and atomics to kill the race conditions that crashed the vendor stack.</p>
           <div class="flow" style="grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;font-size:10px">
             <div class="step">Game<br>pad</div>
             <div class="arrow" aria-hidden="true">&rarr;</div>
@@ -510,7 +549,7 @@ section[id],footer[id]{scroll-margin-top:24px}
           </div>
         </article>
 
-        <!-- Project 3 — Real-Time Collaborative Code Editor (interactive demo #2) -->
+        <!-- Project 3 - Real-Time Collaborative Code Editor (interactive demo #2) -->
         <article class="card" id="editor">
           <div class="card-head">
             <h3 class="card-title">Real-Time Collaborative<br>Code Editor</h3>
@@ -521,22 +560,22 @@ section[id],footer[id]{scroll-margin-top:24px}
           <!--
             The lines below are the STATIC FALLBACK. If JS runs, initEditor()
             replaces them with the animated peers + editable line. If JS fails,
-            this stays put and reads as a normal C++ snippet — never blank.
+            this stays put and reads as a normal C++ snippet - never blank.
           -->
           <div class="editor">
             <div class="editor-bar">
-              <span class="editor-dots"><span></span><span></span><span></span><span class="editor-file">collab-session.cpp</span></span>
+              <span class="editor-dots"><span></span><span></span><span></span><span class="editor-file">session.cpp</span></span>
               <span class="editor-sync" id="ed-peers"><span class="dot"></span>3 peers &middot; <span id="ed-sync">synced</span></span>
             </div>
             <div class="code" id="ed-code">
               <div class="code-line"><span class="ln">01</span><span class="code-mid">#include &lt;boost/asio.hpp&gt;</span></div>
               <div class="code-line"><span class="ln">02</span><span class="code-mid">SharedDoc doc{sessionId};</span></div>
-              <div class="code-line"><span class="ln">03</span><span class="code-mid">socket.on("edit", [](Op op){ broadcast(op); });</span></div>
+              <div class="code-line"><span class="ln">03</span><span class="code-mid">socket.on("edit", broadcast);</span></div>
               <div class="code-line"><span class="ln">04</span><span class="code-mid">auto next = crdt::merge(a, b);</span></div>
-              <div class="code-line"><span class="ln">05</span><span class="code-mid">run(doc.source(), Sandbox::Piston);</span></div>
-              <div class="code-line"><span class="ln">06</span><span class="code-mid" style="color:var(--ink-70)">// type C++ &middot; press Enter to broadcast</span></div>
+              <div class="code-line"><span class="ln">05</span><span class="code-mid">run(doc.source(), Piston);</span></div>
+              <div class="code-line"><span class="ln">06</span><span class="code-mid" style="color:var(--ink-70)">// type C++ &middot; press Enter</span></div>
             </div>
-            <div class="editor-foot" id="ed-foot">socket.io &middot; rtt 24ms &middot; session ab-1029 &middot; 0 ops</div>
+            <div class="editor-foot" id="ed-foot">socket.io &middot; rtt 24ms &middot; 0 ops</div>
           </div>
 
           <div class="chips">
@@ -568,16 +607,16 @@ section[id],footer[id]{scroll-margin-top:24px}
         <li class="xp-item">
           <div class="xp-head">
             <div class="xp-lead">
-              <div class="xp-title"><h3>rf IDEAS</h3><span class="xp-role">SWE Intern &mdash; Robotics &amp; Test Automation</span></div>
+              <div class="xp-title"><h3>rf IDEAS</h3><span class="xp-role">SWE Intern / Robotics &amp; Test Automation</span></div>
               <p class="xp-meta">May 2026 &ndash; Present &middot; Schaumburg, IL</p>
-              <p class="xp-desc">Python control software for a 6-axis arm that runs RFID validation unattended overnight &mdash; workspace validation, joint-limit enforcement, autosave checkpointing, and automated fault recovery &mdash; with C++/GTest suites measuring read height to 0.1&nbsp;mm and response latency at millisecond resolution.</p>
+              <p class="xp-desc">Python control software for a 6-axis arm that runs RFID validation unattended overnight. Adds workspace validation, joint-limit enforcement, autosave checkpointing, and automated fault recovery, with C++/GTest suites measuring read height to 0.1&nbsp;mm and response latency at millisecond resolution.</p>
             </div>
             <div class="xp-chips">
               <span class="chip">Python</span><span class="chip">C++</span><span class="chip">GTest</span><span class="chip">UDP</span><span class="chip">Hardware-in-loop</span>
             </div>
           </div>
           <ul class="metrics">
-            <li class="metric"><div class="metric-num">10<span class="u">h</span> <span class="to">&rarr; overnight</span></div><div class="metric-label">Manual validation<br>now unattended</div></li>
+            <li class="metric"><div class="metric-num"><span>10<span class="u">h</span></span><span class="to">&rarr; overnight</span></div><div class="metric-label">Manual validation<br>now unattended</div></li>
             <li class="metric"><div class="metric-num">~20<span class="u" style="font-family:var(--mono)">/wk</span></div><div class="metric-label">Eng-hours<br>saved</div></li>
             <li class="metric"><div class="metric-num">1,600<span class="accent">+</span></div><div class="metric-label">Configs<br>swept</div></li>
             <li class="metric"><div class="metric-num">0.1<span class="u">mm</span></div><div class="metric-label">Read-height<br>precision</div></li>
@@ -586,9 +625,9 @@ section[id],footer[id]{scroll-margin-top:24px}
         <li class="xp-item">
           <div class="xp-head">
             <div class="xp-lead">
-              <div class="xp-title"><h3>Michigan &mdash; Lab for Progress</h3><span class="xp-role">Robotics SWE Researcher</span></div>
+              <div class="xp-title"><h3>Michigan Lab for Progress</h3><span class="xp-role">Robotics SWE Researcher</span></div>
               <p class="xp-meta">May 2025 &ndash; Jul 2025 &middot; Ann Arbor, MI</p>
-              <p class="xp-desc">C++ teleoperation of a Trossen Interbotix RX-200 arm &mdash; SDL2 controller input to joint-velocity commands through the vendor SDK. Diagnosed and eliminated race conditions crashing the vendor driver by guarding shared state with mutexes and atomics. Co-author on an accepted IROS 2026 paper; presented at ABRCMS 2025.</p>
+              <p class="xp-desc">C++ teleoperation of a Trossen Interbotix RX-200 arm: SDL2 controller input to joint-velocity commands through the vendor SDK. Diagnosed and eliminated race conditions crashing the vendor driver by guarding shared state with mutexes and atomics. Co-author on an accepted IROS 2026 paper; presented at ABRCMS 2025.</p>
             </div>
             <div class="xp-chips">
               <span class="chip">C++</span><span class="chip">SDL2</span><span class="chip">Interbotix SDK</span><span class="chip">Mutexes / atomics</span>
@@ -637,7 +676,7 @@ section[id],footer[id]{scroll-margin-top:24px}
       </div>
       <dl class="stack">
         <div class="row"><dt>Languages</dt><dd>
-          <span class="chip">Python</span><span class="chip">C++</span><span class="chip">Java</span><span class="chip">JavaScript</span><span class="chip">TypeScript</span><span class="chip">Swift</span><span class="chip">SQL</span>
+          <span class="chip">Python</span><span class="chip">C++</span><span class="chip">Java</span><span class="chip">TypeScript/JS</span><span class="chip">Swift</span><span class="chip">SQL</span>
         </dd></div>
         <div class="row"><dt>Robotics &amp; Systems</dt><dd>
           <span class="chip">ROS 2</span><span class="chip">Multithreading</span><span class="chip">TCP / UDP</span><span class="chip">Pub/Sub</span><span class="chip">GTest</span>
@@ -646,7 +685,7 @@ section[id],footer[id]{scroll-margin-top:24px}
           <span class="chip">React</span><span class="chip">Next.js</span><span class="chip">Node.js</span><span class="chip">Flask</span><span class="chip">PostgreSQL</span><span class="chip">Socket.IO</span><span class="chip">WebSockets</span><span class="chip">REST APIs</span>
         </dd></div>
         <div class="row"><dt>AI / ML</dt><dd>
-          <span class="chip">Gemini API</span><span class="chip">Claude API</span><span class="chip">Multimodal pipelines</span><span class="chip">Schema-constrained JSON</span>
+          <span class="chip">OpenAI API</span><span class="chip">Gemini API</span><span class="chip">Claude API</span><span class="chip">Multimodal pipelines</span><span class="chip">Schema-constrained JSON</span>
         </dd></div>
         <div class="row"><dt>Tools</dt><dd>
           <span class="chip">Git</span><span class="chip">GitHub</span><span class="chip">Linux</span><span class="chip">CI/CD</span><span class="chip">FFmpeg</span><span class="chip">NumPy</span><span class="chip">Pandas</span><span class="chip">SDL2</span>
@@ -680,7 +719,7 @@ section[id],footer[id]{scroll-margin-top:24px}
       <div class="footer-strip">
         <span>Wajahat Mahmood</span>
         <span>Software Engineer</span>
-        <span>Portfolio &mdash; 2026</span>
+        <span>Portfolio &middot; 2026</span>
         <span>Sheet 01 / 01</span>
       </div>
       <div style="height:clamp(28px,5vh,56px)"></div>
@@ -691,7 +730,7 @@ section[id],footer[id]{scroll-margin-top:24px}
 
 <script>
 /* ============================================================================
-   Interactive pieces — plain ES2015, no framework, no build.
+   Interactive pieces - plain ES2015, no framework, no build.
    Each demo is a small self-contained module and is started inside a try/catch
    so a failure in one never blanks the page (the static HTML/SVG fallbacks
    already in the markup remain visible).
@@ -751,7 +790,7 @@ section[id],footer[id]{scroll-margin-top:24px}
   }
 
   /* ==========================================================================
-     DEMO 1 — Inverse-kinematics arm (FABRIK solver)
+     DEMO 1 - Inverse-kinematics arm (FABRIK solver)
      --------------------------------------------------------------------------
      A 3-segment planar arm reaches toward a target the visitor controls by
      tap / drag / arrow keys. FABRIK = Forward And Backward Reaching Inverse
@@ -817,7 +856,7 @@ section[id],footer[id]{scroll-margin-top:24px}
 
     var fig = this.figure;
     // Mouse: arm on hover, disarm on leave. Touch keeps the last target (a tap
-    // sets it and it stays put — no need to hold).
+    // sets it and it stays put - no need to hold).
     fig.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') self._arm(); });
     fig.addEventListener('pointerleave', function (e) { if (e.pointerType === 'mouse') self._disarm(); });
     fig.addEventListener('focus', function () { self._arm(); });
@@ -1148,10 +1187,10 @@ section[id],footer[id]{scroll-margin-top:24px}
   };
 
   /* ==========================================================================
-     DEMO 2 — Real-time collaborative editor (simulated)
+     DEMO 2 - Real-time collaborative editor (simulated)
      --------------------------------------------------------------------------
      Two "peers" type live; the accent line is yours. Press Enter to commit
-     your line into the shared buffer — it lands as a numbered line, bumps the
+     your line into the shared buffer - it lands as a numbered line, bumps the
      op counter, and flips the sync badge (broadcasting -> synced).
      GRACEFUL DEGRADATION: the static C++ snippet in the markup is the fallback;
      this only runs if it can find the mount and rewrites it.
@@ -1171,10 +1210,10 @@ section[id],footer[id]{scroll-margin-top:24px}
     this.rows = [
       { text: '#include <boost/asio.hpp>' },
       { text: 'SharedDoc doc{sessionId};' },
-      { author: 'mateo', color: C.ink,  prefix: 'socket.on("edit", ', variants: ['[](Op op){ broadcast(op); });', '[](Op op){ queue.push(op); });', '[](Op op){ doc.merge(op); });'] },
+      { author: 'mateo', color: C.ink,  prefix: 'socket.on("edit", ', variants: ['broadcast);', 'queue.push(op);', 'doc.merge(op);'] },
       { author: 'ren',   color: C.ink2, prefix: 'auto next = ',        variants: ['crdt::merge(a, b);', 'ot::transform(a, b);', 'rebase(a, b);'] },
-      { text: 'run(doc.source(), Sandbox::Piston);' },
-      { author: 'you',   color: C.accent, editable: true, placeholder: '// type C++ \u00b7 press Enter to broadcast' }
+      { text: 'run(doc.source(), Piston);' },
+      { author: 'you',   color: C.accent, editable: true, placeholder: '// type C++ \u00b7 press Enter' }
     ];
 
     this._build();
@@ -1200,7 +1239,7 @@ section[id],footer[id]{scroll-margin-top:24px}
       ed.className = 'code-edit empty';
       ed.contentEditable = 'true'; ed.spellcheck = false;
       ed.setAttribute('role', 'textbox');
-      ed.setAttribute('aria-label', 'Live collaborative editor — type C++ and press Enter to broadcast it into the shared buffer');
+      ed.setAttribute('aria-label', 'Live collaborative editor. Type C++ and press Enter to broadcast it into the shared buffer');
       ed.textContent = row.placeholder;
       ed.addEventListener('focus', function () { if (ed.classList.contains('empty')) { ed.textContent = ''; ed.classList.remove('empty'); } });
       ed.addEventListener('input', function () { ed.classList.remove('empty'); self._sync('syncing'); });
@@ -1273,7 +1312,7 @@ section[id],footer[id]{scroll-margin-top:24px}
   };
   CollabEditor.prototype._foot = function (state) {
     if (!this.foot) return;
-    this.foot.textContent = 'socket.io \u00b7 rtt 24ms \u00b7 session ab-1029 \u00b7 ' + this.ops + ' ops \u00b7 ' + (state === 'syncing' ? 'broadcasting…' : 'synced');
+    this.foot.textContent = 'socket.io \u00b7 rtt 24ms \u00b7 ' + this.ops + ' ops \u00b7 ' + (state === 'syncing' ? 'broadcasting\u2026' : 'synced');
   };
 
   // Advance simulated peers one micro-step (type -> hold -> erase -> next variant).
@@ -1295,7 +1334,7 @@ section[id],footer[id]{scroll-margin-top:24px}
   };
 
   /* ==========================================================================
-     Small utility — copy email to clipboard, with a legacy fallback.
+     Small utility - copy email to clipboard, with a legacy fallback.
      ======================================================================== */
   function initCopyEmail() {
     var btn = document.getElementById('copy-email');
