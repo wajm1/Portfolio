@@ -218,6 +218,9 @@ section[id],footer[id]{scroll-margin-top:24px}
   grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr));
   gap:clamp(16px,2vw,24px);align-items:start;
 }
+#editor{
+  grid-column:1 / -1; /* full-width so the live demo has room to breathe */
+}
 .card{
   border:1px solid var(--line);background:var(--panel);
   padding:clamp(20px,2.4vw,30px);
@@ -257,6 +260,12 @@ section[id],footer[id]{scroll-margin-top:24px}
 .link:hover{color:var(--accent-ink)}
 .link .sq{width:6px;height:6px;background:var(--accent);flex:0 0 auto}
 
+.editor-hint{
+  display:none;
+  margin:0 0 -8px;
+  font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent-ink);
+}
+
 /* --- Collaborative editor (interactive demo #2) --------------------------- */
 .editor{border:1px solid var(--line);background:var(--paper)}
 .editor-bar{
@@ -264,21 +273,34 @@ section[id],footer[id]{scroll-margin-top:24px}
   padding:9px 12px;border-bottom:1px solid var(--line);
   font-family:var(--mono);font-size:11px;letter-spacing:.03em;color:var(--ink-70);
 }
-.editor-dots{display:flex;align-items:center;gap:6px;min-width:0}
+.editor-dots{display:flex;align-items:center;gap:6px;flex:0 1 auto;min-width:0}
 .editor-dots > span:not(.editor-file){width:8px;height:8px;border:1px solid var(--line-2);flex:0 0 auto}
 .editor-file{
-  margin-left:6px;color:var(--ink);min-width:0;
-  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  margin-left:6px;color:var(--ink);flex:0 0 auto;white-space:nowrap;
 }
 .editor-sync{display:inline-flex;align-items:center;gap:6px;transition:opacity .4s ease;flex:0 0 auto;white-space:nowrap}
-.code{padding:12px 14px;min-height:172px;overflow-x:auto;font-family:var(--mono);font-size:13px;line-height:23px}
-.code-line{display:flex;align-items:baseline;gap:14px;min-height:23px}
-.ln{width:22px;text-align:right;color:var(--ln);flex:0 0 auto;user-select:none}
-.code-mid{flex:1 1 auto;min-width:0;white-space:pre;overflow:hidden;text-overflow:ellipsis}
+.code{padding:16px 18px;min-height:240px;overflow-x:auto;font-family:var(--mono);font-size:14px;line-height:26px}
+.code-line{
+  display:grid;
+  grid-template-columns:28px minmax(0,1fr) auto;
+  column-gap:14px;
+  align-items:center;
+  min-height:26px;
+}
+.ln{text-align:right;color:var(--ln);user-select:none}
+.code-mid{
+  min-width:0;white-space:pre;overflow-x:auto;overflow-y:hidden;
+  scrollbar-width:none;-ms-overflow-style:none;
+}
+.code-mid::-webkit-scrollbar{display:none;width:0;height:0}
 .code-edit{display:inline-block;min-width:8px;white-space:pre;outline:none;color:var(--ink);caret-color:var(--accent)}
 .code-edit.empty{color:var(--ink-70)}
 .caret{display:inline-block;width:2px;height:15px;margin:0 1px;vertical-align:-3px;animation:blink 1s step-end infinite}
-.peer-tag{flex:0 0 auto;align-self:center;display:inline-flex;align-items:center;gap:5px;margin-left:12px;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-70)}
+.peer-tag{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-70);
+  white-space:nowrap;justify-self:end;
+}
 .peer-tag .pd{width:6px;height:6px;border-radius:50%;flex:0 0 auto}
 .editor-foot{
   padding:8px 12px;border-top:1px solid var(--line);
@@ -339,39 +361,123 @@ section[id],footer[id]{scroll-margin-top:24px}
 @keyframes blink{0%,48%{opacity:1}49%,100%{opacity:0}}
 @keyframes hintpulse{0%,100%{opacity:.72}50%{opacity:1}}
 
-/* --- Responsive: tighten datasheet callouts on small screens -------------- */
-@media (max-width:560px){
-  .section-head{flex-wrap:wrap;gap:8px 12px;align-items:center}
+/* --- Responsive: stop text collisions / overflow on phones ---------------- */
+html,body{overflow-x:clip}
+.wrap,.card,.editor,.fig,.xp-item,.contact-grid,.stack{min-width:0}
+.link{max-width:100%;overflow-wrap:anywhere;word-break:break-word}
+
+@media (max-width:720px){
+  /* Section titles + notes stack so they never fight for one row */
+  .section-head{
+    display:grid;
+    grid-template-columns:1fr;
+    align-items:start;
+    gap:8px;
+    margin-bottom:clamp(22px,4vw,36px);
+  }
+  .section-head h2{white-space:normal;letter-spacing:.12em}
   .section-head .rule{display:none}
-  .head-note{white-space:nowrap;font-size:11px;margin-left:auto}
+  .head-note{
+    white-space:normal;
+    margin-left:0;
+    font-size:11px;
+    line-height:1.45;
+    max-width:100%;
+  }
+  /* On stacked cards the editor isn't under this label - drop it */
+  #work > .wrap > .section-head .head-note{display:none}
+  .editor-hint{display:block}
 
-  .card-head{flex-direction:column;gap:4px}
-  .card-kicker{text-align:left}
-  /* keep pipeline diagrams from squeezing to unreadable widths */
-  .flow{font-size:9.5px}
+  .site-header .wrap{align-items:flex-start}
+  .nav{gap:10px 14px;row-gap:10px}
+  .avail{font-size:11px}
 
-  .editor-bar{flex-wrap:nowrap;gap:8px;padding:8px 10px}
+  .name{font-size:clamp(40px,12vw,72px)}
+  .lede{max-width:none;font-size:16px}
+
+  .fig-label{max-width:calc(100% - 110px)}
+  .fig-hint{font-size:9px;padding:3px 6px}
+  .fig-status{padding:3px 6px}
+  .fig-status .txt{font-size:9.5px}
+  .fig-read{
+    font-size:9.5px;
+    padding:8px 10px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+
+  .card{padding:18px;gap:16px}
+  .card-head{flex-direction:column;gap:4px;align-items:flex-start}
+  .card-kicker{text-align:left;white-space:normal}
+  .card-title{font-size:clamp(20px,6vw,24px)}
+  .card-desc a{white-space:normal}
+
+  .flow{font-size:9px}
+  .flow .step{padding:10px 4px}
+
+  .editor-bar{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px 10px;
+    padding:8px 10px;
+  }
   .editor-sync{font-size:10px}
-  .editor-file{max-width:11ch}
-  .code{font-size:12px;line-height:20px;padding:10px;min-height:160px}
-  .code-line{gap:10px;min-height:20px}
-  .ln{width:18px}
-  .peer-tag{display:none} /* peer labels collide with code on narrow widths */
-  .code-mid{white-space:pre;overflow-x:auto;text-overflow:clip}
-  .editor-foot{white-space:nowrap;font-size:10px;padding:8px 10px}
+  .editor-file{max-width:none}
+  .code{font-size:13px;line-height:24px;padding:14px;min-height:220px}
+  .code-line{
+    grid-template-columns:22px minmax(0,1fr);
+    column-gap:10px;
+    min-height:24px;
+  }
+  .peer-tag{display:none} /* names collide with code on narrow widths */
+  .editor-foot{
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    font-size:10px;
+    padding:8px 10px;
+  }
+
+  .links{gap:10px 14px}
+  .link{font-size:11px}
+
+  .xp-head{flex-direction:column;gap:12px}
+  .xp-title{flex-direction:column;align-items:flex-start;gap:4px}
+  .xp-role{white-space:normal;line-height:1.4}
+  .xp-chips{margin-top:0}
 
   .metrics{grid-template-columns:1fr 1fr}
   .metric{padding:14px 12px}
-  .metric-num{font-size:clamp(20px,6.5vw,26px);gap:4px 6px}
-  .metric-label{font-size:10px;margin-top:8px}
+  .metric-num{
+    font-size:clamp(18px,6vw,24px);
+    gap:2px 6px;
+    flex-direction:row;
+    flex-wrap:wrap;
+    align-items:baseline;
+  }
+  .metric-num:has(.to){
+    flex-direction:column;
+    align-items:flex-start;
+    gap:4px;
+  }
+  .metric-num .to{font-size:.42em}
+  .metric-label{font-size:10px;margin-top:8px;overflow-wrap:anywhere}
 
   .stack .row{grid-template-columns:1fr;gap:10px}
-  .xp-chips{margin-top:4px}
+  .stack .chip,.chip{font-size:11px;padding:5px 8px}
+
+  .contact-title{font-size:clamp(18px,5.5vw,22px)}
+  .footer-strip{grid-template-columns:1fr 1fr}
 }
 
-@media (max-width:380px){
-  .editor-file{max-width:9ch}
-  .nav{gap:12px 14px}
+@media (max-width:400px){
+  .wrap{padding-inline:16px}
+  .brand-name{letter-spacing:.08em;font-size:11px}
+  .nav{font-size:11px;gap:8px 12px}
+  .nav .sep{display:none}
+  .metric-num{font-size:clamp(17px,7vw,22px)}
+  .flow{font-size:8.5px}
 }
 
 /* --- Reduced motion: freeze all the moving parts -------------------------- */
@@ -516,8 +622,8 @@ section[id],footer[id]{scroll-margin-top:24px}
           </div>
           <div class="links">
             <a class="link" href="https://www.youtube.com/watch?v=C1dSdK3tr18" target="_blank" rel="noopener"><span class="sq" aria-hidden="true"></span>Demo video <span aria-hidden="true">&#8599;</span></a>
-            <a class="link" href="https://github.com/wajm1/GlanceScribe" target="_blank" rel="noopener"><span class="sq" aria-hidden="true"></span>github.com/wajm1/GlanceScribe <span aria-hidden="true">&#8599;</span></a>
-            <a class="link" href="https://devpost.com/software/glancescribe" target="_blank" rel="noopener"><span class="sq" aria-hidden="true"></span>devpost.com/software/glancescribe <span aria-hidden="true">&#8599;</span></a>
+            <a class="link" href="https://github.com/wajm1/GlanceScribe" target="_blank" rel="noopener"><span class="sq" aria-hidden="true"></span>GitHub <span aria-hidden="true">&#8599;</span></a>
+            <a class="link" href="https://devpost.com/software/glancescribe" target="_blank" rel="noopener"><span class="sq" aria-hidden="true"></span>Devpost <span aria-hidden="true">&#8599;</span></a>
           </div>
         </article>
 
@@ -545,7 +651,7 @@ section[id],footer[id]{scroll-margin-top:24px}
             <div class="stat"><div class="stat-num">0 <span class="u-accent">crashes</span></div><div class="stat-label">Race conditions<br>eliminated</div></div>
           </div>
           <div class="links">
-            <a class="link" href="https://github.com/wajm1/rix-interbotix-driver" target="_blank" rel="noopener"><span class="sq" aria-hidden="true"></span>github.com/wajm1/rix-interbotix-driver <span aria-hidden="true">&#8599;</span></a>
+            <a class="link" href="https://github.com/wajm1/rix-interbotix-driver" target="_blank" rel="noopener"><span class="sq" aria-hidden="true"></span>GitHub <span aria-hidden="true">&#8599;</span></a>
           </div>
         </article>
 
@@ -555,7 +661,9 @@ section[id],footer[id]{scroll-margin-top:24px}
             <h3 class="card-title">Real-Time Collaborative<br>Code Editor</h3>
             <span class="card-kicker">CODING&nbsp;PLATFORM</span>
           </div>
-          <p class="card-desc">Concurrent edits and presence synced over Socket.IO, with server-side session recovery and sandboxed multi-language runs via the Piston API. Try the <a href="https://wajm1.github.io/Code-Interview-Platform/" target="_blank" rel="noopener">live demo</a>, or type below and press <strong>Enter</strong> to broadcast into this simulated shared buffer.</p>
+          <p class="card-desc">Concurrent edits and presence synced over Socket.IO, with session recovery and sandboxed runs via the Piston API. Open the <a href="https://wajm1.github.io/Code-Interview-Platform/" target="_blank" rel="noopener">live demo</a>, or type a line below and press <strong>Enter</strong> to add it here (local simulation).</p>
+
+          <p class="editor-hint mono" aria-hidden="true">try the editor</p>
 
           <!--
             The lines below are the STATIC FALLBACK. If JS runs, initEditor()
@@ -568,12 +676,12 @@ section[id],footer[id]{scroll-margin-top:24px}
               <span class="editor-sync" id="ed-peers"><span class="dot"></span>3 peers &middot; <span id="ed-sync">synced</span></span>
             </div>
             <div class="code" id="ed-code">
-              <div class="code-line"><span class="ln">01</span><span class="code-mid">#include &lt;boost/asio.hpp&gt;</span></div>
-              <div class="code-line"><span class="ln">02</span><span class="code-mid">SharedDoc doc{sessionId};</span></div>
-              <div class="code-line"><span class="ln">03</span><span class="code-mid">socket.on("edit", broadcast);</span></div>
-              <div class="code-line"><span class="ln">04</span><span class="code-mid">auto next = crdt::merge(a, b);</span></div>
-              <div class="code-line"><span class="ln">05</span><span class="code-mid">run(doc.source(), Piston);</span></div>
-              <div class="code-line"><span class="ln">06</span><span class="code-mid" style="color:var(--ink-70)">// type C++ &middot; press Enter</span></div>
+              <div class="code-line"><span class="ln">01</span><span class="code-mid">#include &lt;asio.hpp&gt;</span></div>
+              <div class="code-line"><span class="ln">02</span><span class="code-mid">SharedDoc doc;</span></div>
+              <div class="code-line"><span class="ln">03</span><span class="code-mid">on("edit", broadcast);</span></div>
+              <div class="code-line"><span class="ln">04</span><span class="code-mid">auto n = merge(a, b);</span></div>
+              <div class="code-line"><span class="ln">05</span><span class="code-mid">run(doc, Piston);</span></div>
+              <div class="code-line"><span class="ln">06</span><span class="code-mid" style="color:var(--ink-70)">// type · press Enter</span></div>
             </div>
             <div class="editor-foot" id="ed-foot">socket.io &middot; rtt 24ms &middot; 0 ops</div>
           </div>
@@ -587,7 +695,7 @@ section[id],footer[id]{scroll-margin-top:24px}
           </div>
           <div class="links">
             <a class="link" href="https://wajm1.github.io/Code-Interview-Platform/" target="_blank" rel="noopener"><span class="sq" aria-hidden="true"></span>Live demo <span aria-hidden="true">&#8599;</span></a>
-            <a class="link" href="https://github.com/wajm1/Code-Interview-Platform" target="_blank" rel="noopener"><span class="sq" aria-hidden="true"></span>github.com/wajm1/Code-Interview-Platform <span aria-hidden="true">&#8599;</span></a>
+            <a class="link" href="https://github.com/wajm1/Code-Interview-Platform" target="_blank" rel="noopener"><span class="sq" aria-hidden="true"></span>GitHub <span aria-hidden="true">&#8599;</span></a>
           </div>
         </article>
 
@@ -1179,7 +1287,7 @@ section[id],footer[id]{scroll-margin-top:24px}
     }
     if (!this.readEl) return;
     if (this.status === 'STATIC') { this.readEl.textContent = '\u03B8 static \u00b7 reduced-motion'; return; }
-    if (this.status === 'IDLE')   { this.readEl.textContent = '\u03B8 \u2014 \u2014 \u2014 \u00b7 TCP \u2014,\u2014 \u00b7 idle'; return; }
+    if (this.status === 'IDLE')   { this.readEl.textContent = '\u03B8 \u00b7 \u00b7 \u00b7 \u00b7 TCP \u00b7,\u00b7 \u00b7 idle'; return; }
     var end = this.points[this.points.length - 1];
     var tx = Math.round(end.x - this.base.x), ty = Math.round(this.base.y - end.y);
     this.readEl.textContent = '\u03B8 ' + this._angles().join(' ') + ' \u00b7 TCP ' + tx + ',' + ty + ' \u00b7 ' +
@@ -1206,14 +1314,30 @@ section[id],footer[id]{scroll-margin-top:24px}
     this.committed = [];
     this.ops = 0;
 
-    // Row spec: plain text, an animated peer (prefix + cycling variants), or the editable "you" line.
+    // Short, fully-visible lines so peer typing isn't hidden behind ellipsis.
     this.rows = [
-      { text: '#include <boost/asio.hpp>' },
-      { text: 'SharedDoc doc{sessionId};' },
-      { author: 'mateo', color: C.ink,  prefix: 'socket.on("edit", ', variants: ['broadcast);', 'queue.push(op);', 'doc.merge(op);'] },
-      { author: 'ren',   color: C.ink2, prefix: 'auto next = ',        variants: ['crdt::merge(a, b);', 'ot::transform(a, b);', 'rebase(a, b);'] },
-      { text: 'run(doc.source(), Piston);' },
-      { author: 'you',   color: C.accent, editable: true, placeholder: '// type C++ \u00b7 press Enter' }
+      { text: '#include <asio.hpp>' },
+      { text: 'SharedDoc doc;' },
+      {
+        author: 'mateo', color: C.accent, prefix: '',
+        variants: [
+          'on("edit", broadcast);',
+          'on("edit", enqueue);',
+          'on("edit", merge);'
+        ],
+        startDelay: 0
+      },
+      {
+        author: 'ren', color: C.ink2, prefix: '',
+        variants: [
+          'auto n = merge(a, b);',
+          'auto n = rebase(a, b);',
+          'auto n = transform(a, b);'
+        ],
+        startDelay: 16
+      },
+      { text: 'run(doc, Piston);' },
+      { author: 'you', color: C.accent, editable: true, placeholder: '// type · press Enter' }
     ];
 
     this._build();
@@ -1225,7 +1349,7 @@ section[id],footer[id]{scroll-margin-top:24px}
     this.rows.forEach(function (row) { self.host.appendChild(self._line(row)); });
     this._renumber();
     this._foot('synced');
-    if (!REDUCED) this._timer = setInterval(function () { self._tick(); }, 55);
+    if (!REDUCED) this._timer = setInterval(function () { self._tick(); }, 42);
   };
 
   CollabEditor.prototype._line = function (row) {
@@ -1239,7 +1363,7 @@ section[id],footer[id]{scroll-margin-top:24px}
       ed.className = 'code-edit empty';
       ed.contentEditable = 'true'; ed.spellcheck = false;
       ed.setAttribute('role', 'textbox');
-      ed.setAttribute('aria-label', 'Live collaborative editor. Type C++ and press Enter to broadcast it into the shared buffer');
+      ed.setAttribute('aria-label', 'Collaborative editor demo. Type a line and press Enter to add it');
       ed.textContent = row.placeholder;
       ed.addEventListener('focus', function () { if (ed.classList.contains('empty')) { ed.textContent = ''; ed.classList.remove('empty'); } });
       ed.addEventListener('input', function () { ed.classList.remove('empty'); self._sync('syncing'); });
@@ -1254,7 +1378,17 @@ section[id],footer[id]{scroll-margin-top:24px}
       if (!REDUCED) {
         var car = document.createElement('span'); car.className = 'caret'; car.style.background = row.color;
         mid.appendChild(car);
-        this.peers.push({ code: code, prefix: row.prefix, variants: row.variants, vi: 0, text: '', target: row.variants[0], phase: 'type', hold: 0, cd: 2 + Math.floor(Math.random() * 12) });
+        this.peers.push({
+          code: code,
+          prefix: row.prefix,
+          variants: row.variants,
+          vi: 0,
+          text: '',
+          target: row.variants[0],
+          phase: 'type',
+          hold: 0,
+          cd: row.startDelay || 0
+        });
       }
       line.appendChild(this._tag(row.author, row.color));
     } else if (row.author) {
@@ -1321,13 +1455,25 @@ section[id],footer[id]{scroll-margin-top:24px}
       var s = this.peers[i];
       if (s.cd > 0) { s.cd--; continue; }
       if (s.phase === 'type') {
-        if (s.text.length < s.target.length) { s.text = s.target.slice(0, s.text.length + 1); s.cd = 1 + Math.floor(Math.random() * 2); }
-        else { s.phase = 'hold'; s.hold = 44; }
+        if (s.text.length < s.target.length) {
+          s.text = s.target.slice(0, s.text.length + 1);
+          s.cd = 1 + Math.floor(Math.random() * 2);
+        } else {
+          s.phase = 'hold';
+          s.hold = 28 + Math.floor(Math.random() * 12);
+        }
       } else if (s.phase === 'hold') {
         if (--s.hold <= 0) s.phase = 'erase';
       } else {
-        if (s.text.length > 0) s.text = s.text.slice(0, -1);
-        else { s.vi = (s.vi + 1) % s.variants.length; s.target = s.variants[s.vi]; s.phase = 'type'; s.cd = 6; }
+        if (s.text.length > 0) {
+          s.text = s.text.slice(0, -1);
+          s.cd = 0;
+        } else {
+          s.vi = (s.vi + 1) % s.variants.length;
+          s.target = s.variants[s.vi];
+          s.phase = 'type';
+          s.cd = 4 + Math.floor(Math.random() * 8);
+        }
       }
       s.code.textContent = s.prefix + s.text;
     }
