@@ -218,6 +218,9 @@ section[id],footer[id]{scroll-margin-top:24px}
   grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr));
   gap:clamp(16px,2vw,24px);align-items:start;
 }
+#editor{
+  grid-column:1 / -1; /* full-width so the live demo has room to breathe */
+}
 .card{
   border:1px solid var(--line);background:var(--panel);
   padding:clamp(20px,2.4vw,30px);
@@ -270,21 +273,34 @@ section[id],footer[id]{scroll-margin-top:24px}
   padding:9px 12px;border-bottom:1px solid var(--line);
   font-family:var(--mono);font-size:11px;letter-spacing:.03em;color:var(--ink-70);
 }
-.editor-dots{display:flex;align-items:center;gap:6px;min-width:0}
+.editor-dots{display:flex;align-items:center;gap:6px;flex:0 1 auto;min-width:0}
 .editor-dots > span:not(.editor-file){width:8px;height:8px;border:1px solid var(--line-2);flex:0 0 auto}
 .editor-file{
-  margin-left:6px;color:var(--ink);min-width:0;
-  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  margin-left:6px;color:var(--ink);flex:0 0 auto;white-space:nowrap;
 }
 .editor-sync{display:inline-flex;align-items:center;gap:6px;transition:opacity .4s ease;flex:0 0 auto;white-space:nowrap}
-.code{padding:12px 14px;min-height:172px;overflow-x:auto;font-family:var(--mono);font-size:13px;line-height:23px}
-.code-line{display:flex;align-items:baseline;gap:14px;min-height:23px}
-.ln{width:22px;text-align:right;color:var(--ln);flex:0 0 auto;user-select:none}
-.code-mid{flex:1 1 auto;min-width:0;white-space:pre;overflow:hidden;text-overflow:ellipsis}
+.code{padding:16px 18px;min-height:240px;overflow-x:auto;font-family:var(--mono);font-size:14px;line-height:26px}
+.code-line{
+  display:grid;
+  grid-template-columns:28px minmax(0,1fr) auto;
+  column-gap:14px;
+  align-items:center;
+  min-height:26px;
+}
+.ln{text-align:right;color:var(--ln);user-select:none}
+.code-mid{
+  min-width:0;white-space:pre;overflow-x:auto;overflow-y:hidden;
+  scrollbar-width:none;-ms-overflow-style:none;
+}
+.code-mid::-webkit-scrollbar{display:none;width:0;height:0}
 .code-edit{display:inline-block;min-width:8px;white-space:pre;outline:none;color:var(--ink);caret-color:var(--accent)}
 .code-edit.empty{color:var(--ink-70)}
 .caret{display:inline-block;width:2px;height:15px;margin:0 1px;vertical-align:-3px;animation:blink 1s step-end infinite}
-.peer-tag{flex:0 0 auto;align-self:center;display:inline-flex;align-items:center;gap:5px;margin-left:12px;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-70)}
+.peer-tag{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-70);
+  white-space:nowrap;justify-self:end;
+}
 .peer-tag .pd{width:6px;height:6px;border-radius:50%;flex:0 0 auto}
 .editor-foot{
   padding:8px 12px;border-top:1px solid var(--line);
@@ -401,18 +417,20 @@ html,body{overflow-x:clip}
   .flow .step{padding:10px 4px}
 
   .editor-bar{
-    display:grid;
-    grid-template-columns:1fr;
-    gap:6px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px 10px;
     padding:8px 10px;
   }
-  .editor-sync{justify-self:start;font-size:10px}
-  .editor-file{max-width:100%}
-  .code{font-size:11.5px;line-height:19px;padding:10px;min-height:150px}
-  .code-line{gap:8px;min-height:19px}
-  .ln{width:16px;font-size:10.5px}
-  .peer-tag{display:none} /* peer labels collide with code on narrow widths */
-  .code-mid{white-space:pre;overflow-x:auto;text-overflow:clip;-webkit-overflow-scrolling:touch}
+  .editor-sync{font-size:10px}
+  .editor-file{max-width:none}
+  .code{font-size:13px;line-height:24px;padding:14px;min-height:220px}
+  .code-line{
+    grid-template-columns:22px minmax(0,1fr);
+    column-gap:10px;
+    min-height:24px;
+  }
+  .peer-tag{display:none} /* names collide with code on narrow widths */
   .editor-foot{
     white-space:nowrap;
     overflow:hidden;
@@ -643,7 +661,7 @@ html,body{overflow-x:clip}
             <h3 class="card-title">Real-Time Collaborative<br>Code Editor</h3>
             <span class="card-kicker">CODING&nbsp;PLATFORM</span>
           </div>
-          <p class="card-desc">Concurrent edits and presence synced over Socket.IO, with server-side session recovery and sandboxed multi-language runs via the Piston API. Try the <a href="https://wajm1.github.io/Code-Interview-Platform/" target="_blank" rel="noopener">live demo</a>, or type below and press <strong>Enter</strong> to broadcast into this simulated shared buffer.</p>
+          <p class="card-desc">Concurrent edits and presence synced over Socket.IO, with session recovery and sandboxed runs via the Piston API. Open the <a href="https://wajm1.github.io/Code-Interview-Platform/" target="_blank" rel="noopener">live demo</a>, or type a line below and press <strong>Enter</strong> to add it here (local simulation).</p>
 
           <p class="editor-hint mono" aria-hidden="true">try the editor</p>
 
@@ -658,12 +676,12 @@ html,body{overflow-x:clip}
               <span class="editor-sync" id="ed-peers"><span class="dot"></span>3 peers &middot; <span id="ed-sync">synced</span></span>
             </div>
             <div class="code" id="ed-code">
-              <div class="code-line"><span class="ln">01</span><span class="code-mid">#include &lt;boost/asio.hpp&gt;</span></div>
-              <div class="code-line"><span class="ln">02</span><span class="code-mid">SharedDoc doc{sessionId};</span></div>
-              <div class="code-line"><span class="ln">03</span><span class="code-mid">socket.on("edit", broadcast);</span></div>
-              <div class="code-line"><span class="ln">04</span><span class="code-mid">auto next = crdt::merge(a, b);</span></div>
-              <div class="code-line"><span class="ln">05</span><span class="code-mid">run(doc.source(), Piston);</span></div>
-              <div class="code-line"><span class="ln">06</span><span class="code-mid" style="color:var(--ink-70)">// type C++ &middot; press Enter</span></div>
+              <div class="code-line"><span class="ln">01</span><span class="code-mid">#include &lt;asio.hpp&gt;</span></div>
+              <div class="code-line"><span class="ln">02</span><span class="code-mid">SharedDoc doc;</span></div>
+              <div class="code-line"><span class="ln">03</span><span class="code-mid">on("edit", broadcast);</span></div>
+              <div class="code-line"><span class="ln">04</span><span class="code-mid">auto n = merge(a, b);</span></div>
+              <div class="code-line"><span class="ln">05</span><span class="code-mid">run(doc, Piston);</span></div>
+              <div class="code-line"><span class="ln">06</span><span class="code-mid" style="color:var(--ink-70)">// type · press Enter</span></div>
             </div>
             <div class="editor-foot" id="ed-foot">socket.io &middot; rtt 24ms &middot; 0 ops</div>
           </div>
@@ -1269,7 +1287,7 @@ html,body{overflow-x:clip}
     }
     if (!this.readEl) return;
     if (this.status === 'STATIC') { this.readEl.textContent = '\u03B8 static \u00b7 reduced-motion'; return; }
-    if (this.status === 'IDLE')   { this.readEl.textContent = '\u03B8 \u2014 \u2014 \u2014 \u00b7 TCP \u2014,\u2014 \u00b7 idle'; return; }
+    if (this.status === 'IDLE')   { this.readEl.textContent = '\u03B8 \u00b7 \u00b7 \u00b7 \u00b7 TCP \u00b7,\u00b7 \u00b7 idle'; return; }
     var end = this.points[this.points.length - 1];
     var tx = Math.round(end.x - this.base.x), ty = Math.round(this.base.y - end.y);
     this.readEl.textContent = '\u03B8 ' + this._angles().join(' ') + ' \u00b7 TCP ' + tx + ',' + ty + ' \u00b7 ' +
@@ -1296,14 +1314,30 @@ html,body{overflow-x:clip}
     this.committed = [];
     this.ops = 0;
 
-    // Row spec: plain text, an animated peer (prefix + cycling variants), or the editable "you" line.
+    // Short, fully-visible lines so peer typing isn't hidden behind ellipsis.
     this.rows = [
-      { text: '#include <boost/asio.hpp>' },
-      { text: 'SharedDoc doc{sessionId};' },
-      { author: 'mateo', color: C.ink,  prefix: 'socket.on("edit", ', variants: ['broadcast);', 'queue.push(op);', 'doc.merge(op);'] },
-      { author: 'ren',   color: C.ink2, prefix: 'auto next = ',        variants: ['crdt::merge(a, b);', 'ot::transform(a, b);', 'rebase(a, b);'] },
-      { text: 'run(doc.source(), Piston);' },
-      { author: 'you',   color: C.accent, editable: true, placeholder: '// type C++ \u00b7 press Enter' }
+      { text: '#include <asio.hpp>' },
+      { text: 'SharedDoc doc;' },
+      {
+        author: 'mateo', color: C.accent, prefix: '',
+        variants: [
+          'on("edit", broadcast);',
+          'on("edit", enqueue);',
+          'on("edit", merge);'
+        ],
+        startDelay: 0
+      },
+      {
+        author: 'ren', color: C.ink2, prefix: '',
+        variants: [
+          'auto n = merge(a, b);',
+          'auto n = rebase(a, b);',
+          'auto n = transform(a, b);'
+        ],
+        startDelay: 16
+      },
+      { text: 'run(doc, Piston);' },
+      { author: 'you', color: C.accent, editable: true, placeholder: '// type · press Enter' }
     ];
 
     this._build();
@@ -1315,7 +1349,7 @@ html,body{overflow-x:clip}
     this.rows.forEach(function (row) { self.host.appendChild(self._line(row)); });
     this._renumber();
     this._foot('synced');
-    if (!REDUCED) this._timer = setInterval(function () { self._tick(); }, 55);
+    if (!REDUCED) this._timer = setInterval(function () { self._tick(); }, 42);
   };
 
   CollabEditor.prototype._line = function (row) {
@@ -1329,7 +1363,7 @@ html,body{overflow-x:clip}
       ed.className = 'code-edit empty';
       ed.contentEditable = 'true'; ed.spellcheck = false;
       ed.setAttribute('role', 'textbox');
-      ed.setAttribute('aria-label', 'Live collaborative editor. Type C++ and press Enter to broadcast it into the shared buffer');
+      ed.setAttribute('aria-label', 'Collaborative editor demo. Type a line and press Enter to add it');
       ed.textContent = row.placeholder;
       ed.addEventListener('focus', function () { if (ed.classList.contains('empty')) { ed.textContent = ''; ed.classList.remove('empty'); } });
       ed.addEventListener('input', function () { ed.classList.remove('empty'); self._sync('syncing'); });
@@ -1344,7 +1378,17 @@ html,body{overflow-x:clip}
       if (!REDUCED) {
         var car = document.createElement('span'); car.className = 'caret'; car.style.background = row.color;
         mid.appendChild(car);
-        this.peers.push({ code: code, prefix: row.prefix, variants: row.variants, vi: 0, text: '', target: row.variants[0], phase: 'type', hold: 0, cd: 2 + Math.floor(Math.random() * 12) });
+        this.peers.push({
+          code: code,
+          prefix: row.prefix,
+          variants: row.variants,
+          vi: 0,
+          text: '',
+          target: row.variants[0],
+          phase: 'type',
+          hold: 0,
+          cd: row.startDelay || 0
+        });
       }
       line.appendChild(this._tag(row.author, row.color));
     } else if (row.author) {
@@ -1411,13 +1455,25 @@ html,body{overflow-x:clip}
       var s = this.peers[i];
       if (s.cd > 0) { s.cd--; continue; }
       if (s.phase === 'type') {
-        if (s.text.length < s.target.length) { s.text = s.target.slice(0, s.text.length + 1); s.cd = 1 + Math.floor(Math.random() * 2); }
-        else { s.phase = 'hold'; s.hold = 44; }
+        if (s.text.length < s.target.length) {
+          s.text = s.target.slice(0, s.text.length + 1);
+          s.cd = 1 + Math.floor(Math.random() * 2);
+        } else {
+          s.phase = 'hold';
+          s.hold = 28 + Math.floor(Math.random() * 12);
+        }
       } else if (s.phase === 'hold') {
         if (--s.hold <= 0) s.phase = 'erase';
       } else {
-        if (s.text.length > 0) s.text = s.text.slice(0, -1);
-        else { s.vi = (s.vi + 1) % s.variants.length; s.target = s.variants[s.vi]; s.phase = 'type'; s.cd = 6; }
+        if (s.text.length > 0) {
+          s.text = s.text.slice(0, -1);
+          s.cd = 0;
+        } else {
+          s.vi = (s.vi + 1) % s.variants.length;
+          s.target = s.variants[s.vi];
+          s.phase = 'type';
+          s.cd = 4 + Math.floor(Math.random() * 8);
+        }
       }
       s.code.textContent = s.prefix + s.text;
     }
