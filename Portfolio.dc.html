@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#ECEDEA; --panel:#F5F6F3; --ink:#171A1C; --ink-70:#565B5E;
+    --line:rgba(20,24,28,0.17); --line-2:rgba(20,24,28,0.30); --faint:rgba(20,24,28,0.06);
+    --accent:#E24A00; --accent-ink:#B23A00;
+    --grot:'Space Grotesk',system-ui,-apple-system,sans-serif;
+    --mono:'JetBrains Mono',ui-monospace,'SF Mono',monospace;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--grot);
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;line-height:1.5;
+    background-image:linear-gradient(var(--faint) 1px,transparent 1px),linear-gradient(90deg,var(--faint) 1px,transparent 1px);
+    background-size:32px 32px;background-position:center top}
+  a{color:var(--ink);text-decoration:none}
+  a:hover{color:var(--accent-ink)}
+  h1,h2,h3,p,ul,figure{margin:0}
+  ul{list-style:none;padding:0}
+  section[id],footer[id]{scroll-margin-top:24px}
+  ::selection{background:var(--accent);color:#fff}
+  a:focus-visible,button:focus-visible,[role="application"]:focus-visible,[contenteditable]:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+  @keyframes blink{0%,48%{opacity:1}49%,100%{opacity:0}}
+  @keyframes hintpulse{0%,100%{opacity:.72}50%{opacity:1}}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation-duration:.001ms!important;animation-iteration-count:1!important;transition:none!important}}
+</style>
+</helmet>
+
+<a href="#main" style="position:absolute;left:8px;top:-52px;z-index:60;background:var(--ink);color:var(--paper);font-family:var(--mono);font-size:12px;padding:10px 14px;transition:top .2s ease" style-focus="top:8px">Skip to content</a>
+
+<header style="border-bottom:1px solid var(--line);position:relative;z-index:3;background:var(--paper)">
+  <div style="max-width:1200px;margin:0 auto;padding:15px clamp(20px,5vw,64px);display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
+    <a href="#top" style="display:flex;align-items:center;gap:11px">
+      <span style="display:grid;place-items:center;width:30px;height:30px;border:1px solid var(--ink);font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.02em">WM</span>
+      <span style="font-family:var(--mono);font-size:12px;letter-spacing:.13em;text-transform:uppercase">Wajahat Mahmood</span>
+    </a>
+    <nav aria-label="Sections" style="display:flex;align-items:center;gap:16px 20px;font-family:var(--mono);font-size:12px;letter-spacing:.04em;flex-wrap:wrap">
+      <a href="#work" style="transition:color .2s ease">Work</a>
+      <a href="#experience" style="transition:color .2s ease">Experience</a>
+      <a href="#contact" style="transition:color .2s ease">Contact</a>
+      <span aria-hidden="true" style="width:1px;height:14px;background:var(--line)"></span>
+      <span style="display:inline-flex;align-items:center;gap:7px;color:var(--ink-70)"><span aria-hidden="true" style="width:7px;height:7px;border-radius:50%;background:var(--accent)"></span>Open to 2026 SWE</span>
+      <a href="https://github.com/wajm1" target="_blank" rel="noopener" style="transition:color .2s ease">GitHub</a>
+      <a href="uploads/Wajahat_Mahmood_Resume.pdf" target="_blank" rel="noopener" style="transition:color .2s ease">R&eacute;sum&eacute;</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section id="top" style="padding:clamp(40px,7vh,80px) 0 clamp(48px,8vh,92px)">
+    <div style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,5vw,64px)">
+      <p style="font-family:var(--mono);font-size:clamp(11px,1.4vw,13px);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-70);margin-bottom:clamp(20px,3vw,34px)">Software Engineer &nbsp;·&nbsp; Robotics + Real-Time Systems</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:clamp(28px,4vw,56px);align-items:center">
+        <div>
+          <h1 style="font-family:var(--grot);font-weight:600;font-size:clamp(44px,8.4vw,94px);line-height:.9;letter-spacing:-.035em">Wajahat<br>Mahmood</h1>
+          <p style="max-width:34ch;margin-top:clamp(20px,3vw,30px);font-size:clamp(16px,1.5vw,19px);color:var(--ink-70);text-wrap:pretty">Software engineer building real-time systems — and the tools that test the hardware they run on.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:clamp(22px,3vw,30px)">
+            <span style="font-family:var(--mono);font-size:12px;letter-spacing:.02em;color:var(--ink);border:1px solid var(--line);padding:7px 10px;background:var(--panel)">C++</span>
+            <span style="font-family:var(--mono);font-size:12px;letter-spacing:.02em;color:var(--ink);border:1px solid var(--line);padding:7px 10px;background:var(--panel)">Python</span>
+            <span style="font-family:var(--mono);font-size:12px;letter-spacing:.02em;color:var(--ink);border:1px solid var(--line);padding:7px 10px;background:var(--panel)">ROS 2</span>
+            <span style="font-family:var(--mono);font-size:12px;letter-spacing:.02em;color:var(--ink);border:1px solid var(--line);padding:7px 10px;background:var(--panel)">TypeScript</span>
+          </div>
+        </div>
+        <figure ref="{{ figRef }}" tabindex="0" role="application" aria-label="Inverse-kinematics arm demonstrator. Tap or drag inside this box to move the arm, or use the arrow keys; Home resets it." style="position:relative;width:100%;aspect-ratio:5/4;border:1px solid var(--line);background:var(--panel);overflow:hidden;cursor:crosshair;transition:border-color .2s ease" style-hover="border-color:var(--line-2)">
+          <span aria-hidden="true" style="position:absolute;top:8px;left:8px;width:11px;height:11px;border-top:1.5px solid var(--accent);border-left:1.5px solid var(--accent);z-index:2"></span>
+          <span aria-hidden="true" style="position:absolute;top:8px;right:8px;width:11px;height:11px;border-top:1.5px solid var(--accent);border-right:1.5px solid var(--accent);z-index:2"></span>
+          <span aria-hidden="true" style="position:absolute;bottom:8px;left:8px;width:11px;height:11px;border-bottom:1.5px solid var(--accent);border-left:1.5px solid var(--accent);z-index:2"></span>
+          <span aria-hidden="true" style="position:absolute;bottom:8px;right:8px;width:11px;height:11px;border-bottom:1.5px solid var(--accent);border-right:1.5px solid var(--accent);z-index:2"></span>
+          <svg viewBox="0 0 500 400" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;display:block">
+            <g fill="none" stroke="#171A1C" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="250" y1="360" x2="188" y2="250" stroke-width="9"/>
+              <line x1="188" y1="250" x2="300" y2="168" stroke-width="7.4"/>
+              <line x1="300" y1="168" x2="372" y2="98" stroke-width="5.8"/>
+              <rect x="224" y="362" width="52" height="14" fill="#F5F6F3" stroke-width="2"/>
+              <circle cx="250" cy="360" r="6.5" fill="#F5F6F3" stroke-width="2"/>
+              <circle cx="188" cy="250" r="5.5" fill="#F5F6F3" stroke-width="2"/>
+              <circle cx="300" cy="168" r="5.5" fill="#F5F6F3" stroke-width="2"/>
+            </g>
+            <g fill="none" stroke="#E24A00" stroke-width="2">
+              <circle cx="372" cy="98" r="7"/>
+              <line x1="358" y1="98" x2="365" y2="98"/><line x1="379" y1="98" x2="386" y2="98"/>
+              <line x1="372" y1="84" x2="372" y2="91"/><line x1="372" y1="105" x2="372" y2="112"/>
+            </g>
+          </svg>
+          <canvas ref="{{ armRef }}" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;display:block"></canvas>
+          <div aria-hidden="true" style="position:absolute;top:11px;left:13px;z-index:3;pointer-events:none;display:flex;flex-direction:column;gap:5px;align-items:flex-start">
+            <span style="font-family:var(--mono);font-size:11px;letter-spacing:.05em;color:var(--ink-70)">IK SOLVER</span>
+            <span ref="{{ hintRef }}" style="display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.05em;color:var(--accent-ink);border:1px solid var(--accent);background:rgba(226,74,0,0.09);padding:3px 7px;animation:hintpulse 2.2s ease-in-out infinite"><span aria-hidden="true" style="font-size:11px;line-height:1">&#10021;</span>MOVE THE ARM</span>
+          </div>
+          <div aria-hidden="true" style="position:absolute;top:11px;right:13px;z-index:3;pointer-events:none;display:inline-flex;align-items:center;gap:6px;padding:4px 8px;border:1px solid var(--line);background:rgba(245,246,243,0.72)">
+            <span style="width:6px;height:6px;border-radius:50%;background:var(--accent)"></span>
+            <span ref="{{ statusRef }}" style="font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.06em;color:var(--ink-70)">IDLE</span>
+          </div>
+          <div aria-hidden="true" style="position:absolute;left:0;right:0;bottom:0;z-index:3;pointer-events:none;padding:9px 12px;background:linear-gradient(0deg,rgba(245,246,243,0.9),rgba(245,246,243,0))">
+            <span ref="{{ readRef }}" style="font-family:var(--mono);font-size:10.5px;letter-spacing:.02em;color:var(--ink-70)">&theta; &mdash; &mdash; &mdash; · TCP &mdash;,&mdash; · idle</span>
+          </div>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="work" style="padding:clamp(52px,8vh,104px) 0;border-top:1px solid var(--line)">
+    <div style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,5vw,64px)">
+      <div style="display:flex;align-items:baseline;gap:16px;margin-bottom:clamp(26px,4vw,44px)">
+        <h2 style="font-family:var(--mono);font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap">Selected Work</h2>
+        <span style="flex:1;height:1px;background:var(--line)"></span>
+        <span style="font-family:var(--mono);font-size:12px;letter-spacing:.05em;color:var(--ink-70);white-space:nowrap">try the editor &darr;</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr));gap:clamp(16px,2vw,24px);align-items:start">
+
+        <article style="border:1px solid var(--line);background:var(--panel);padding:clamp(20px,2.4vw,30px);display:flex;flex-direction:column;gap:20px;transition:transform .2s ease,border-color .2s ease" style-hover="transform:translateY(-3px);border-color:var(--line-2)">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px">
+            <h3 style="font-family:var(--grot);font-weight:600;font-size:clamp(20px,2.2vw,26px);letter-spacing:-.01em">GlanceScribe</h3>
+            <span style="font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--ink-70);white-space:nowrap">AI MEDICAL SCRIBE</span>
+          </div>
+          <p style="font-size:15px;color:var(--ink-70);text-wrap:pretty;max-width:46ch">Meta glasses hear the visit hands-free; it returns a structured SOAP note the clinician can sign.</p>
+          <div style="display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:stretch;font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;text-align:center;color:var(--ink);border:1px solid var(--line);background:var(--paper)">
+            <div style="padding:13px 8px">Meta<br>glasses</div>
+            <div aria-hidden="true" style="display:grid;place-items:center;padding:0 6px;color:var(--accent-ink);border-left:1px solid var(--line);border-right:1px solid var(--line)">&rarr;</div>
+            <div style="padding:13px 8px">Speech<br>&rarr; text</div>
+            <div aria-hidden="true" style="display:grid;place-items:center;padding:0 6px;color:var(--accent-ink);border-left:1px solid var(--line);border-right:1px solid var(--line)">&rarr;</div>
+            <div style="padding:13px 8px">SOAP<br>note</div>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px">
+            <span style="font-family:var(--mono);font-size:11.5px;color:var(--ink);border:1px solid var(--line);padding:6px 9px">Swift</span>
+            <span style="font-family:var(--mono);font-size:11.5px;color:var(--ink);border:1px solid var(--line);padding:6px 9px">Node</span>
+            <span style="font-family:var(--mono);font-size:11.5px;color:var(--ink);border:1px solid var(--line);padding:6px 9px">Gemini</span>
+            <span style="font-family:var(--mono);font-size:11.5px;color:var(--ink);border:1px solid var(--line);padding:6px 9px">ElevenLabs</span>
+            <span style="font-family:var(--mono);font-size:11.5px;color:var(--ink);border:1px solid var(--line);padding:6px 9px">FFmpeg</span>
+          </div>
+          <div style="margin-top:2px;padding-top:16px;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line)">
+            <div style="background:var(--panel);padding:12px 13px">
+              <div style="font-family:var(--grot);font-weight:600;font-size:clamp(19px,2vw,23px);line-height:1">Winner</div>
+              <div style="font-family:var(--mono);font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:var(--ink-70);margin-top:6px">Best Healthcare<br>Hack Brooklyn &rsquo;26</div>
+            </div>
+            <div style="background:var(--panel);padding:12px 13px">
+              <div style="font-family:var(--grot);font-weight:600;font-size:clamp(19px,2vw,23px);line-height:1">Hands-free</div>
+              <div style="font-family:var(--mono);font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:var(--ink-70);margin-top:6px">Zero clinician<br>screen time</div>
+            </div>
+          </div>
+          <div style="margin-top:2px;display:flex;flex-wrap:wrap;gap:8px 20px">
+            <a href="https://github.com/wajm1/GlanceScribe" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;color:var(--ink);transition:color .2s ease" style-hover="color:var(--accent-ink)"><span aria-hidden="true" style="width:6px;height:6px;background:var(--accent);flex:0 0 auto"></span>github.com/wajm1/GlanceScribe <span aria-hidden="true">&#8599;</span></a>
+            <a href="https://devpost.com/software/glancescribe" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;color:var(--ink);transition:color .2s ease" style-hover="color:var(--accent-ink)"><span aria-hidden="true" style="width:6px;height:6px;background:var(--accent);flex:0 0 auto"></span>devpost.com/software/glancescribe <span aria-hidden="true">&#8599;</span></a>
+          </div>
+        </article>
+
+        <article style="border:1px solid var(--line);background:var(--panel);padding:clamp(20px,2.4vw,30px);display:flex;flex-direction:column;gap:20px;transition:transform .2s ease,border-color .2s ease" style-hover="transform:translateY(-3px);border-color:var(--line-2)">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px">
+            <h3 style="font-family:var(--grot);font-weight:600;font-size:clamp(20px,2.2vw,26px);letter-spacing:-.01em;text-wrap:balance">Real-Time Collaborative<br>Code Editor</h3>
+            <span style="font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--ink-70);white-space:nowrap;text-align:right">LIVE&nbsp;DEMO</span>
+          </div>
+          <p style="font-size:15px;color:var(--ink-70);text-wrap:pretty;max-width:52ch">Many cursors, one buffer — synced over Socket.IO with session recovery and sandboxed runs. Type in the accent line, then press <strong style="font-weight:600;color:var(--ink)">Enter</strong> to broadcast your edit into the shared buffer; the others are simulated peers editing live.</p>
+          <div style="border:1px solid var(--line);background:var(--paper)">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 12px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:11px;letter-spacing:.03em;color:var(--ink-70)">
+              <span style="display:flex;align-items:center;gap:6px">
+                <span aria-hidden="true" style="width:8px;height:8px;border:1px solid var(--line-2)"></span>
+                <span aria-hidden="true" style="width:8px;height:8px;border:1px solid var(--line-2)"></span>
+                <span aria-hidden="true" style="width:8px;height:8px;border:1px solid var(--line-2)"></span>
+                <span style="margin-left:6px;color:var(--ink)">collab-session.cpp</span>
+              </span>
+              <span ref="{{ peersRef }}" style="display:inline-flex;align-items:center;gap:6px;transition:opacity .4s ease"><span aria-hidden="true" style="width:6px;height:6px;border-radius:50%;background:var(--accent)"></span>3 peers · <span ref="{{ syncRef }}">synced</span></span>
+            </div>
+            <div ref="{{ codeRef }}" style="padding:12px 14px;min-height:172px;overflow-x:auto;font-family:var(--mono);font-size:13px;line-height:23px">
+              <div style="display:flex;gap:14px"><span style="width:22px;text-align:right;color:#B7B7B2;flex:0 0 auto">01</span><span style="white-space:pre;color:var(--ink)">#include &lt;boost/asio.hpp&gt;</span></div>
+              <div style="display:flex;gap:14px"><span style="width:22px;text-align:right;color:#B7B7B2;flex:0 0 auto">02</span><span style="white-space:pre;color:var(--ink)">SharedDoc doc{sessionId};</span></div>
+              <div style="display:flex;gap:14px"><span style="width:22px;text-align:right;color:#B7B7B2;flex:0 0 auto">03</span><span style="white-space:pre;color:var(--ink)">socket.on("edit", [](Op op){ broadcast(op); });</span></div>
+              <div style="display:flex;gap:14px"><span style="width:22px;text-align:right;color:#B7B7B2;flex:0 0 auto">04</span><span style="white-space:pre;color:var(--ink)">auto next = crdt::merge(a, b);</span></div>
+              <div style="display:flex;gap:14px"><span style="width:22px;text-align:right;color:#B7B7B2;flex:0 0 auto">05</span><span style="white-space:pre;color:var(--ink)">run(doc.source(), Sandbox::Piston);</span></div>
+              <div style="display:flex;gap:14px"><span style="width:22px;text-align:right;color:#B7B7B2;flex:0 0 auto">06</span><span style="white-space:pre;color:var(--ink-70)">// type C++ · press Enter to broadcast</span></div>
+            </div>
+            <div ref="{{ footRef }}" style="padding:8px 12px;border-top:1px solid var(--line);font-family:var(--mono);font-size:10.5px;letter-spacing:.03em;color:var(--ink-70)">socket.io · rtt 24ms · session ab-1029 · 0 ops</div>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px">
+            <span style="font-family:var(--mono);font-size:11.5px;color:var(--ink);border:1px solid var(--line);padding:6px 9px">Flask</span>
+            <span style="font-family:var(--mono);font-size:11.5px;color:var(--ink);border:1px solid var(--line);padding:6px 9px">Socket.IO</span>
+            <span style="font-family:var(--mono);font-size:11.5px;color:var(--ink);border:1px solid var(--line);padding:6px 9px">WebSockets</span>
+            <span style="font-family:var(--mono);font-size:11.5px;color:var(--ink);border:1px solid var(--line);padding:6px 9px">React</span>
+            <span style="font-family:var(--mono);font-size:11.5px;color:var(--ink);border:1px solid var(--line);padding:6px 9px">Session recovery</span>
+            <span style="font-family:var(--mono);font-size:11.5px;color:var(--ink);border:1px solid var(--line);padding:6px 9px">Piston sandbox</span>
+          </div>
+          <div style="margin-top:2px;padding-top:16px;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line)">
+            <div style="background:var(--panel);padding:12px 13px">
+              <div style="font-family:var(--grot);font-weight:600;font-size:clamp(19px,2vw,23px);line-height:1">24<span style="font-size:.55em;font-weight:500;color:var(--ink-70)">ms</span></div>
+              <div style="font-family:var(--mono);font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:var(--ink-70);margin-top:6px">Median edit<br>round-trip</div>
+            </div>
+            <div style="background:var(--panel);padding:12px 13px">
+              <div style="font-family:var(--grot);font-weight:600;font-size:clamp(19px,2vw,23px);line-height:1">0<span style="font-size:.55em;font-weight:500;color:var(--accent-ink)"> lost</span></div>
+              <div style="font-family:var(--mono);font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:var(--ink-70);margin-top:6px">Edits after<br>reconnect</div>
+            </div>
+          </div>
+          <a href="https://github.com/wajm1/Code-Interview-Platform" target="_blank" rel="noopener" style="margin-top:2px;display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;color:var(--ink);transition:color .2s ease" style-hover="color:var(--accent-ink)"><span aria-hidden="true" style="width:6px;height:6px;background:var(--accent);flex:0 0 auto"></span>github.com/wajm1/Code-Interview-Platform <span aria-hidden="true">&#8599;</span></a>
+        </article>
+
+        <article style="border:1px solid var(--line);background:var(--panel);padding:clamp(20px,2.4vw,30px);display:flex;flex-direction:column;gap:20px;transition:transform .2s ease,border-color .2s ease" style-hover="transform:translateY(-3px);border-color:var(--line-2)">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px">
+            <h3 style="font-family:var(--grot);font-weight:600;font-size:clamp(20px,2.2vw,26px);letter-spacing:-.01em;text-wrap:balance">Interbotix RX-200<br>Driver</h3>
+            <span style="font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--ink-70);white-space:nowrap;text-align:right">MICHIGAN&nbsp;RESEARCH</span>
+          </div>
+          <p style="font-size:15px;color:var(--ink-70);text-wrap:pretty;max-width:52ch">The C++ driver behind the research arm — game-controller input mapped through SDL2 to joint-velocity commands, then bridged to the lab's pub/sub robot OS. Shared state guarded with mutexes and atomics to kill the race conditions that crashed the vendor stack.</p>
+          <div style="display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;align-items:stretch;font-family:var(--mono);font-size:10px;letter-spacing:.04em;text-transform:uppercase;text-align:center;color:var(--ink);border:1px solid var(--line);background:var(--paper)">
+            <div style="padding:13px 6px">Game<br>pad</div>
+            <div aria-hidden="true" style="display:grid;place-items:center;padding:0 5px;color:var(--accent-ink);border-left:1px solid var(--line);border-right:1px solid var(--line)">&rarr;</div>
+            <div style="padding:13px 6px">SDL2</div>
+            <div aria-hidden="true" style="display:grid;place-items:center;padding:0 5px;color:var(--accent-ink);border-left:1px solid var(--line);border-right:1px solid var(--line)">&rarr;</div>
+            <div style="padding:13px 6px">Joint<br>vel</div>
+            <div aria-hidden="true" style="display:grid;place-items:center;padding:0 5px;color:var(--accent-ink);border-left:1px solid var(--line);border-right:1px solid var(--line)">&rarr;</div>
+            <div style="padding:13px 6px">RX-200</div>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px">
+            <span style="font-family:var(--mono);font-size:11.5px;color:var(--ink);border:1px solid var(--line);padding:6px 9px">C++</span>
+            <span style="font-family:var(--mono);font-size:11.5px;color:var(--ink);border:1px solid var(--line);padding:6px 9px">SDL2</span>
+            <span style="font-family:var(--mono);font-size:11.5px;color:var(--ink);border:1px solid var(--line);padding:6px 9px">Interbotix SDK</span>
+            <span style="font-family:var(--mono);font-size:11.5px;color:var(--ink);border:1px solid var(--line);padding:6px 9px">Pub/Sub</span>
+            <span style="font-family:var(--mono);font-size:11.5px;color:var(--ink);border:1px solid var(--line);padding:6px 9px">Mutexes / atomics</span>
+          </div>
+          <div style="margin-top:2px;padding-top:16px;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line)">
+            <div style="background:var(--panel);padding:12px 13px">
+              <div style="font-family:var(--grot);font-weight:600;font-size:clamp(19px,2vw,23px);line-height:1">IROS <span style="color:var(--accent-ink)">&rsquo;26</span></div>
+              <div style="font-family:var(--mono);font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:var(--ink-70);margin-top:6px">Paper this<br>code powers</div>
+            </div>
+            <div style="background:var(--panel);padding:12px 13px">
+              <div style="font-family:var(--grot);font-weight:600;font-size:clamp(19px,2vw,23px);line-height:1">0 <span style="font-size:.55em;font-weight:500;color:var(--accent-ink)">crashes</span></div>
+              <div style="font-family:var(--mono);font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:var(--ink-70);margin-top:6px">Race conditions<br>eliminated</div>
+            </div>
+          </div>
+          <a href="https://github.com/wajm1/rix-interbotix-driver" target="_blank" rel="noopener" style="margin-top:2px;display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;color:var(--ink);transition:color .2s ease" style-hover="color:var(--accent-ink)"><span aria-hidden="true" style="width:6px;height:6px;background:var(--accent);flex:0 0 auto"></span>github.com/wajm1/rix-interbotix-driver <span aria-hidden="true">&#8599;</span></a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="experience" style="padding:clamp(52px,8vh,104px) 0;border-top:1px solid var(--line)">
+    <div style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,5vw,64px)">
+      <div style="display:flex;align-items:baseline;gap:16px;margin-bottom:clamp(20px,3vw,34px)">
+        <h2 style="font-family:var(--mono);font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap">Experience</h2>
+        <span style="flex:1;height:1px;background:var(--line)"></span>
+        <span style="font-family:var(--mono);font-size:12px;letter-spacing:.05em;color:var(--ink-70);white-space:nowrap">measured outcomes</span>
+      </div>
+      <ul>
+        <li style="padding:clamp(22px,3vw,32px) 0;border-top:1px solid var(--line)">
+          <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px 24px">
+            <div style="flex:1 1 340px;min-width:260px">
+              <div style="display:flex;align-items:baseline;flex-wrap:wrap;gap:8px 14px">
+                <h3 style="font-family:var(--grot);font-weight:600;font-size:clamp(19px,2vw,24px)">rf IDEAS</h3>
+                <span style="font-family:var(--mono);font-size:12px;letter-spacing:.03em;color:var(--accent-ink)">SWE Intern</span>
+              </div>
+              <p style="margin-top:8px;font-size:15px;color:var(--ink-70);text-wrap:pretty;max-width:52ch">Python control software for a 6-axis arm that runs RFID validation unattended overnight — joint-limit enforcement, autosave checkpointing, and fault recovery — with live joint telemetry streamed over UDP into ROS 2.</p>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;align-content:flex-start;align-items:flex-start">
+              <span style="font-family:var(--mono);font-size:11.5px;color:var(--ink);border:1px solid var(--line);padding:6px 9px;background:var(--panel)">Python</span>
+              <span style="font-family:var(--mono);font-size:11.5px;color:var(--ink);border:1px solid var(--line);padding:6px 9px;background:var(--panel)">GTest</span>
+              <span style="font-family:var(--mono);font-size:11.5px;color:var(--ink);border:1px solid var(--line);padding:6px 9px;background:var(--panel)">ROS 2</span>
+              <span style="font-family:var(--mono);font-size:11.5px;color:var(--ink);border:1px solid var(--line);padding:6px 9px;background:var(--panel)">UDP</span>
+              <span style="font-family:var(--mono);font-size:11.5px;color:var(--ink);border:1px solid var(--line);padding:6px 9px;background:var(--panel)">Hardware-in-loop</span>
+            </div>
+          </div>
+          <ul style="margin-top:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:1px;background:var(--line);border:1px solid var(--line)">
+            <li style="background:var(--paper);padding:16px 18px">
+              <div style="font-family:var(--grot);font-weight:600;font-size:clamp(26px,3vw,38px);line-height:.9;letter-spacing:-.02em">10<span style="font-size:.42em;font-weight:500;color:var(--ink-70);vertical-align:.42em">h</span> <span style="font-family:var(--mono);font-size:.28em;color:var(--ink-70);vertical-align:.6em">&rarr; 0</span></div>
+              <div style="font-family:var(--mono);font-size:11px;line-height:1.45;letter-spacing:.03em;text-transform:uppercase;color:var(--ink-70);margin-top:11px">Manual bring-up<br>automated</div>
+            </li>
+            <li style="background:var(--paper);padding:16px 18px">
+              <div style="font-family:var(--grot);font-weight:600;font-size:clamp(26px,3vw,38px);line-height:.9;letter-spacing:-.02em">~20<span style="font-size:.32em;font-family:var(--mono);color:var(--ink-70);vertical-align:.55em">/wk</span></div>
+              <div style="font-family:var(--mono);font-size:11px;line-height:1.45;letter-spacing:.03em;text-transform:uppercase;color:var(--ink-70);margin-top:11px">Eng-hours<br>saved</div>
+            </li>
+            <li style="background:var(--paper);padding:16px 18px">
+              <div style="font-family:var(--grot);font-weight:600;font-size:clamp(26px,3vw,38px);line-height:.9;letter-spacing:-.02em">1,600<span style="font-size:.44em;font-weight:500;color:var(--accent-ink);vertical-align:.38em">+</span></div>
+              <div style="font-family:var(--mono);font-size:11px;line-height:1.45;letter-spacing:.03em;text-transform:uppercase;color:var(--ink-70);margin-top:11px">Configs<br>swept</div>
+            </li>
+            <li style="background:var(--paper);padding:16px 18px">
+              <div style="font-family:var(--grot);font-weight:600;font-size:clamp(26px,3vw,38px);line-height:.9;letter-spacing:-.02em">0.1<span style="font-size:.42em;font-weight:500;color:var(--ink-70);vertical-align:.42em">mm</span></div>
+              <div style="font-family:var(--mono);font-size:11px;line-height:1.45;letter-spacing:.03em;text-transform:uppercase;color:var(--ink-70);margin-top:11px">Read-height<br>precision</div>
+            </li>
+          </ul>
+        </li>
+        <li style="padding:clamp(22px,3vw,32px) 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+          <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px 24px">
+            <div style="flex:1 1 340px;min-width:260px">
+              <div style="display:flex;align-items:baseline;flex-wrap:wrap;gap:8px 14px">
+                <h3 style="font-family:var(--grot);font-weight:600;font-size:clamp(19px,2vw,24px)">Michigan — Lab for Progress</h3>
+                <span style="font-family:var(--mono);font-size:12px;letter-spacing:.03em;color:var(--accent-ink)">Robotics SWE Researcher</span>
+              </div>
+              <p style="margin-top:8px;font-size:15px;color:var(--ink-70);text-wrap:pretty;max-width:52ch">C++ teleoperation of a Trossen Interbotix RX-200 arm — SDL2 controller input to joint-velocity commands, plus pub/sub middleware bridging the lab's robot OS to hardware. Co-author on an accepted IROS 2026 paper.</p>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;align-content:flex-start;align-items:flex-start">
+              <span style="font-family:var(--mono);font-size:11.5px;color:var(--ink);border:1px solid var(--line);padding:6px 9px;background:var(--panel)">C++</span>
+              <span style="font-family:var(--mono);font-size:11.5px;color:var(--ink);border:1px solid var(--line);padding:6px 9px;background:var(--panel)">SDL2</span>
+              <span style="font-family:var(--mono);font-size:11.5px;color:var(--ink);border:1px solid var(--line);padding:6px 9px;background:var(--panel)">Interbotix SDK</span>
+              <span style="font-family:var(--mono);font-size:11.5px;color:var(--ink);border:1px solid var(--line);padding:6px 9px;background:var(--panel)">Pub/Sub</span>
+              <span style="font-family:var(--mono);font-size:11.5px;color:var(--ink);border:1px solid var(--line);padding:6px 9px;background:var(--panel)">Multithreading</span>
+            </div>
+          </div>
+          <ul style="margin-top:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:1px;background:var(--line);border:1px solid var(--line)">
+            <li style="background:var(--paper);padding:16px 18px">
+              <div style="font-family:var(--grot);font-weight:600;font-size:clamp(22px,2.6vw,32px);line-height:.94;letter-spacing:-.01em">IROS <span style="color:var(--accent-ink)">&rsquo;26</span></div>
+              <div style="font-family:var(--mono);font-size:11px;line-height:1.45;letter-spacing:.03em;text-transform:uppercase;color:var(--ink-70);margin-top:11px">Accepted paper<br>co-author</div>
+            </li>
+            <li style="background:var(--paper);padding:16px 18px">
+              <div style="font-family:var(--grot);font-weight:600;font-size:clamp(22px,2.6vw,32px);line-height:.94;letter-spacing:-.01em">ABRCMS <span style="color:var(--accent-ink)">&rsquo;25</span></div>
+              <div style="font-family:var(--mono);font-size:11px;line-height:1.45;letter-spacing:.03em;text-transform:uppercase;color:var(--ink-70);margin-top:11px">Research<br>presented</div>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="skills" style="padding:clamp(52px,8vh,104px) 0;border-top:1px solid var(--line)">
+    <div style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,5vw,64px)">
+      <div style="display:flex;align-items:baseline;gap:16px;margin-bottom:clamp(8px,2vw,18px)">
+        <h2 style="font-family:var(--mono);font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap">Stack</h2>
+        <span style="flex:1;height:1px;background:var(--line)"></span>
+      </div>
+      <dl style="margin:0">
+        <div style="display:grid;grid-template-columns:minmax(88px,120px) 1fr;gap:16px 20px;align-items:start;padding:16px 0;border-top:1px solid var(--line)">
+          <dt style="font-family:var(--mono);font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-70)">Languages</dt>
+          <dd style="margin:0;display:flex;flex-wrap:wrap;gap:8px">
+            <span style="font-family:var(--mono);font-size:12.5px;color:var(--ink);border:1px solid var(--line);padding:6px 10px">Python</span>
+            <span style="font-family:var(--mono);font-size:12.5px;color:var(--ink);border:1px solid var(--line);padding:6px 10px">C++</span>
+            <span style="font-family:var(--mono);font-size:12.5px;color:var(--ink);border:1px solid var(--line);padding:6px 10px">Java</span>
+            <span style="font-family:var(--mono);font-size:12.5px;color:var(--ink);border:1px solid var(--line);padding:6px 10px">JS / TS</span>
+            <span style="font-family:var(--mono);font-size:12.5px;color:var(--ink);border:1px solid var(--line);padding:6px 10px">Swift</span>
+            <span style="font-family:var(--mono);font-size:12.5px;color:var(--ink);border:1px solid var(--line);padding:6px 10px">SQL</span>
+          </dd>
+        </div>
+        <div style="display:grid;grid-template-columns:minmax(88px,120px) 1fr;gap:16px 20px;align-items:start;padding:16px 0;border-top:1px solid var(--line)">
+          <dt style="font-family:var(--mono);font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-70)">Systems</dt>
+          <dd style="margin:0;display:flex;flex-wrap:wrap;gap:8px">
+            <span style="font-family:var(--mono);font-size:12.5px;color:var(--ink);border:1px solid var(--line);padding:6px 10px">ROS 2</span>
+            <span style="font-family:var(--mono);font-size:12.5px;color:var(--ink);border:1px solid var(--line);padding:6px 10px">Multithreading</span>
+            <span style="font-family:var(--mono);font-size:12.5px;color:var(--ink);border:1px solid var(--line);padding:6px 10px">TCP / UDP</span>
+            <span style="font-family:var(--mono);font-size:12.5px;color:var(--ink);border:1px solid var(--line);padding:6px 10px">Pub/Sub</span>
+            <span style="font-family:var(--mono);font-size:12.5px;color:var(--ink);border:1px solid var(--line);padding:6px 10px">GTest</span>
+          </dd>
+        </div>
+        <div style="display:grid;grid-template-columns:minmax(88px,120px) 1fr;gap:16px 20px;align-items:start;padding:16px 0;border-top:1px solid var(--line)">
+          <dt style="font-family:var(--mono);font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-70)">Web</dt>
+          <dd style="margin:0;display:flex;flex-wrap:wrap;gap:8px">
+            <span style="font-family:var(--mono);font-size:12.5px;color:var(--ink);border:1px solid var(--line);padding:6px 10px">React</span>
+            <span style="font-family:var(--mono);font-size:12.5px;color:var(--ink);border:1px solid var(--line);padding:6px 10px">Next.js</span>
+            <span style="font-family:var(--mono);font-size:12.5px;color:var(--ink);border:1px solid var(--line);padding:6px 10px">Node</span>
+            <span style="font-family:var(--mono);font-size:12.5px;color:var(--ink);border:1px solid var(--line);padding:6px 10px">Flask</span>
+            <span style="font-family:var(--mono);font-size:12.5px;color:var(--ink);border:1px solid var(--line);padding:6px 10px">PostgreSQL</span>
+          </dd>
+        </div>
+        <div style="display:grid;grid-template-columns:minmax(88px,120px) 1fr;gap:16px 20px;align-items:start;padding:16px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+          <dt style="font-family:var(--mono);font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-70)">Tooling</dt>
+          <dd style="margin:0;display:flex;flex-wrap:wrap;gap:8px">
+            <span style="font-family:var(--mono);font-size:12.5px;color:var(--ink);border:1px solid var(--line);padding:6px 10px">Git</span>
+            <span style="font-family:var(--mono);font-size:12.5px;color:var(--ink);border:1px solid var(--line);padding:6px 10px">Linux</span>
+            <span style="font-family:var(--mono);font-size:12.5px;color:var(--ink);border:1px solid var(--line);padding:6px 10px">CI/CD</span>
+          </dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <footer id="contact" style="padding:clamp(52px,8vh,104px) 0 0;border-top:1px solid var(--line)">
+    <div style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,5vw,64px)">
+      <div style="display:flex;align-items:baseline;gap:16px;margin-bottom:clamp(24px,4vw,40px)">
+        <h2 style="font-family:var(--mono);font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap">Contact</h2>
+        <span style="flex:1;height:1px;background:var(--line)"></span>
+        <span style="font-family:var(--mono);font-size:12px;letter-spacing:.05em;color:var(--ink-70);white-space:nowrap">let's build</span>
+      </div>
+      <ul style="display:flex;flex-wrap:wrap;gap:1px;background:var(--line);border:1px solid var(--line)">
+        <li style="background:var(--paper);flex:1 1 240px;display:flex;flex-direction:column;gap:8px;padding:clamp(20px,3vw,30px)">
+          <a href="mailto:wajm1.dev@gmail.com" style="display:flex;flex-direction:column;gap:8px" style-hover="color:var(--accent-ink)"><span style="font-family:var(--grot);font-weight:600;font-size:clamp(20px,2.2vw,26px)">Email <span aria-hidden="true" style="color:var(--accent-ink)">&#8599;</span></span><span style="font-family:var(--mono);font-size:12.5px;color:var(--ink-70)">wajm1.dev@gmail.com</span></a>
+          <div style="display:flex;align-items:center;gap:12px;min-height:16px;margin-top:2px">
+            <button type="button" onClick="{{ copyEmail }}" aria-label="Copy email address to clipboard" style="font-family:var(--mono);font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-70);background:none;border:none;padding:0;cursor:pointer;text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--line-2);transition:color .2s ease" style-hover="color:var(--accent-ink)">Copy address</button>
+            <span ref="{{ copyRef }}" role="status" aria-live="polite" style="font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--accent-ink)"></span>
+          </div>
+        </li>
+        <li style="background:var(--paper);flex:1 1 240px"><a href="https://github.com/wajm1" target="_blank" rel="noopener" style="display:flex;flex-direction:column;gap:8px;padding:clamp(20px,3vw,30px);transition:background .2s ease" style-hover="background:var(--panel)"><span style="font-family:var(--grot);font-weight:600;font-size:clamp(20px,2.2vw,26px)">GitHub <span aria-hidden="true" style="color:var(--accent-ink)">&#8599;</span></span><span style="font-family:var(--mono);font-size:12.5px;color:var(--ink-70)">github.com/wajm1</span></a></li>
+        <li style="background:var(--paper);flex:1 1 240px"><a href="https://linkedin.com/in/wajm1" target="_blank" rel="noopener" style="display:flex;flex-direction:column;gap:8px;padding:clamp(20px,3vw,30px);transition:background .2s ease" style-hover="background:var(--panel)"><span style="font-family:var(--grot);font-weight:600;font-size:clamp(20px,2.2vw,26px)">LinkedIn <span aria-hidden="true" style="color:var(--accent-ink)">&#8599;</span></span><span style="font-family:var(--mono);font-size:12.5px;color:var(--ink-70)">linkedin.com/in/wajm1</span></a></li>
+        <li style="background:var(--paper);flex:1 1 240px"><a href="https://devpost.com/wajm1" target="_blank" rel="noopener" style="display:flex;flex-direction:column;gap:8px;padding:clamp(20px,3vw,30px);transition:background .2s ease" style-hover="background:var(--panel)"><span style="font-family:var(--grot);font-weight:600;font-size:clamp(20px,2.2vw,26px)">Devpost <span aria-hidden="true" style="color:var(--accent-ink)">&#8599;</span></span><span style="font-family:var(--mono);font-size:12.5px;color:var(--ink-70)">devpost.com/wajm1</span></a></li>
+      </ul>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-top:none;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-70)">
+        <span style="background:var(--paper);padding:14px 16px;color:var(--ink)">Wajahat Mahmood</span>
+        <span style="background:var(--paper);padding:14px 16px">Software Engineer</span>
+        <span style="background:var(--paper);padding:14px 16px">Portfolio — 2026</span>
+        <span style="background:var(--paper);padding:14px 16px">Sheet 01 / 01</span>
+      </div>
+      <div style="height:clamp(28px,5vh,56px)"></div>
+    </div>
+  </footer>
+
+</main>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;solver&quot;: {&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;FABRIK&quot;,&quot;options&quot;:[&quot;FABRIK&quot;,&quot;CCD&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;IK arm&quot;},
+  &quot;segments&quot;: {&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:3,&quot;min&quot;:2,&quot;max&quot;:3,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;IK arm&quot;},
+  &quot;jointConstraints&quot;: {&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;IK arm&quot;},
+  &quot;showReadouts&quot;: {&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;IK arm&quot;}
+}">
+class Component extends DCLogic {
+  armRef = React.createRef();
+  figRef = React.createRef();
+  hintRef = React.createRef();
+  statusRef = React.createRef();
+  readRef = React.createRef();
+  codeRef = React.createRef();
+  copyRef = React.createRef();
+  peersRef = React.createRef();
+  syncRef = React.createRef();
+  footRef = React.createRef();
+
+  renderVals(){
+    return {
+      armRef:this.armRef, figRef:this.figRef, statusRef:this.statusRef,
+      readRef:this.readRef, codeRef:this.codeRef, copyRef:this.copyRef,
+      hintRef:this.hintRef,
+      peersRef:this.peersRef, syncRef:this.syncRef, footRef:this.footRef,
+      copyEmail:this.copyEmail
+    };
+  }
+
+  componentDidMount(){
+    this.PAPER='#F5F6F3'; this.INK='#171A1C'; this.INK2='#8B8F92';
+    this.LINE='rgba(20,24,28,0.22)'; this.FAINT='rgba(20,24,28,0.10)';
+    this.ACCENT='#E24A00'; this.ACCENT_INK='#B23A00';
+    this.reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.armed=false; this.active=false; this.settle=0; this.lat=0;
+    this.status='IDLE'; this.target=null; this.visible=true; this.trail=[]; this.atLimit=false;
+    this.dragging=false; this.hoverT=false;
+    this.solver = this.props.solver ?? 'FABRIK';
+    this.constraints = this.props.jointConstraints !== false;
+    this.showReadouts = this.props.showReadouts !== false;
+    this.isTouch = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+    this.initArm();
+    this.initCode();
+    this.setHint();
+  }
+
+  componentDidUpdate(){
+    const p=this.props;
+    this.solver = p.solver ?? 'FABRIK';
+    this.constraints = p.jointConstraints !== false;
+    this.showReadouts = p.showReadouts !== false;
+    const segs = Math.max(2, Math.min(3, Number(p.segments ?? 3)));
+    if(segs !== this.segCount){ this.buildArm(); this.fit(); }
+    this.applyReadoutVisibility();
+    if(this.reduced) this.staticPose('STATIC');
+    else if(!this.active) this.staticPose('IDLE');
+  }
+
+  componentWillUnmount(){
+    this.active=false;
+    if(this.raf) cancelAnimationFrame(this.raf);
+    if(this.codeTimer) clearInterval(this.codeTimer);
+    if(this._ro) this._ro.disconnect();
+    if(this._io) this._io.disconnect();
+    if(this._ct) clearTimeout(this._ct);
+    if(this._syncT) clearTimeout(this._syncT);
+    if(this._onUp) window.removeEventListener('pointerup', this._onUp);
+  }
+
+  applyReadoutVisibility(){
+    const el=this.readRef.current; if(el) el.style.visibility = this.showReadouts ? 'visible':'hidden';
+  }
+
+  setHint(){
+    const hint=this.hintRef.current; if(!hint) return;
+    hint.lastChild.textContent = this.isTouch ? 'DRAG AROUND' : 'DRAG \u00b7 \u2191\u2193\u2190\u2192 KEYS';
+  }
+
+  /* ---------------- IK ARM ---------------- */
+  initArm(){
+    const canvas=this.armRef.current, fig=this.figRef.current; if(!canvas) return;
+    this.ctx=canvas.getContext('2d');
+    this.buildArm();
+    this.fit();
+    this._ro=new ResizeObserver(()=>this.fit()); this._ro.observe(canvas);
+    this._io=new IntersectionObserver((es)=>{ this.visible=es[0].isIntersecting; }, {threshold:0.01}); this._io.observe(canvas);
+    this.applyReadoutVisibility();
+    if(fig && !this.reduced){
+      fig.addEventListener('pointerenter', (e)=>{ if(e.pointerType==='mouse') this.arm(); });
+      fig.addEventListener('pointerleave', (e)=>{ if(e.pointerType==='mouse') this.disarm(); });
+      fig.addEventListener('focus', ()=>this.arm());
+      fig.addEventListener('blur', ()=>{ if(!this.isTouch) this.disarm(); });
+      fig.addEventListener('pointerdown', (e)=>{ this.arm(); this.dragging=true; try{fig.setPointerCapture(e.pointerId);}catch(_){} this.setTargetFromEvent(e); this.kick(); this.updateCursor(); });
+      fig.addEventListener('pointermove', (e)=>{ if(!this.armed) return; this.hoverT=this.nearTarget(e); if(this.dragging){ this.setTargetFromEvent(e); this.kick(); } this.updateCursor(); });
+      this._onUp=()=>{ if(this.dragging){ this.dragging=false; this.updateCursor(); } };
+      window.addEventListener('pointerup', this._onUp);
+      fig.addEventListener('keydown', (e)=>this.onKey(e));
+    }
+    if(this.reduced) this.staticPose('STATIC');
+    else this.staticPose('IDLE');
+  }
+
+  setTargetFromEvent(e){
+    const canvas=this.armRef.current; if(!canvas) return;
+    const r=canvas.getBoundingClientRect();
+    this.target={x:e.clientX-r.left, y:e.clientY-r.top};
+  }
+  nearTarget(e){
+    const c=this.armRef.current, p=this.rawT||this.smooth; if(!c||!p) return false;
+    const r=c.getBoundingClientRect();
+    return Math.hypot((e.clientX-r.left)-p.x, (e.clientY-r.top)-p.y) < 24;
+  }
+  updateCursor(){
+    const f=this.figRef.current; if(!f) return;
+    f.style.cursor = this.dragging ? 'grabbing' : (this.hoverT ? 'grab' : 'crosshair');
+  }
+
+  onKey(e){
+    const k=e.key;
+    if(k==='Home'){ e.preventDefault(); this.arm(); this.target={...this.restTarget}; return; }
+    let d=null; const step=Math.max(6, this.R*0.04);
+    if(k==='ArrowUp') d={x:0,y:-step};
+    else if(k==='ArrowDown') d={x:0,y:step};
+    else if(k==='ArrowLeft') d={x:-step,y:0};
+    else if(k==='ArrowRight') d={x:step,y:0};
+    if(!d) return;
+    e.preventDefault();
+    this.arm();
+    if(!this.target) this.target={...(this.smooth||this.restTarget)};
+    const pad=10;
+    this.target={x:Math.max(pad,Math.min(this.w-pad,this.target.x+d.x)), y:Math.max(pad,Math.min(this.h-pad,this.target.y+d.y))};
+  }
+
+  arm(){
+    if(this.reduced) return;
+    this.armed=true; this.settle=0; this.trail=[];
+    if(!this.target) this.target={...this.restTarget};
+    if(!this.active){ this.active=true; this.raf=requestAnimationFrame(this.loop); }
+  }
+  kick(){
+    this.settle=0;
+    if(!this.active){ this.active=true; this.raf=requestAnimationFrame(this.loop); }
+  }
+  disarm(){
+    if(this.reduced) return;
+    this.armed=false; this.settle=0;
+    if(!this.active){ this.active=true; this.raf=requestAnimationFrame(this.loop); }
+  }
+
+  buildArm(){
+    this.segCount = Math.max(2, Math.min(3, Number(this.props.segments ?? 3)));
+    this.ratios = this.segCount===2 ? [0.56,0.44] : [0.40,0.34,0.26];
+    this.limits = this.segCount===2 ? [1.95,2.55] : [1.75,2.55,2.55];
+    this.points=null;
+  }
+
+  fit(){
+    const canvas=this.armRef.current; if(!canvas||!this.ctx) return;
+    const r=canvas.getBoundingClientRect(); if(r.width<2||r.height<2) return;
+    const dpr=Math.min(window.devicePixelRatio||1, 2);
+    canvas.width=Math.round(r.width*dpr); canvas.height=Math.round(r.height*dpr);
+    this.ctx.setTransform(dpr,0,0,dpr,0,0);
+    this.w=r.width; this.h=r.height;
+    this.base={x:r.width*0.5, y:r.height*0.87};
+    this.R=Math.min(r.width*0.46, r.height*0.78);
+    this.L=this.ratios.map(x=>x*this.R);
+    this.restTarget={x:this.base.x+this.R*0.18, y:this.base.y-this.R*0.62};
+    if(!this.points || this.points.length!==this.segCount+1) this.seed();
+    if(this.reduced) this.staticPose('STATIC');
+    else if(!this.active) this.staticPose('IDLE');
+  }
+
+  seed(){
+    const pts=[{x:this.base.x,y:this.base.y}]; let ang=-Math.PI/2+0.3, cur={...this.base};
+    for(let i=0;i<this.segCount;i++){ ang += i? -0.4 : 0; cur={x:cur.x+Math.cos(ang)*this.L[i], y:cur.y+Math.sin(ang)*this.L[i]}; pts.push({...cur}); }
+    this.points=pts; this.smooth={...this.restTarget};
+  }
+
+  loop=(now)=>{
+    if(!this.active) return;
+    if(this.visible && this.points){
+      const T = this.armed ? (this.target||this.restTarget) : this.restTarget;
+      if(!this.smooth) this.smooth={...this.restTarget};
+      this.smooth.x += (T.x-this.smooth.x)*0.18;
+      this.smooth.y += (T.y-this.smooth.y)*0.18;
+      this.rawT=T;
+      const t0=performance.now();
+      this.solve(this.smooth);
+      const dt=performance.now()-t0;
+      this.lat += (dt-this.lat)*0.2;
+      if(this.armed){
+        const reach=this.L.reduce((a,b)=>a+b,0);
+        this.status = this.d2(this.base,T) > reach ? 'UNREACHABLE' : 'SOLVED';
+      }
+      const tip=this.points[this.points.length-1];
+      if(this.armed){ this.trail.push({x:tip.x,y:tip.y}); if(this.trail.length>34) this.trail.shift(); }
+      else if(this.trail.length){ this.trail.shift(); }
+      this.draw();
+      this.updateHUD();
+      if(!this.dragging){
+        const tgt = this.armed ? (this.target||this.restTarget) : this.restTarget;
+        const d=Math.hypot(this.smooth.x-tgt.x, this.smooth.y-tgt.y);
+        if(d<0.6) this.settle++; else this.settle=0;
+        if(this.settle>8){ this.active=false; if(!this.armed){ this.status='IDLE'; this.trail=[]; } this.draw(); this.updateHUD(); return; }
+      }
+    }
+    this.raf=requestAnimationFrame(this.loop);
+  }
+
+  staticPose(status){
+    if(!this.ctx) return;
+    if(!this.points || this.points.length!==this.segCount+1) this.seed();
+    this.smooth={...this.restTarget}; this.rawT=this.smooth; this.trail=[];
+    for(let k=0;k<18;k++) this.solve(this.smooth);
+    this.status = status || 'IDLE';
+    this.draw(); this.updateHUD();
+  }
+
+  solve(T){ if(this.solver==='CCD') this.ccd(T); else this.fabrik(T); }
+  d2(a,b){ return Math.hypot(a.x-b.x, a.y-b.y); }
+  norm(a){ return Math.atan2(Math.sin(a), Math.cos(a)); }
+
+  fabrik(T){
+    const P=this.points, L=this.L, n=this.segCount, base=this.base;
+    const reach=L.reduce((a,b)=>a+b,0);
+    if(this.d2(base,T) > reach){
+      P[0]={x:base.x,y:base.y};
+      for(let i=0;i<n;i++){ const r=this.d2(P[i],T)||1e-6, lam=L[i]/r; P[i+1]={x:P[i].x+(T.x-P[i].x)*lam, y:P[i].y+(T.y-P[i].y)*lam}; if(this.constraints) this.clampJoint(i); }
+      return;
+    }
+    for(let it=0; it<6; it++){
+      P[n]={x:T.x,y:T.y};
+      for(let i=n-1;i>=0;i--){ const r=this.d2(P[i+1],P[i])||1e-6, lam=L[i]/r; P[i]={x:P[i+1].x+(P[i].x-P[i+1].x)*lam, y:P[i+1].y+(P[i].y-P[i+1].y)*lam}; }
+      P[0]={x:base.x,y:base.y};
+      for(let i=0;i<n;i++){ const r=this.d2(P[i],P[i+1])||1e-6, lam=L[i]/r; P[i+1]={x:P[i].x+(P[i+1].x-P[i].x)*lam, y:P[i].y+(P[i+1].y-P[i].y)*lam}; if(this.constraints) this.clampJoint(i); }
+    }
+  }
+
+  clampJoint(i){
+    const P=this.points, L=this.L;
+    const refAng = i===0 ? -Math.PI/2 : Math.atan2(P[i].y-P[i-1].y, P[i].x-P[i-1].x);
+    let delta = this.norm(Math.atan2(P[i+1].y-P[i].y, P[i+1].x-P[i].x) - refAng);
+    const lim=this.limits[i];
+    if(delta>lim) delta=lim; else if(delta<-lim) delta=-lim;
+    const a=refAng+delta;
+    P[i+1]={x:P[i].x+Math.cos(a)*L[i], y:P[i].y+Math.sin(a)*L[i]};
+  }
+
+  ccd(T){
+    const P=this.points, n=this.segCount;
+    for(let it=0; it<8; it++){
+      for(let i=n-1;i>=0;i--){
+        const piv=P[i], end=P[n];
+        const da=this.norm(Math.atan2(T.y-piv.y,T.x-piv.x) - Math.atan2(end.y-piv.y,end.x-piv.x));
+        this.rotateFrom(i+1, piv, da);
+        if(this.constraints) this.ccdClamp(i);
+      }
+      if(this.d2(P[n],T)<0.5) break;
+    }
+  }
+  rotateFrom(from, piv, ang){
+    const P=this.points, c=Math.cos(ang), s=Math.sin(ang);
+    for(let k=from;k<P.length;k++){ const dx=P[k].x-piv.x, dy=P[k].y-piv.y; P[k]={x:piv.x+dx*c-dy*s, y:piv.y+dx*s+dy*c}; }
+  }
+  ccdClamp(i){
+    const P=this.points;
+    const refAng = i===0 ? -Math.PI/2 : Math.atan2(P[i].y-P[i-1].y, P[i].x-P[i-1].x);
+    let delta = this.norm(Math.atan2(P[i+1].y-P[i].y, P[i+1].x-P[i].x) - refAng);
+    const lim=this.limits[i];
+    const cl = delta>lim ? lim : (delta<-lim ? -lim : delta);
+    if(cl!==delta) this.rotateFrom(i+1, P[i], cl-delta);
+  }
+
+  draw(){
+    const ctx=this.ctx; if(!ctx||!this.points) return;
+    const w=this.w, h=this.h, P=this.points, base=this.base, end=P[P.length-1], T=this.rawT||this.smooth;
+    const unreach = this.status==='UNREACHABLE'; this.atLimit=false;
+    ctx.clearRect(0,0,w,h);
+    ctx.fillStyle=this.PAPER; ctx.fillRect(0,0,w,h);
+    ctx.fillStyle=this.FAINT; const gs=26;
+    for(let x=(w%gs)/2;x<w;x+=gs) for(let y=(h%gs)/2;y<h;y+=gs) ctx.fillRect(x,y,1,1);
+    ctx.strokeStyle = unreach ? 'rgba(226,74,0,0.42)' : this.FAINT; ctx.lineWidth=1; ctx.setLineDash([2,5]);
+    ctx.beginPath(); ctx.arc(base.x,base.y,this.R,Math.PI*1.03,Math.PI*1.97); ctx.stroke();
+    if(this.status==='SOLVED' || unreach){
+      ctx.strokeStyle = unreach ? this.ACCENT : this.LINE; ctx.setLineDash([2,4]);
+      ctx.beginPath(); ctx.moveTo(end.x,end.y); ctx.lineTo(T.x,T.y); ctx.stroke(); ctx.setLineDash([]);
+      this.cross(T,6, unreach ? this.ACCENT : this.LINE);
+      if(this.dragging || this.hoverT){ ctx.strokeStyle=this.ACCENT; ctx.lineWidth=1.5; ctx.beginPath(); ctx.arc(T.x,T.y, this.dragging?11:9, 0,7); ctx.stroke(); }
+    }
+    ctx.setLineDash([]);
+    if(this.trail && this.trail.length>1 && this.status!=='IDLE' && this.status!=='STATIC') this.drawTrail();
+    this.drawBase(base);
+    ctx.lineCap='round'; ctx.lineJoin='round'; ctx.strokeStyle=this.INK;
+    for(let i=0;i<P.length-1;i++){ ctx.lineWidth=9-i*1.7; ctx.beginPath(); ctx.moveTo(P[i].x,P[i].y); ctx.lineTo(P[i+1].x,P[i+1].y); ctx.stroke(); }
+    if(this.constraints && this.status!=='IDLE' && this.status!=='STATIC') this.drawJointArcs();
+    for(let i=0;i<P.length;i++) this.joint(P[i], i===0?6:5);
+    this.effector(end);
+    if(this.status==='IDLE'){
+      ctx.save(); ctx.globalAlpha=0.55; ctx.strokeStyle=this.ACCENT; ctx.lineWidth=1.4; ctx.setLineDash([3,4]);
+      ctx.beginPath(); ctx.arc(end.x,end.y,13,0,7); ctx.stroke(); ctx.restore();
+    }
+  }
+  drawTrail(){
+    const ctx=this.ctx, T=this.trail, n=T.length;
+    ctx.lineCap='round';
+    for(let i=1;i<n;i++){ const a=(i/n)*0.5; ctx.strokeStyle='rgba(226,74,0,'+a.toFixed(3)+')'; ctx.lineWidth=1.6; ctx.beginPath(); ctx.moveTo(T[i-1].x,T[i-1].y); ctx.lineTo(T[i].x,T[i].y); ctx.stroke(); }
+  }
+  drawJointArcs(){
+    const ctx=this.ctx, P=this.points, r=15;
+    for(let i=0;i<this.segCount;i++){
+      const refAng = i===0 ? -Math.PI/2 : Math.atan2(P[i].y-P[i-1].y, P[i].x-P[i-1].x);
+      const cur = Math.atan2(P[i+1].y-P[i].y, P[i+1].x-P[i].x);
+      const delta = this.norm(cur-refAng), lim=this.limits[i];
+      const near = Math.abs(delta) >= lim*0.94; if(near) this.atLimit=true;
+      ctx.strokeStyle = near ? 'rgba(226,74,0,0.55)' : 'rgba(20,24,28,0.16)'; ctx.lineWidth=1.5;
+      ctx.beginPath(); ctx.arc(P[i].x,P[i].y,r, refAng-lim, refAng+lim); ctx.stroke();
+      ctx.strokeStyle = near ? this.ACCENT : this.LINE; ctx.lineWidth = near?2:1.4;
+      ctx.beginPath(); ctx.moveTo(P[i].x+Math.cos(cur)*(r-4),P[i].y+Math.sin(cur)*(r-4)); ctx.lineTo(P[i].x+Math.cos(cur)*(r+3),P[i].y+Math.sin(cur)*(r+3)); ctx.stroke();
+    }
+  }
+  cross(p,r,c){ const ctx=this.ctx; ctx.strokeStyle=c; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(p.x-r,p.y); ctx.lineTo(p.x+r,p.y); ctx.moveTo(p.x,p.y-r); ctx.lineTo(p.x,p.y+r); ctx.stroke(); }
+  joint(p,r){ const ctx=this.ctx; ctx.fillStyle=this.PAPER; ctx.strokeStyle=this.INK; ctx.lineWidth=2; ctx.beginPath(); ctx.arc(p.x,p.y,r,0,7); ctx.fill(); ctx.stroke(); ctx.fillStyle=this.INK; ctx.beginPath(); ctx.arc(p.x,p.y,1.3,0,7); ctx.fill(); }
+  drawBase(b){ const ctx=this.ctx, bw=46, bh=13, top=b.y+4; ctx.save(); ctx.beginPath(); ctx.rect(b.x-bw/2,top,bw,bh); ctx.fillStyle=this.PAPER; ctx.fill(); ctx.clip(); ctx.strokeStyle=this.LINE; ctx.lineWidth=1; ctx.beginPath(); for(let x=-bh;x<bw;x+=6){ ctx.moveTo(b.x-bw/2+x, top+bh); ctx.lineTo(b.x-bw/2+x+bh, top); } ctx.stroke(); ctx.restore(); ctx.strokeStyle=this.INK; ctx.lineWidth=2; ctx.strokeRect(b.x-bw/2,top,bw,bh); }
+  effector(p){ const ctx=this.ctx; ctx.strokeStyle=this.ACCENT; ctx.lineWidth=2; ctx.beginPath(); ctx.arc(p.x,p.y,6.5,0,7); ctx.stroke(); ctx.beginPath(); ctx.moveTo(p.x-11,p.y); ctx.lineTo(p.x-6,p.y); ctx.moveTo(p.x+6,p.y); ctx.lineTo(p.x+11,p.y); ctx.moveTo(p.x,p.y-11); ctx.lineTo(p.x,p.y-6); ctx.moveTo(p.x,p.y+6); ctx.lineTo(p.x,p.y+11); ctx.stroke(); ctx.fillStyle=this.ACCENT; ctx.beginPath(); ctx.arc(p.x,p.y,1.6,0,7); ctx.fill(); }
+
+  anglesDeg(){
+    const P=this.points, out=[];
+    for(let i=1;i<P.length;i++){
+      const ref = i===1 ? -Math.PI/2 : Math.atan2(P[i-1].y-P[i-2].y, P[i-1].x-P[i-2].x);
+      const deg = Math.round(this.norm(Math.atan2(P[i].y-P[i-1].y, P[i].x-P[i-1].x) - ref)*180/Math.PI);
+      out.push((deg>=0?'+':'')+deg+'\u00B0');
+    }
+    return out;
+  }
+
+  updateHUD(){
+    const s=this.statusRef.current;
+    if(s){
+      s.textContent=this.status;
+      s.style.color = this.status==='UNREACHABLE' ? this.ACCENT_INK
+        : (this.status==='SOLVED') ? this.INK : this.INK2;
+    }
+    const r=this.readRef.current;
+    if(r){
+      if(this.status==='STATIC'){ r.textContent='\u03B8 static \u00B7 reduced-motion'; return; }
+      if(this.status==='IDLE'){ r.textContent='\u03B8 \u2014 \u2014 \u2014 \u00B7 TCP \u2014,\u2014 \u00B7 idle'; return; }
+      const a=this.anglesDeg(), end=this.points[this.points.length-1];
+      const tx=Math.round(end.x-this.base.x), ty=Math.round(this.base.y-end.y);
+      r.textContent='\u03B8 '+a.join(' ')+' \u00B7 TCP '+tx+','+ty+' \u00B7 '+this.lat.toFixed(3)+'ms'+(this.atLimit?' \u00B7 LIMIT':'');
+    }
+  }
+
+  /* ---------------- CLIPBOARD ---------------- */
+  copyEmail = () => {
+    const addr='wajm1.dev@gmail.com';
+    const done=()=>{
+      const el=this.copyRef.current; if(!el) return;
+      el.textContent='copied \u2713';
+      if(this._ct) clearTimeout(this._ct);
+      this._ct=setTimeout(()=>{ if(this.copyRef.current) this.copyRef.current.textContent=''; }, 1800);
+    };
+    const fallback=()=>{
+      try{
+        const ta=document.createElement('textarea'); ta.value=addr; ta.style.position='fixed'; ta.style.opacity='0';
+        document.body.appendChild(ta); ta.focus(); ta.select(); document.execCommand('copy'); ta.remove(); done();
+      }catch(e){ const el=this.copyRef.current; if(el) el.textContent=addr; }
+    };
+    if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(addr).then(done).catch(fallback); }
+    else fallback();
+  }
+
+  /* ---------------- LIVE COLLAB EDITOR ---------------- */
+  initCode(){
+    const host=this.codeRef.current; if(!host) return;
+    host.textContent='';
+    this.peers=[]; this.committed=[]; this.ops=0;
+    const rows=[
+      {text:'#include <boost/asio.hpp>'},
+      {text:'SharedDoc doc{sessionId};'},
+      {author:'mateo', color:this.INK, prefix:'socket.on("edit", ', variants:['[](Op op){ broadcast(op); });','[](Op op){ queue.push(op); });','[](Op op){ doc.merge(op); });']},
+      {author:'ren', color:this.INK2, prefix:'auto next = ', variants:['crdt::merge(a, b);','ot::transform(a, b);','rebase(a, b);']},
+      {text:'run(doc.source(), Sandbox::Piston);'},
+      {author:'you', color:this.ACCENT, editable:true, placeholder:'// type C++ · press Enter to broadcast'}
+    ];
+    rows.forEach((row)=>host.appendChild(this.buildLine(row)));
+    this.renumber();
+    this.setFoot('synced');
+    if(!this.reduced) this.codeTimer=setInterval(()=>this.codeTick(), 55);
+  }
+
+  buildLine(row){
+    const line=document.createElement('div');
+    line.style.cssText='display:flex;align-items:baseline;gap:14px;min-height:23px';
+    const g=document.createElement('span');
+    g.className='ln-gutter';
+    g.style.cssText='width:22px;text-align:right;color:#B7B7B2;flex:0 0 auto;user-select:none';
+    line.appendChild(g);
+    const mid=document.createElement('span');
+    mid.style.cssText='flex:1 1 auto;min-width:0;white-space:pre;overflow:hidden;text-overflow:ellipsis';
+    line.appendChild(mid);
+    if(row.editable){
+      const ed=document.createElement('span');
+      ed.contentEditable='true'; ed.spellcheck=false; ed.setAttribute('role','textbox');
+      ed.setAttribute('aria-label','Live collaborative editor — type code and press Enter to broadcast it into the shared buffer');
+      ed.textContent=row.placeholder; ed.dataset.empty='1';
+      ed.style.cssText='display:inline-block;min-width:8px;white-space:pre;outline:none;color:'+this.INK2+';caret-color:'+this.ACCENT;
+      ed.addEventListener('focus',()=>{ if(ed.dataset.empty){ ed.textContent=''; ed.dataset.empty=''; ed.style.color=this.INK; }});
+      ed.addEventListener('input',()=>{ ed.dataset.empty=''; ed.style.color=this.INK; this.pulseSync('syncing'); });
+      ed.addEventListener('blur',()=>{ if(!ed.textContent.trim()){ ed.textContent=row.placeholder; ed.dataset.empty='1'; ed.style.color=this.INK2; } this.pulseSync('synced'); });
+      ed.addEventListener('keydown',(e)=>{ if(e.key==='Enter'){ e.preventDefault(); this.commitLine(ed); } });
+      mid.appendChild(ed);
+      line.appendChild(this.tagEl(row.author,row.color));
+    } else if(row.variants){
+      const code=document.createElement('span'); code.style.color=this.INK;
+      code.textContent=row.prefix + (this.reduced ? row.variants[0] : '');
+      mid.appendChild(code);
+      if(!this.reduced){
+        const car=document.createElement('span');
+        car.style.cssText='display:inline-block;width:2px;height:15px;background:'+row.color+';margin:0 1px;vertical-align:-3px;animation:blink 1s step-end infinite';
+        mid.appendChild(car);
+        this.peers.push({code, prefix:row.prefix, variants:row.variants, vi:0, text:'', target:row.variants[0], phase:'type', hold:0, cd:2+Math.floor(Math.random()*12)});
+      }
+      line.appendChild(this.tagEl(row.author,row.color));
+    } else if(row.author){
+      const code=document.createElement('span'); code.style.color=this.INK; code.textContent=row.text;
+      mid.appendChild(code);
+      line.appendChild(this.tagEl(row.author,row.color));
+    } else {
+      const code=document.createElement('span'); code.style.color=this.INK; code.textContent=row.text;
+      mid.appendChild(code);
+    }
+    return line;
+  }
+
+  tagEl(name,color){
+    const t=document.createElement('span');
+    t.style.cssText='flex:0 0 auto;align-self:center;display:inline-flex;align-items:center;gap:5px;margin-left:12px;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:'+this.INK2;
+    const dot=document.createElement('span'); dot.style.cssText='width:6px;height:6px;border-radius:50%;flex:0 0 auto;background:'+color;
+    const nm=document.createElement('span'); nm.textContent=name;
+    t.appendChild(dot); t.appendChild(nm); return t;
+  }
+
+  renumber(){
+    const host=this.codeRef.current; if(!host) return;
+    [...host.children].forEach((line,i)=>{ const g=line.querySelector('.ln-gutter'); if(g) g.textContent=String(i+1).padStart(2,'0'); });
+  }
+
+  commitLine(ed){
+    const text=(ed.textContent||'').trim();
+    if(!text) return;
+    const host=this.codeRef.current, editLine=ed.closest('div');
+    const line=this.buildLine({author:'you', color:this.ACCENT, text:text});
+    host.insertBefore(line, editLine);
+    this.committed.push(line);
+    while(this.committed.length>3){ this.committed.shift().remove(); }
+    ed.textContent=''; ed.dataset.empty=''; ed.style.color=this.INK;
+    this.ops++;
+    this.renumber();
+    this.pulseSync('syncing');
+    if(this._syncT) clearTimeout(this._syncT);
+    this._syncT=setTimeout(()=>this.pulseSync('synced'), 520);
+    ed.focus();
+  }
+
+  pulseSync(state){
+    const s=this.syncRef.current;
+    if(s){ s.textContent = state==='syncing' ? 'broadcasting…' : 'synced'; s.style.color = state==='syncing' ? this.ACCENT_INK : ''; }
+    const p=this.peersRef.current;
+    if(p){ p.style.opacity='0.45'; requestAnimationFrame(()=>{ p.style.opacity='1'; }); }
+    if(state==='syncing'){
+      if(this._syncT) clearTimeout(this._syncT);
+      this._syncT=setTimeout(()=>this.pulseSync('synced'), 520);
+    }
+    this.setFoot(state);
+  }
+
+  setFoot(state){
+    const f=this.footRef.current; if(!f) return;
+    const s = state==='syncing' ? 'broadcasting…' : 'synced';
+    f.textContent='socket.io \u00b7 rtt 24ms \u00b7 session ab-1029 \u00b7 '+this.ops+' ops \u00b7 '+s;
+  }
+  codeTick(){
+    for(const s of this.peers){
+      if(s.cd>0){ s.cd--; continue; }
+      if(s.phase==='type'){
+        if(s.text.length<s.target.length){ s.text=s.target.slice(0,s.text.length+1); s.cd=1+Math.floor(Math.random()*2); }
+        else { s.phase='hold'; s.hold=44; }
+      } else if(s.phase==='hold'){ if(--s.hold<=0) s.phase='erase'; }
+      else {
+        if(s.text.length>0){ s.text=s.text.slice(0,-1); }
+        else { s.vi=(s.vi+1)%s.variants.length; s.target=s.variants[s.vi]; s.phase='type'; s.cd=6; }
+      }
+      s.code.textContent=s.prefix+s.text;
+    }
+  }
+}
+</script>
+</body>
+</html>
