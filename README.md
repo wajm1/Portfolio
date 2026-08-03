@@ -1,59 +1,54 @@
 # Wajahat Mahmood · Portfolio
 
-Personal site for a software engineer who builds **real-time systems** and the tools that test the hardware they run on.
+Personal website for a software engineer interested in **real-time systems**, robotics, and developer tools.
 
-**Live:** [wajm1.com](https://wajm1.com)
+**Live:** https://wajm1.com
 
-Open to **2027 SWE** roles.
-
----
-
-## What's here
-
-This isn't a static brochure. The page is built like an engineering datasheet, with two interactive demos baked into the first scroll:
-
-| Demo | What it does |
-|------|----------------|
-| **IK arm** | Drag (or arrow keys) to drive a 3-link planar arm. FABRIK solver, joint limits, live TCP readout. |
-| **Collab editor** | Type a line, press Enter, and your edit broadcasts into a simulated multi-cursor buffer. |
-
-Selected work covers:
-
-- **GlanceScribe** · AI medical scribe from Meta smart-glasses video → SOAP notes (Best Healthcare, Hack Brooklyn '26)
-- **Interbotix RX-200 driver** · C++ teleoperation + race-condition fixes powering IROS '26 research
-- **Real-time collaborative code editor** · Socket.IO sync, session recovery, sandboxed runs ([live demo](https://wajm1.github.io/Code-Interview-Platform/))
+Open to **2027 Software Engineering** roles.
 
 ---
 
-## Stack on the site
+| Demo              | Description                                                                                                                                   |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| **IK arm**        | Control a 3-link planar arm with your mouse or arrow keys. Features a FABRIK inverse kinematics solver, joint limits, and a live TCP readout. |
+| **Collab editor** | Type a line and press Enter to broadcast your edit across a simulated multi-cursor collaborative editor.                                      |
 
-Single `index.html`. No build step. No framework. Space Grotesk + JetBrains Mono, CSS custom properties, and a light / dark theme toggle that respects `prefers-color-scheme` and remembers your choice.
+Featured projects include:
+
+* **GlanceScribe** · AI medical scribe that converts Meta smart glasses video into SOAP notes (Best Healthcare, Hack Brooklyn '26)
+* **Interbotix RX-200 driver** · C++ teleoperation software and race-condition fixes used in IROS '26 research
+* **Real-time collaborative code editor** · Socket.IO synchronization, session recovery, and sandboxed code execution ([live demo](https://wajm1.github.io/Code-Interview-Platform/))
+
+---
+
+## Built with
+
+A single `index.html` file with no build step or framework. Uses Space Grotesk, JetBrains Mono, CSS custom properties, and a light/dark theme that follows `prefers-color-scheme` and remembers your preference.
 
 ```
-index.html          → the whole site
-uploads/            → resume PDF
+index.html          → Entire website
+uploads/            → Resume PDF
 CNAME               → wajm1.com (GitHub Pages)
 ```
 
 ---
 
-## Run it locally
+## Run locally
 
 ```bash
-# any static server works, e.g.
+# Any static server works, for example:
 python3 -m http.server 8000
-# then open http://localhost:8000
+
+# Then open http://localhost:8000
 ```
 
-Or just open `index.html` in a browser.
+You can also open `index.html` directly in your browser.
 
 ---
 
 ## Contact
 
-- Email: [wajm1.dev@gmail.com](mailto:wajm1.dev@gmail.com)
-- GitHub: [github.com/wajm1](https://github.com/wajm1)
-- LinkedIn: [linkedin.com/in/wajm1](https://linkedin.com/in/wajm1)
-- Devpost: [devpost.com/wajm1](https://devpost.com/wajm1)
-
-Sheet 01 / 01.
+* Email: [wajm1.dev@gmail.com](mailto:wajm1.dev@gmail.com)
+* GitHub: github.com/wajm1
+* LinkedIn: linkedin.com/in/wajm1
+* Devpost: devpost.com/wajm1
