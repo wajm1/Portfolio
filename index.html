@@ -52,6 +52,8 @@
   --panel-a:rgba(245,246,243,0.72);   /* translucent panel overlays */
   --panel-fade:rgba(245,246,243,0.9);
   --ln:#B7B7B2;                       /* code line numbers */
+  --peer-a:#2563EB;                   /* collaborator cursor colors */
+  --peer-b:#565B5E;
   --theme-ui:#ECEDEA;
   --grot:'Space Grotesk',system-ui,-apple-system,sans-serif;
   --mono:'JetBrains Mono',ui-monospace,'SF Mono',monospace;
@@ -72,6 +74,8 @@
   --panel-a:rgba(26,29,32,0.78);
   --panel-fade:rgba(26,29,32,0.92);
   --ln:#6A6E72;
+  --peer-a:#60A5FA;
+  --peer-b:#9A9FA3;
   --theme-ui:#121416;
   color-scheme:dark;
 }
@@ -213,25 +217,46 @@ section[id],footer[id]{scroll-margin-top:24px}
 }
 
 /* --- Selected work -------------------------------------------------------- */
-.work-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr));
-  gap:clamp(16px,2vw,24px);align-items:start;
+/* Flex column of full-width rows. Each row = copy | visual. */
+.work-list{
+  display:flex !important;
+  flex-direction:column !important;
+  gap:clamp(16px,2vw,22px);
+  width:100%;
 }
-#editor{
-  grid-column:1 / -1; /* full-width so the live demo has room to breathe */
-}
-.card{
+.work-row{
+  display:flex !important;
+  flex-direction:row !important;
+  flex-wrap:nowrap;
+  align-items:stretch;
+  width:100% !important;
+  max-width:100%;
+  box-sizing:border-box;
   border:1px solid var(--line);background:var(--panel);
-  padding:clamp(20px,2.4vw,30px);
-  display:flex;flex-direction:column;gap:20px;
+  padding:clamp(22px,2.6vw,34px);
+  gap:clamp(22px,3vw,40px);
   transition:transform .2s ease,border-color .2s ease;
 }
-.card:hover{transform:translateY(-3px);border-color:var(--line-2)}
+.work-row:hover{transform:translateY(-2px);border-color:var(--line-2)}
+.work-copy,.work-visual{
+  display:flex;flex-direction:column;gap:16px;min-width:0;
+}
+.work-copy{flex:1 1 0;max-width:52%}
+.work-visual{flex:1.1 1 0}
+.work-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.work-title{font-weight:600;font-size:clamp(21px,2.3vw,27px);letter-spacing:-.01em;text-wrap:balance;margin:0}
+.work-kicker{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--ink-70);white-space:nowrap;text-align:right}
+.work-desc{font-size:15px;color:var(--ink-70);text-wrap:pretty;max-width:54ch;margin:0}
+.work-desc a{white-space:nowrap;text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--line-2)}
+.work-desc a:hover{color:var(--accent-ink)}
+/* Legacy aliases so any leftover .card rules never recreate a 2-col grid of projects */
+.work-grid{display:flex;flex-direction:column;gap:clamp(16px,2vw,22px);width:100%}
+.card{display:block;width:100%}
+.card-main,.card-side{display:flex;flex-direction:column;gap:16px;min-width:0}
 .card-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
-.card-title{font-weight:600;font-size:clamp(20px,2.2vw,26px);letter-spacing:-.01em;text-wrap:balance}
+.card-title{font-weight:600;font-size:clamp(21px,2.3vw,27px);letter-spacing:-.01em;text-wrap:balance}
 .card-kicker{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--ink-70);white-space:nowrap;text-align:right}
-.card-desc{font-size:15px;color:var(--ink-70);text-wrap:pretty;max-width:52ch}
+.card-desc{font-size:15px;color:var(--ink-70);text-wrap:pretty;max-width:54ch}
 .card-desc a{white-space:nowrap;text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--line-2)}
 .card-desc a:hover{color:var(--accent-ink)}
 
@@ -261,45 +286,78 @@ section[id],footer[id]{scroll-margin-top:24px}
 .link .sq{width:6px;height:6px;background:var(--accent);flex:0 0 auto}
 
 .editor-hint{
-  display:none;
-  margin:0 0 -8px;
+  display:block;
+  margin:0;
+  font-family:var(--mono);
   font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent-ink);
 }
 
 /* --- Collaborative editor (interactive demo #2) --------------------------- */
-.editor{border:1px solid var(--line);background:var(--paper)}
+.editor{
+  border:1px solid var(--line);background:var(--paper);
+  display:flex;flex-direction:column;flex:1 1 auto;min-height:280px;
+}
 .editor-bar{
-  display:flex;align-items:center;justify-content:space-between;gap:10px;
-  padding:9px 12px;border-bottom:1px solid var(--line);
+  display:flex;align-items:center;justify-content:space-between;gap:8px 12px;
+  padding:10px 12px;border-bottom:1px solid var(--line);
   font-family:var(--mono);font-size:11px;letter-spacing:.03em;color:var(--ink-70);
+  flex-wrap:wrap;
 }
 .editor-dots{display:flex;align-items:center;gap:6px;flex:0 1 auto;min-width:0}
 .editor-dots > span:not(.editor-file){width:8px;height:8px;border:1px solid var(--line-2);flex:0 0 auto}
 .editor-file{
-  margin-left:6px;color:var(--ink);flex:0 0 auto;white-space:nowrap;
+  margin-left:6px;color:var(--ink);flex:0 0 auto;white-space:nowrap;font-weight:500;
 }
 .editor-sync{display:inline-flex;align-items:center;gap:6px;transition:opacity .4s ease;flex:0 0 auto;white-space:nowrap}
-.code{padding:16px 18px;min-height:240px;overflow-x:auto;font-family:var(--mono);font-size:14px;line-height:26px}
+.editor-presence{
+  display:inline-flex;align-items:center;gap:10px;flex-wrap:wrap;
+  font-size:10px;letter-spacing:.04em;text-transform:uppercase;
+}
+.editor-presence .who{display:inline-flex;align-items:center;gap:5px;color:var(--ink-70)}
+.editor-presence .who .pd{width:6px;height:6px;border-radius:50%;flex:0 0 auto}
+.code{
+  flex:1 1 auto;
+  padding:16px 18px;
+  min-height:220px;
+  overflow-x:auto;
+  font-family:var(--mono);
+  font-size:13.5px;
+  line-height:1.8;
+}
 .code-line{
   display:grid;
-  grid-template-columns:28px minmax(0,1fr) auto;
+  grid-template-columns:2rem minmax(0,1fr) 4rem;
   column-gap:14px;
   align-items:center;
-  min-height:26px;
+  min-height:1.8em;
+  padding:1px 0;
 }
-.ln{text-align:right;color:var(--ln);user-select:none}
+.code-line.is-you{
+  background:rgba(226,74,0,0.06);
+  margin-inline:-8px;padding-inline:8px;border-radius:2px;
+}
+.ln{text-align:right;color:var(--ln);user-select:none;font-variant-numeric:tabular-nums}
 .code-mid{
   min-width:0;white-space:pre;overflow-x:auto;overflow-y:hidden;
   scrollbar-width:none;-ms-overflow-style:none;
+  color:var(--ink);
 }
+/* Author colors live in CSS so they follow the light/dark toggle. */
+.peer-mateo{--peer:var(--peer-a)}
+.peer-ren{--peer:var(--peer-b)}
+.peer-you{--peer:var(--accent)}
+.code-mid .caret,
+.peer-tag .pd,
+.editor-presence .who .pd{background:var(--peer,var(--accent))}
 .code-mid::-webkit-scrollbar{display:none;width:0;height:0}
 .code-edit{display:inline-block;min-width:8px;white-space:pre;outline:none;color:var(--ink);caret-color:var(--accent)}
-.code-edit.empty{color:var(--ink-70)}
+/* Placeholder as generated content, so it can never be committed as real text. */
+.code-edit:empty::before{content:attr(data-placeholder);color:var(--ink-70)}
 .caret{display:inline-block;width:2px;height:15px;margin:0 1px;vertical-align:-3px;animation:blink 1s step-end infinite}
 .peer-tag{
   display:inline-flex;align-items:center;gap:5px;
-  font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-70);
-  white-space:nowrap;justify-self:end;
+  font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-70);
+  white-space:nowrap;justify-self:start;
 }
 .peer-tag .pd{width:6px;height:6px;border-radius:50%;flex:0 0 auto}
 .editor-foot{
@@ -363,8 +421,16 @@ section[id],footer[id]{scroll-margin-top:24px}
 
 /* --- Responsive: stop text collisions / overflow on phones ---------------- */
 html,body{overflow-x:clip}
-.wrap,.card,.editor,.fig,.xp-item,.contact-grid,.stack{min-width:0}
+.wrap,.work-row,.card,.editor,.fig,.xp-item,.contact-grid,.stack{min-width:0}
 .link{max-width:100%;overflow-wrap:anywhere;word-break:break-word}
+
+/* Below this width the copy/visual split gets too cramped, so rows stack. */
+@media (max-width:880px){
+  .work-row{flex-direction:column !important;gap:18px}
+  .work-copy,.work-visual{max-width:none;flex:1 1 auto}
+  .work-desc,.card-desc{max-width:none}
+  .editor{min-height:0}
+}
 
 @media (max-width:720px){
   /* Section titles + notes stack so they never fight for one row */
@@ -384,10 +450,6 @@ html,body{overflow-x:clip}
     line-height:1.45;
     max-width:100%;
   }
-  /* On stacked cards the editor isn't under this label - drop it */
-  #work > .wrap > .section-head .head-note{display:none}
-  .editor-hint{display:block}
-
   .site-header .wrap{align-items:flex-start}
   .nav{gap:10px 14px;row-gap:10px}
   .avail{font-size:11px}
@@ -407,11 +469,11 @@ html,body{overflow-x:clip}
     text-overflow:ellipsis;
   }
 
-  .card{padding:18px;gap:16px}
-  .card-head{flex-direction:column;gap:4px;align-items:flex-start}
-  .card-kicker{text-align:left;white-space:normal}
-  .card-title{font-size:clamp(20px,6vw,24px)}
-  .card-desc a{white-space:normal}
+  .work-row,.card{padding:18px;gap:16px}
+  .work-head,.card-head{flex-direction:column;gap:4px;align-items:flex-start}
+  .work-kicker,.card-kicker{text-align:left;white-space:normal}
+  .work-title,.card-title{font-size:clamp(20px,6vw,24px)}
+  .work-desc a,.card-desc a{white-space:normal}
 
   .flow{font-size:9px}
   .flow .step{padding:10px 4px}
@@ -424,11 +486,11 @@ html,body{overflow-x:clip}
   }
   .editor-sync{font-size:10px}
   .editor-file{max-width:none}
-  .code{font-size:13px;line-height:24px;padding:14px;min-height:220px}
+  .editor-presence{gap:8px;font-size:9.5px}
+  .code{font-size:12.5px;line-height:1.75;padding:14px 12px;min-height:200px}
   .code-line{
-    grid-template-columns:22px minmax(0,1fr);
+    grid-template-columns:1.6rem minmax(0,1fr);
     column-gap:10px;
-    min-height:24px;
   }
   .peer-tag{display:none} /* names collide with code on narrow widths */
   .editor-foot{
@@ -589,113 +651,127 @@ html,body{overflow-x:clip}
   </section>
 
   <!-- ======================= SELECTED WORK ======================= -->
+  <!-- layout-fix-2026-08-03: each project is a full-width flex row -->
   <section id="work" class="section">
     <div class="wrap">
       <div class="section-head">
         <h2>Selected Work</h2>
         <span class="rule" aria-hidden="true"></span>
-        <span class="head-note">try the editor &darr;</span>
       </div>
 
-      <div class="work-grid">
+      <div class="work-list">
 
         <!-- Project 1 - GlanceScribe -->
-        <article class="card">
-          <div class="card-head">
-            <h3 class="card-title">GlanceScribe</h3>
-            <span class="card-kicker">AI MEDICAL SCRIBE</span>
+        <article class="work-row">
+          <div class="work-copy">
+            <div class="work-head">
+              <h3 class="work-title">GlanceScribe</h3>
+              <span class="work-kicker">AI MEDICAL SCRIBE</span>
+            </div>
+            <p class="work-desc">AI medical scribe that turns a clinician&rsquo;s first-person Meta smart-glasses video into structured SOAP notes, eliminating manual note-taking during patient encounters.</p>
+            <div class="chips">
+              <span class="chip">Swift</span><span class="chip">Node</span><span class="chip">Gemini</span><span class="chip">ElevenLabs</span><span class="chip">FFmpeg</span>
+            </div>
+            <div class="links">
+              <a class="link" href="https://www.youtube.com/watch?v=C1dSdK3tr18" target="_blank" rel="noopener"><span class="sq" aria-hidden="true"></span>Demo video <span aria-hidden="true">&#8599;</span></a>
+              <a class="link" href="https://github.com/wajm1/GlanceScribe" target="_blank" rel="noopener"><span class="sq" aria-hidden="true"></span>GitHub <span aria-hidden="true">&#8599;</span></a>
+              <a class="link" href="https://devpost.com/software/glancescribe" target="_blank" rel="noopener"><span class="sq" aria-hidden="true"></span>Devpost <span aria-hidden="true">&#8599;</span></a>
+            </div>
           </div>
-          <p class="card-desc">AI medical scribe that turns a clinician&rsquo;s first-person Meta smart-glasses video into structured SOAP notes, eliminating manual note-taking during patient encounters.</p>
-          <div class="flow" style="grid-template-columns:1fr auto 1fr auto 1fr">
-            <div class="step">Meta<br>glasses</div>
-            <div class="arrow" aria-hidden="true">&rarr;</div>
-            <div class="step">Speech<br>&rarr; text</div>
-            <div class="arrow" aria-hidden="true">&rarr;</div>
-            <div class="step">SOAP<br>note</div>
-          </div>
-          <div class="chips">
-            <span class="chip">Swift</span><span class="chip">Node</span><span class="chip">Gemini</span><span class="chip">ElevenLabs</span><span class="chip">FFmpeg</span>
-          </div>
-          <div class="stats">
-            <div class="stat"><div class="stat-num">Winner</div><div class="stat-label">Best Healthcare<br>Hack Brooklyn &rsquo;26</div></div>
-            <div class="stat"><div class="stat-num">Hands-free</div><div class="stat-label">Zero clinician<br>screen time</div></div>
-          </div>
-          <div class="links">
-            <a class="link" href="https://www.youtube.com/watch?v=C1dSdK3tr18" target="_blank" rel="noopener"><span class="sq" aria-hidden="true"></span>Demo video <span aria-hidden="true">&#8599;</span></a>
-            <a class="link" href="https://github.com/wajm1/GlanceScribe" target="_blank" rel="noopener"><span class="sq" aria-hidden="true"></span>GitHub <span aria-hidden="true">&#8599;</span></a>
-            <a class="link" href="https://devpost.com/software/glancescribe" target="_blank" rel="noopener"><span class="sq" aria-hidden="true"></span>Devpost <span aria-hidden="true">&#8599;</span></a>
+          <div class="work-visual">
+            <div class="flow" style="grid-template-columns:1fr auto 1fr auto 1fr">
+              <div class="step">Meta<br>glasses</div>
+              <div class="arrow" aria-hidden="true">&rarr;</div>
+              <div class="step">Speech<br>&rarr; text</div>
+              <div class="arrow" aria-hidden="true">&rarr;</div>
+              <div class="step">SOAP<br>note</div>
+            </div>
+            <div class="stats">
+              <div class="stat"><div class="stat-num">Winner</div><div class="stat-label">Best Healthcare<br>Hack Brooklyn &rsquo;26</div></div>
+              <div class="stat"><div class="stat-num">Hands-free</div><div class="stat-label">Zero clinician<br>screen time</div></div>
+            </div>
           </div>
         </article>
 
         <!-- Project 2 - Interbotix RX-200 Driver -->
-        <article class="card">
-          <div class="card-head">
-            <h3 class="card-title">Interbotix RX-200<br>Driver</h3>
-            <span class="card-kicker">MICHIGAN&nbsp;RESEARCH</span>
+        <article class="work-row">
+          <div class="work-copy">
+            <div class="work-head">
+              <h3 class="work-title">Interbotix RX-200 Driver</h3>
+              <span class="work-kicker">MICHIGAN&nbsp;RESEARCH</span>
+            </div>
+            <p class="work-desc">The C++ driver behind the research arm: game-controller input mapped through SDL2 to joint-velocity commands, then bridged to the lab&rsquo;s pub/sub robot OS. Shared state guarded with mutexes and atomics to kill the race conditions that crashed the vendor stack.</p>
+            <div class="chips">
+              <span class="chip">C++</span><span class="chip">SDL2</span><span class="chip">Interbotix SDK</span><span class="chip">Pub/Sub</span><span class="chip">Mutexes / atomics</span>
+            </div>
+            <div class="links">
+              <a class="link" href="https://github.com/wajm1/rix-interbotix-driver" target="_blank" rel="noopener"><span class="sq" aria-hidden="true"></span>GitHub <span aria-hidden="true">&#8599;</span></a>
+            </div>
           </div>
-          <p class="card-desc">The C++ driver behind the research arm: game-controller input mapped through SDL2 to joint-velocity commands, then bridged to the lab&rsquo;s pub/sub robot OS. Shared state guarded with mutexes and atomics to kill the race conditions that crashed the vendor stack.</p>
-          <div class="flow" style="grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;font-size:10px">
-            <div class="step">Game<br>pad</div>
-            <div class="arrow" aria-hidden="true">&rarr;</div>
-            <div class="step">SDL2</div>
-            <div class="arrow" aria-hidden="true">&rarr;</div>
-            <div class="step">Joint<br>vel</div>
-            <div class="arrow" aria-hidden="true">&rarr;</div>
-            <div class="step">RX-200</div>
-          </div>
-          <div class="chips">
-            <span class="chip">C++</span><span class="chip">SDL2</span><span class="chip">Interbotix SDK</span><span class="chip">Pub/Sub</span><span class="chip">Mutexes / atomics</span>
-          </div>
-          <div class="stats">
-            <div class="stat"><div class="stat-num">IROS <span class="u-accent">&rsquo;26</span></div><div class="stat-label">Paper this<br>code powers</div></div>
-            <div class="stat"><div class="stat-num">0 <span class="u-accent">crashes</span></div><div class="stat-label">Race conditions<br>eliminated</div></div>
-          </div>
-          <div class="links">
-            <a class="link" href="https://github.com/wajm1/rix-interbotix-driver" target="_blank" rel="noopener"><span class="sq" aria-hidden="true"></span>GitHub <span aria-hidden="true">&#8599;</span></a>
+          <div class="work-visual">
+            <div class="flow" style="grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;font-size:10px">
+              <div class="step">Game<br>pad</div>
+              <div class="arrow" aria-hidden="true">&rarr;</div>
+              <div class="step">SDL2</div>
+              <div class="arrow" aria-hidden="true">&rarr;</div>
+              <div class="step">Joint<br>vel</div>
+              <div class="arrow" aria-hidden="true">&rarr;</div>
+              <div class="step">RX-200</div>
+            </div>
+            <div class="stats">
+              <div class="stat"><div class="stat-num">IROS <span class="u-accent">&rsquo;26</span></div><div class="stat-label">Paper this<br>code powers</div></div>
+              <div class="stat"><div class="stat-num">0 <span class="u-accent">crashes</span></div><div class="stat-label">Race conditions<br>eliminated</div></div>
+            </div>
           </div>
         </article>
 
         <!-- Project 3 - Real-Time Collaborative Code Editor (interactive demo #2) -->
-        <article class="card" id="editor">
-          <div class="card-head">
-            <h3 class="card-title">Real-Time Collaborative<br>Code Editor</h3>
-            <span class="card-kicker">CODING&nbsp;PLATFORM</span>
-          </div>
-          <p class="card-desc">Concurrent edits and presence synced over Socket.IO, with session recovery and sandboxed runs via the Piston API. Open the <a href="https://wajm1.github.io/Code-Interview-Platform/" target="_blank" rel="noopener">live demo</a>, or type a line below and press <strong>Enter</strong> to add it here (local simulation).</p>
-
-          <p class="editor-hint mono" aria-hidden="true">try the editor</p>
-
-          <!--
-            The lines below are the STATIC FALLBACK. If JS runs, initEditor()
-            replaces them with the animated peers + editable line. If JS fails,
-            this stays put and reads as a normal C++ snippet - never blank.
-          -->
-          <div class="editor">
-            <div class="editor-bar">
-              <span class="editor-dots"><span></span><span></span><span></span><span class="editor-file">session.cpp</span></span>
-              <span class="editor-sync" id="ed-peers"><span class="dot"></span>3 peers &middot; <span id="ed-sync">synced</span></span>
+        <article class="work-row" id="editor">
+          <div class="work-copy">
+            <div class="work-head">
+              <h3 class="work-title">Real-Time Collaborative Code Editor</h3>
+              <span class="work-kicker">CODING&nbsp;PLATFORM</span>
             </div>
-            <div class="code" id="ed-code">
-              <div class="code-line"><span class="ln">01</span><span class="code-mid">#include &lt;asio.hpp&gt;</span></div>
-              <div class="code-line"><span class="ln">02</span><span class="code-mid">SharedDoc doc;</span></div>
-              <div class="code-line"><span class="ln">03</span><span class="code-mid">on("edit", broadcast);</span></div>
-              <div class="code-line"><span class="ln">04</span><span class="code-mid">auto n = merge(a, b);</span></div>
-              <div class="code-line"><span class="ln">05</span><span class="code-mid">run(doc, Piston);</span></div>
-              <div class="code-line"><span class="ln">06</span><span class="code-mid" style="color:var(--ink-70)">// type · press Enter</span></div>
+            <p class="work-desc">Concurrent edits and presence synced over Socket.IO, with session recovery and sandboxed runs via the Piston API. Open the <a href="https://wajm1.github.io/Code-Interview-Platform/" target="_blank" rel="noopener">live demo</a>, or type a line in the pane and press <strong>Enter</strong> to add it. Mateo and Ren are simulated peers.</p>
+            <div class="chips">
+              <span class="chip">Flask</span><span class="chip">Socket.IO</span><span class="chip">WebSockets</span><span class="chip">React</span><span class="chip">Session recovery</span><span class="chip">Piston sandbox</span>
             </div>
-            <div class="editor-foot" id="ed-foot">socket.io &middot; rtt 24ms &middot; 0 ops</div>
+            <div class="stats">
+              <div class="stat"><div class="stat-num">24<span class="u">ms</span></div><div class="stat-label">Median edit<br>round-trip</div></div>
+              <div class="stat"><div class="stat-num">0<span class="u-accent"> lost</span></div><div class="stat-label">Edits after<br>reconnect</div></div>
+            </div>
+            <div class="links">
+              <a class="link" href="https://wajm1.github.io/Code-Interview-Platform/" target="_blank" rel="noopener"><span class="sq" aria-hidden="true"></span>Live demo <span aria-hidden="true">&#8599;</span></a>
+              <a class="link" href="https://github.com/wajm1/Code-Interview-Platform" target="_blank" rel="noopener"><span class="sq" aria-hidden="true"></span>GitHub <span aria-hidden="true">&#8599;</span></a>
+            </div>
           </div>
-
-          <div class="chips">
-            <span class="chip">Flask</span><span class="chip">Socket.IO</span><span class="chip">WebSockets</span><span class="chip">React</span><span class="chip">Session recovery</span><span class="chip">Piston sandbox</span>
-          </div>
-          <div class="stats">
-            <div class="stat"><div class="stat-num">24<span class="u">ms</span></div><div class="stat-label">Median edit<br>round-trip</div></div>
-            <div class="stat"><div class="stat-num">0<span class="u-accent"> lost</span></div><div class="stat-label">Edits after<br>reconnect</div></div>
-          </div>
-          <div class="links">
-            <a class="link" href="https://wajm1.github.io/Code-Interview-Platform/" target="_blank" rel="noopener"><span class="sq" aria-hidden="true"></span>Live demo <span aria-hidden="true">&#8599;</span></a>
-            <a class="link" href="https://github.com/wajm1/Code-Interview-Platform" target="_blank" rel="noopener"><span class="sq" aria-hidden="true"></span>GitHub <span aria-hidden="true">&#8599;</span></a>
+          <div class="work-visual">
+            <p class="editor-hint" aria-hidden="true">try the editor</p>
+            <!--
+              The lines below are the STATIC FALLBACK. If JS runs, initEditor()
+              replaces them with the animated peers + editable line. If JS fails,
+              this stays put and reads as a normal C++ snippet - never blank.
+            -->
+            <div class="editor">
+              <div class="editor-bar">
+                <span class="editor-dots"><span></span><span></span><span></span><span class="editor-file">session.cpp</span></span>
+                <span class="editor-presence" aria-hidden="true">
+                  <span class="who peer-mateo"><span class="pd"></span>Mateo</span>
+                  <span class="who peer-ren"><span class="pd"></span>Ren</span>
+                  <span class="who peer-you"><span class="pd"></span>You</span>
+                </span>
+                <span class="editor-sync" id="ed-peers"><span class="dot"></span><span id="ed-sync">synced</span></span>
+              </div>
+              <div class="code" id="ed-code">
+                <div class="code-line"><span class="ln">01</span><span class="code-mid">#include &lt;asio.hpp&gt;</span></div>
+                <div class="code-line"><span class="ln">02</span><span class="code-mid">SharedDoc doc;</span></div>
+                <div class="code-line"><span class="ln">03</span><span class="code-mid">on("edit", broadcast);</span></div>
+                <div class="code-line"><span class="ln">04</span><span class="code-mid">auto n = merge(a, b);</span></div>
+                <div class="code-line"><span class="ln">05</span><span class="code-mid">run(doc, Piston);</span></div>
+                <div class="code-line is-you"><span class="ln">06</span><span class="code-mid" style="color:var(--ink-70)">// type · press Enter</span></div>
+              </div>
+              <div class="editor-foot" id="ed-foot">socket.io &middot; rtt 24ms &middot; 0 ops</div>
+            </div>
           </div>
         </article>
 
@@ -1319,7 +1395,7 @@ html,body{overflow-x:clip}
       { text: '#include <asio.hpp>' },
       { text: 'SharedDoc doc;' },
       {
-        author: 'mateo', color: C.accent, prefix: '',
+        author: 'mateo', prefix: '',
         variants: [
           'on("edit", broadcast);',
           'on("edit", enqueue);',
@@ -1328,7 +1404,7 @@ html,body{overflow-x:clip}
         startDelay: 0
       },
       {
-        author: 'ren', color: C.ink2, prefix: '',
+        author: 'ren', prefix: '',
         variants: [
           'auto n = merge(a, b);',
           'auto n = rebase(a, b);',
@@ -1337,7 +1413,7 @@ html,body{overflow-x:clip}
         startDelay: 16
       },
       { text: 'run(doc, Piston);' },
-      { author: 'you', color: C.accent, editable: true, placeholder: '// type · press Enter' }
+      { author: 'you', editable: true, placeholder: '// type · press Enter' }
     ];
 
     this._build();
@@ -1354,29 +1430,31 @@ html,body{overflow-x:clip}
 
   CollabEditor.prototype._line = function (row) {
     var self = this;
-    var line = document.createElement('div'); line.className = 'code-line';
+    var line = document.createElement('div');
+    line.className = 'code-line';
+    if (row.editable) line.className += ' is-you';
+    if (row.author) line.className += ' peer-' + row.author;
     var ln = document.createElement('span'); ln.className = 'ln'; line.appendChild(ln);
     var mid = document.createElement('span'); mid.className = 'code-mid'; line.appendChild(mid);
 
     if (row.editable) {
       var ed = document.createElement('span');
-      ed.className = 'code-edit empty';
+      ed.className = 'code-edit';
       ed.contentEditable = 'true'; ed.spellcheck = false;
       ed.setAttribute('role', 'textbox');
       ed.setAttribute('aria-label', 'Collaborative editor demo. Type a line and press Enter to add it');
-      ed.textContent = row.placeholder;
-      ed.addEventListener('focus', function () { if (ed.classList.contains('empty')) { ed.textContent = ''; ed.classList.remove('empty'); } });
-      ed.addEventListener('input', function () { ed.classList.remove('empty'); self._sync('syncing'); });
-      ed.addEventListener('blur',  function () { if (!ed.textContent.trim()) { ed.textContent = row.placeholder; ed.classList.add('empty'); } self._sync('synced'); });
+      ed.setAttribute('data-placeholder', row.placeholder);
+      ed.addEventListener('input', function () { self._sync('syncing'); });
+      ed.addEventListener('blur',  function () { self._sync('synced'); });
       ed.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); self._commit(ed); } });
       mid.appendChild(ed);
-      line.appendChild(this._tag(row.author, row.color));
+      line.appendChild(this._tag(row.author));
     } else if (row.variants) {
-      var code = document.createElement('span'); code.style.color = C.ink;
+      var code = document.createElement('span');
       code.textContent = row.prefix + (REDUCED ? row.variants[0] : '');
       mid.appendChild(code);
       if (!REDUCED) {
-        var car = document.createElement('span'); car.className = 'caret'; car.style.background = row.color;
+        var car = document.createElement('span'); car.className = 'caret';
         mid.appendChild(car);
         this.peers.push({
           code: code,
@@ -1390,21 +1468,21 @@ html,body{overflow-x:clip}
           cd: row.startDelay || 0
         });
       }
-      line.appendChild(this._tag(row.author, row.color));
+      line.appendChild(this._tag(row.author));
     } else if (row.author) {
-      var c2 = document.createElement('span'); c2.style.color = C.ink; c2.textContent = row.text;
+      var c2 = document.createElement('span'); c2.textContent = row.text;
       mid.appendChild(c2);
-      line.appendChild(this._tag(row.author, row.color));
+      line.appendChild(this._tag(row.author));
     } else {
-      var c3 = document.createElement('span'); c3.style.color = C.ink; c3.textContent = row.text;
+      var c3 = document.createElement('span'); c3.textContent = row.text;
       mid.appendChild(c3);
     }
     return line;
   };
 
-  CollabEditor.prototype._tag = function (name, color) {
+  CollabEditor.prototype._tag = function (name) {
     var t = document.createElement('span'); t.className = 'peer-tag';
-    var dot = document.createElement('span'); dot.className = 'pd'; dot.style.background = color;
+    var dot = document.createElement('span'); dot.className = 'pd';
     var nm = document.createElement('span'); nm.textContent = name;
     t.appendChild(dot); t.appendChild(nm); return t;
   };
@@ -1422,11 +1500,11 @@ html,body{overflow-x:clip}
     var text = (ed.textContent || '').trim();
     if (!text) return;
     var editLine = ed.parentNode.parentNode;             // .code-edit -> .code-mid -> .code-line
-    var line = this._line({ author: 'you', color: C.accent, text: text });
+    var line = this._line({ author: 'you', text: text });
     this.host.insertBefore(line, editLine);
     this.committed.push(line);
     while (this.committed.length > 3) this.committed.shift().remove(); // keep it tidy
-    ed.textContent = ''; ed.classList.remove('empty');
+    ed.textContent = '';
     this.ops++;
     this._renumber();
     this._sync('syncing');
@@ -1436,7 +1514,7 @@ html,body{overflow-x:clip}
   // Sync badge + footer feedback (the "purpose" of typing).
   CollabEditor.prototype._sync = function (state) {
     var self = this;
-    if (this.syncEl) { this.syncEl.textContent = state === 'syncing' ? 'broadcasting…' : 'synced'; this.syncEl.style.color = state === 'syncing' ? C.accentInk : ''; }
+    if (this.syncEl) { this.syncEl.textContent = state === 'syncing' ? 'syncing…' : 'synced'; this.syncEl.style.color = state === 'syncing' ? 'var(--accent-ink)' : ''; }
     if (this.peersEl) { this.peersEl.style.opacity = '0.45'; requestAnimationFrame(function () { self.peersEl.style.opacity = '1'; }); }
     this._foot(state);
     if (state === 'syncing') {
@@ -1446,7 +1524,7 @@ html,body{overflow-x:clip}
   };
   CollabEditor.prototype._foot = function (state) {
     if (!this.foot) return;
-    this.foot.textContent = 'socket.io \u00b7 rtt 24ms \u00b7 ' + this.ops + ' ops \u00b7 ' + (state === 'syncing' ? 'broadcasting\u2026' : 'synced');
+    this.foot.textContent = 'socket.io \u00b7 rtt 24ms \u00b7 ' + this.ops + ' ops \u00b7 ' + (state === 'syncing' ? 'syncing\u2026' : 'synced');
   };
 
   // Advance simulated peers one micro-step (type -> hold -> erase -> next variant).
