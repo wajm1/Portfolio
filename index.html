@@ -366,6 +366,54 @@ section[id],footer[id]{scroll-margin-top:24px}
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
 }
 
+
+/* Experience media gallery (rf IDEAS) */
+.xp-media{
+  margin-top:22px;
+  display:grid;
+  grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);
+  gap:12px;
+  align-items:stretch;
+}
+.xp-media-video,.xp-media-still{
+  border:1px solid var(--line);
+  background:var(--paper);
+  overflow:hidden;
+  min-width:0;
+}
+.xp-media-video{
+  display:flex;flex-direction:column;
+}
+.xp-media-video video{
+  display:block;width:100%;aspect-ratio:16/9;object-fit:cover;
+  background:#0b0d0f;vertical-align:middle;
+}
+.xp-media-stills{
+  display:grid;grid-template-rows:1fr 1fr;gap:12px;min-height:0;
+}
+.xp-media-still{
+  position:relative;display:block;text-decoration:none;color:inherit;
+}
+.xp-media-still img{
+  display:block;width:100%;height:100%;object-fit:cover;aspect-ratio:16/10;
+}
+.xp-media-label{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  padding:8px 10px;border-top:1px solid var(--line);
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;
+  text-transform:uppercase;color:var(--ink-70);background:var(--panel);
+}
+.xp-media-still .xp-media-label{position:absolute;left:0;right:0;bottom:0;border-top:1px solid var(--line);background:var(--panel-fade)}
+.xp-media-still:hover{border-color:var(--line-2)}
+.xp-links{margin-top:16px}
+@media (max-width:880px){
+  .xp-media{grid-template-columns:1fr}
+  .xp-media-stills{grid-template-rows:none;grid-template-columns:1fr 1fr}
+}
+@media (max-width:520px){
+  .xp-media-stills{grid-template-columns:1fr}
+}
+
 /* --- Experience ----------------------------------------------------------- */
 .xp-item{padding:clamp(22px,3vw,32px) 0;border-top:1px solid var(--line)}
 .xp-item:last-child{border-bottom:1px solid var(--line)}
@@ -562,8 +610,8 @@ html,body{overflow-x:clip}
       <span class="brand-name">Wajahat Mahmood</span>
     </a>
     <nav class="nav" aria-label="Sections">
-      <a href="#work">Work</a>
       <a href="#experience">Experience</a>
+      <a href="#work">Projects</a>
       <a href="#contact">Contact</a>
       <span class="sep" aria-hidden="true"></span>
       <span class="avail"><span class="dot" aria-hidden="true"></span>Open to 2027 SWE</span>
@@ -595,7 +643,7 @@ html,body{overflow-x:clip}
             <span class="tag">C++</span>
             <span class="tag">Python</span>
             <span class="tag">TypeScript</span>
-            <span class="tag">Supabase</span>
+            <span class="tag">ROS 2</span>
           </div>
         </div>
 
@@ -650,12 +698,104 @@ html,body{overflow-x:clip}
     </div>
   </section>
 
-  <!-- ======================= SELECTED WORK ======================= -->
+  <!-- ======================= EXPERIENCE ======================= -->
+  <section id="experience" class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Experience</h2>
+        <span class="rule" aria-hidden="true"></span>
+        <span class="head-note">measured outcomes</span>
+      </div>
+      <ul>
+        <li class="xp-item">
+          <div class="xp-head">
+            <div class="xp-lead">
+              <div class="xp-title"><h3>rf IDEAS</h3><span class="xp-role">Software Engineer Intern, Robotics &amp; Test Automation</span></div>
+              <p class="xp-meta">May 2026 &ndash; August 2026 &middot; Schaumburg, IL</p>
+              <p class="xp-desc">Python control software for a 6-axis arm that runs RFID validation unattended overnight. Adds workspace validation, joint-limit enforcement, autosave checkpointing, and automated fault recovery, with C++/GTest suites measuring read height to 0.5&nbsp;mm and response latency at millisecond resolution.</p>
+            </div>
+            <div class="xp-chips">
+              <span class="chip">Python</span><span class="chip">C++</span><span class="chip">GTest</span><span class="chip">UDP</span><span class="chip">Hardware-in-loop</span>
+            </div>
+          </div>
+          <ul class="metrics">
+            <li class="metric"><div class="metric-num"><span>10<span class="u">h</span></span><span class="to">&rarr; overnight</span></div><div class="metric-label">Manual validation<br>now unattended</div></li>
+            <li class="metric"><div class="metric-num">~20<span class="u" style="font-family:var(--mono)">/wk</span></div><div class="metric-label">Eng-hours<br>saved</div></li>
+            <li class="metric"><div class="metric-num">1,600<span class="accent">+</span></div><div class="metric-label">Configs<br>swept</div></li>
+            <li class="metric"><div class="metric-num">0.5<span class="u">mm</span></div><div class="metric-label">Read-height<br>precision</div></li>
+          </ul>
+          <div class="xp-media" aria-label="rf IDEAS project media">
+            <figure class="xp-media-video">
+              <video controls playsinline preload="metadata" poster="uploads/rf-ideas/setup.jpg">
+                <source src="uploads/rf-ideas/demo.mp4" type="video/mp4">
+              </video>
+              <figcaption class="xp-media-label"><span>Demo</span><span>1:25</span></figcaption>
+            </figure>
+            <div class="xp-media-stills">
+              <a class="xp-media-still" href="uploads/rf-ideas/setup.jpg" target="_blank" rel="noopener">
+                <img src="uploads/rf-ideas/setup.jpg" alt="rf IDEAS lab setup with 6-axis arm and RFID readers" loading="lazy" width="960" height="600">
+                <span class="xp-media-label"><span>Lab setup</span><span>Photo</span></span>
+              </a>
+              <a class="xp-media-still" href="uploads/rf-ideas/gui.jpg" target="_blank" rel="noopener">
+                <img src="uploads/rf-ideas/gui.jpg" alt="Credential Read Height Test control software GUI" loading="lazy" width="960" height="600">
+                <span class="xp-media-label"><span>Control GUI</span><span>Screenshot</span></span>
+              </a>
+            </div>
+          </div>
+          <div class="links xp-links">
+            <a class="link" href="https://lnkd.in/p/gMrrD7Ci" target="_blank" rel="noopener"><span class="sq" aria-hidden="true"></span>LinkedIn post <span aria-hidden="true">&#8599;</span></a>
+          </div>
+        </li>
+        <li class="xp-item">
+          <div class="xp-head">
+            <div class="xp-lead">
+              <div class="xp-title"><h3>University of Michigan, Laboratory for Progress</h3><span class="xp-role">Robotics Software Engineering Researcher</span></div>
+              <p class="xp-meta">May 2025 &ndash; Jul 2025 &middot; Ann Arbor, MI</p>
+              <p class="xp-desc">C++ teleoperation of a Trossen Interbotix RX-200 arm: SDL2 controller input to joint-velocity commands through the vendor SDK. Diagnosed and eliminated race conditions crashing the vendor driver by guarding shared state with mutexes and atomics. Co-author on an accepted IROS 2026 paper; presented at ABRCMS 2025.</p>
+            </div>
+            <div class="xp-chips">
+              <span class="chip">C++</span><span class="chip">SDL2</span><span class="chip">Interbotix SDK</span><span class="chip">Mutexes / atomics</span>
+            </div>
+          </div>
+          <ul class="metrics">
+            <li class="metric"><div class="metric-num">IROS <span class="accent">&rsquo;26</span></div><div class="metric-label">Accepted paper<br>co-author</div></li>
+            <li class="metric"><div class="metric-num">ABRCMS <span class="accent">&rsquo;25</span></div><div class="metric-label">Research<br>presented</div></li>
+          </ul>
+        </li>
+        <li class="xp-item">
+          <div class="xp-head">
+            <div class="xp-lead">
+              <div class="xp-title"><h3>Google G-SWEP</h3><span class="xp-role">via Basta</span></div>
+              <p class="xp-meta">Jun 2026 &ndash; Present</p>
+              <p class="xp-desc">Selected for one-on-one mentorship from a Google software engineer through a 10-week program covering data structures, algorithms, and technical interview preparation.</p>
+            </div>
+            <div class="xp-chips">
+              <span class="chip">DSA</span><span class="chip">Interview prep</span><span class="chip">Mentorship</span>
+            </div>
+          </div>
+        </li>
+        <li class="xp-item">
+          <div class="xp-head">
+            <div class="xp-lead">
+              <div class="xp-title"><h3>CUNY Tech Prep</h3><span class="xp-role">Software Engineering Fellow</span></div>
+              <p class="xp-meta">Jul 2026 &ndash; Present</p>
+              <p class="xp-desc">Year-long full-stack fellowship with industry mentorship, code reviews, and agile / TDD / CI/CD practices across TypeScript, React/Next.js, Node.js, and PostgreSQL.</p>
+            </div>
+            <div class="xp-chips">
+              <span class="chip">TypeScript</span><span class="chip">React</span><span class="chip">Next.js</span><span class="chip">Node.js</span><span class="chip">PostgreSQL</span>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ======================= PROJECTS ======================= -->
   <!-- layout-fix-2026-08-03: each project is a full-width flex row -->
   <section id="work" class="section">
     <div class="wrap">
       <div class="section-head">
-        <h2>Selected Work</h2>
+        <h2>Projects</h2>
         <span class="rule" aria-hidden="true"></span>
       </div>
 
@@ -806,77 +946,6 @@ html,body{overflow-x:clip}
         </article>
 
       </div>
-    </div>
-  </section>
-
-  <!-- ======================= EXPERIENCE ======================= -->
-  <section id="experience" class="section">
-    <div class="wrap">
-      <div class="section-head">
-        <h2>Experience</h2>
-        <span class="rule" aria-hidden="true"></span>
-        <span class="head-note">measured outcomes</span>
-      </div>
-      <ul>
-        <li class="xp-item">
-          <div class="xp-head">
-            <div class="xp-lead">
-              <div class="xp-title"><h3>rf IDEAS</h3><span class="xp-role">Software Engineer Intern, Robotics &amp; Test Automation</span></div>
-              <p class="xp-meta">May 2026 &ndash; August 2026 &middot; Schaumburg, IL</p>
-              <p class="xp-desc">Python control software for a 6-axis arm that runs RFID validation unattended overnight. Adds workspace validation, joint-limit enforcement, autosave checkpointing, and automated fault recovery, with C++/GTest suites measuring read height to 0.5&nbsp;mm and response latency at millisecond resolution.</p>
-            </div>
-            <div class="xp-chips">
-              <span class="chip">Python</span><span class="chip">C++</span><span class="chip">GTest</span><span class="chip">UDP</span><span class="chip">Hardware-in-loop</span>
-            </div>
-          </div>
-          <ul class="metrics">
-            <li class="metric"><div class="metric-num"><span>10<span class="u">h</span></span><span class="to">&rarr; overnight</span></div><div class="metric-label">Manual validation<br>now unattended</div></li>
-            <li class="metric"><div class="metric-num">~20<span class="u" style="font-family:var(--mono)">/wk</span></div><div class="metric-label">Eng-hours<br>saved</div></li>
-            <li class="metric"><div class="metric-num">1,600<span class="accent">+</span></div><div class="metric-label">Configs<br>swept</div></li>
-            <li class="metric"><div class="metric-num">0.5<span class="u">mm</span></div><div class="metric-label">Read-height<br>precision</div></li>
-          </ul>
-        </li>
-        <li class="xp-item">
-          <div class="xp-head">
-            <div class="xp-lead">
-              <div class="xp-title"><h3>University of Michigan, Laboratory for Progress</h3><span class="xp-role">Robotics Software Engineering Researcher</span></div>
-              <p class="xp-meta">May 2025 &ndash; Jul 2025 &middot; Ann Arbor, MI</p>
-              <p class="xp-desc">C++ teleoperation of a Trossen Interbotix RX-200 arm: SDL2 controller input to joint-velocity commands through the vendor SDK. Diagnosed and eliminated race conditions crashing the vendor driver by guarding shared state with mutexes and atomics. Co-author on an accepted IROS 2026 paper; presented at ABRCMS 2025.</p>
-            </div>
-            <div class="xp-chips">
-              <span class="chip">C++</span><span class="chip">SDL2</span><span class="chip">Interbotix SDK</span><span class="chip">Mutexes / atomics</span>
-            </div>
-          </div>
-          <ul class="metrics">
-            <li class="metric"><div class="metric-num">IROS <span class="accent">&rsquo;26</span></div><div class="metric-label">Accepted paper<br>co-author</div></li>
-            <li class="metric"><div class="metric-num">ABRCMS <span class="accent">&rsquo;25</span></div><div class="metric-label">Research<br>presented</div></li>
-          </ul>
-        </li>
-        <li class="xp-item">
-          <div class="xp-head">
-            <div class="xp-lead">
-              <div class="xp-title"><h3>Google G-SWEP</h3><span class="xp-role">via Basta</span></div>
-              <p class="xp-meta">Jun 2026 &ndash; Present</p>
-              <p class="xp-desc">Selected for one-on-one mentorship from a Google software engineer through a 10-week program covering data structures, algorithms, and technical interview preparation.</p>
-            </div>
-            <div class="xp-chips">
-              <span class="chip">DSA</span><span class="chip">Interview prep</span><span class="chip">Mentorship</span>
-            </div>
-          </div>
-        </li>
-        <li class="xp-item">
-          <div class="xp-head">
-            <div class="xp-lead">
-              <div class="xp-title"><h3>CUNY Tech Prep</h3><span class="xp-role">Software Engineering Fellow</span></div>
-              <p class="xp-meta">Jul 2026 &ndash; Present</p>
-              <p class="xp-desc">Year-long full-stack fellowship with industry mentorship, code reviews, and agile / TDD / CI/CD practices across TypeScript, React/Next.js, Node.js, and PostgreSQL.</p>
-            </div>
-            <div class="xp-chips">
-              <span class="chip">TypeScript</span><span class="chip">React</span><span class="chip">Next.js</span><span class="chip">Node.js</span><span class="chip">PostgreSQL</span>
-            </div>
-          </div>
-        </li>
-      </ul>
     </div>
   </section>
 
