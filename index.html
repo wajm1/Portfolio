@@ -269,6 +269,24 @@ section[id],footer[id]{scroll-margin-top:24px}
 .flow .step{padding:13px 8px}
 .flow .arrow{display:grid;place-items:center;padding:0 6px;color:var(--accent-ink);border-left:1px solid var(--line);border-right:1px solid var(--line)}
 
+/* Embedded project demo (YouTube) */
+.work-embed{
+  border:1px solid var(--line);background:var(--paper);overflow:hidden;
+  display:flex;flex-direction:column;
+}
+.work-embed-frame{
+  position:relative;width:100%;aspect-ratio:16/9;background:#0b0d0f;
+}
+.work-embed-frame iframe{
+  position:absolute;inset:0;width:100%;height:100%;border:0;
+}
+.work-embed-label{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  padding:8px 10px;border-top:1px solid var(--line);
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;
+  text-transform:uppercase;color:var(--ink-70);background:var(--panel);
+}
+
 .chips{display:flex;flex-wrap:wrap;gap:8px}
 .chip{font-family:var(--mono);font-size:11.5px;color:var(--ink);border:1px solid var(--line);padding:6px 9px;background:var(--panel)}
 
@@ -371,9 +389,9 @@ section[id],footer[id]{scroll-margin-top:24px}
 .xp-media{
   margin-top:22px;
   display:grid;
-  grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);
+  grid-template-columns:repeat(2, minmax(0,1fr));
   gap:12px;
-  align-items:stretch;
+  align-items:start;
 }
 .xp-media-video,.xp-media-still{
   border:1px solid var(--line);
@@ -386,16 +404,13 @@ section[id],footer[id]{scroll-margin-top:24px}
 }
 .xp-media-video video{
   display:block;width:100%;aspect-ratio:16/9;object-fit:cover;
-  background:#0b0d0f;vertical-align:middle;
-}
-.xp-media-stills{
-  display:grid;grid-template-rows:1fr 1fr;gap:12px;min-height:0;
+  background:#0b0d0f;
 }
 .xp-media-still{
   position:relative;display:block;text-decoration:none;color:inherit;
 }
 .xp-media-still img{
-  display:block;width:100%;height:100%;object-fit:cover;aspect-ratio:16/10;
+  display:block;width:100%;aspect-ratio:16/9;object-fit:cover;object-position:top left;
 }
 .xp-media-label{
   display:flex;align-items:center;justify-content:space-between;gap:10px;
@@ -406,17 +421,23 @@ section[id],footer[id]{scroll-margin-top:24px}
 .xp-media-still .xp-media-label{position:absolute;left:0;right:0;bottom:0;border-top:1px solid var(--line);background:var(--panel-fade)}
 .xp-media-still:hover{border-color:var(--line-2)}
 .xp-links{margin-top:16px}
-@media (max-width:880px){
+@media (max-width:720px){
   .xp-media{grid-template-columns:1fr}
-  .xp-media-stills{grid-template-rows:none;grid-template-columns:1fr 1fr}
-}
-@media (max-width:520px){
-  .xp-media-stills{grid-template-columns:1fr}
 }
 
 /* --- Experience ----------------------------------------------------------- */
-.xp-item{padding:clamp(22px,3vw,32px) 0;border-top:1px solid var(--line)}
-.xp-item:last-child{border-bottom:1px solid var(--line)}
+#experience > .wrap > ul{
+  list-style:none;margin:0;padding:0;
+  display:flex;flex-direction:column;gap:clamp(16px,2vw,22px);
+}
+.xp-item{
+  list-style:none;
+  border:1px solid var(--line);background:var(--panel);
+  padding:clamp(22px,2.6vw,34px);
+  box-sizing:border-box;
+  transition:transform .2s ease,border-color .2s ease;
+}
+.xp-item:hover{transform:translateY(-2px);border-color:var(--line-2)}
 .xp-head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px 24px}
 .xp-lead{flex:1 1 340px;min-width:260px}
 .xp-title{display:flex;align-items:baseline;flex-wrap:wrap;gap:8px 14px}
@@ -726,24 +747,19 @@ html,body{overflow-x:clip}
           </ul>
           <div class="xp-media" aria-label="rf IDEAS project media">
             <figure class="xp-media-video">
-              <video controls playsinline preload="metadata" poster="uploads/rf-ideas/setup.jpg">
+              <video controls playsinline preload="metadata" poster="uploads/rf-ideas/gui.jpg">
                 <source src="uploads/rf-ideas/demo.mp4" type="video/mp4">
               </video>
               <figcaption class="xp-media-label"><span>Demo</span><span>1:25</span></figcaption>
             </figure>
-            <div class="xp-media-stills">
-              <a class="xp-media-still" href="uploads/rf-ideas/setup.jpg" target="_blank" rel="noopener">
-                <img src="uploads/rf-ideas/setup.jpg" alt="rf IDEAS lab setup with 6-axis arm and RFID readers" loading="lazy" width="960" height="600">
-                <span class="xp-media-label"><span>Lab setup</span><span>Photo</span></span>
-              </a>
-              <a class="xp-media-still" href="uploads/rf-ideas/gui.jpg" target="_blank" rel="noopener">
-                <img src="uploads/rf-ideas/gui.jpg" alt="Credential Read Height Test control software GUI" loading="lazy" width="960" height="600">
-                <span class="xp-media-label"><span>Control GUI</span><span>Screenshot</span></span>
-              </a>
-            </div>
+            <a class="xp-media-still" href="uploads/rf-ideas/gui.jpg" target="_blank" rel="noopener">
+              <img src="uploads/rf-ideas/gui.jpg" alt="Credential Read Height Test control software GUI" loading="lazy" width="960" height="540">
+              <span class="xp-media-label"><span>Control GUI</span><span>Screenshot</span></span>
+            </a>
           </div>
           <div class="links xp-links">
             <a class="link" href="https://lnkd.in/p/gMrrD7Ci" target="_blank" rel="noopener"><span class="sq" aria-hidden="true"></span>LinkedIn post <span aria-hidden="true">&#8599;</span></a>
+            <a class="link" href="https://github.com/wajm1/card-read-height" target="_blank" rel="noopener"><span class="sq" aria-hidden="true"></span>GitHub <span aria-hidden="true">&#8599;</span></a>
           </div>
         </li>
         <li class="xp-item">
@@ -813,18 +829,23 @@ html,body{overflow-x:clip}
               <span class="chip">Swift</span><span class="chip">Node</span><span class="chip">Gemini</span><span class="chip">ElevenLabs</span><span class="chip">FFmpeg</span>
             </div>
             <div class="links">
-              <a class="link" href="https://www.youtube.com/watch?v=C1dSdK3tr18" target="_blank" rel="noopener"><span class="sq" aria-hidden="true"></span>Demo video <span aria-hidden="true">&#8599;</span></a>
               <a class="link" href="https://github.com/wajm1/GlanceScribe" target="_blank" rel="noopener"><span class="sq" aria-hidden="true"></span>GitHub <span aria-hidden="true">&#8599;</span></a>
               <a class="link" href="https://devpost.com/software/glancescribe" target="_blank" rel="noopener"><span class="sq" aria-hidden="true"></span>Devpost <span aria-hidden="true">&#8599;</span></a>
+              <a class="link" href="https://www.youtube.com/watch?v=C1dSdK3tr18" target="_blank" rel="noopener"><span class="sq" aria-hidden="true"></span>YouTube <span aria-hidden="true">&#8599;</span></a>
             </div>
           </div>
           <div class="work-visual">
-            <div class="flow" style="grid-template-columns:1fr auto 1fr auto 1fr">
-              <div class="step">Meta<br>glasses</div>
-              <div class="arrow" aria-hidden="true">&rarr;</div>
-              <div class="step">Speech<br>&rarr; text</div>
-              <div class="arrow" aria-hidden="true">&rarr;</div>
-              <div class="step">SOAP<br>note</div>
+            <div class="work-embed">
+              <div class="work-embed-frame">
+                <iframe
+                  src="https://www.youtube-nocookie.com/embed/C1dSdK3tr18"
+                  title="GlanceScribe demo video"
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen></iframe>
+              </div>
+              <div class="work-embed-label"><span>Demo</span><span>YouTube</span></div>
             </div>
             <div class="stats">
               <div class="stat"><div class="stat-num">Winner</div><div class="stat-label">Best Healthcare<br>Hack Brooklyn &rsquo;26</div></div>
