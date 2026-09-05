@@ -242,7 +242,7 @@ section[id],footer[id]{scroll-margin-top:24px}
   display:flex;flex-direction:column;gap:16px;min-width:0;
 }
 .work-copy{flex:1 1 0;max-width:52%}
-.work-visual{flex:1.1 1 0}
+.work-visual{flex:1.1 1 0;justify-content:center}
 .work-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
 .work-title{font-weight:600;font-size:clamp(21px,2.3vw,27px);letter-spacing:-.01em;text-wrap:balance;margin:0}
 .work-kicker{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--ink-70);white-space:nowrap;text-align:right}
@@ -272,7 +272,7 @@ section[id],footer[id]{scroll-margin-top:24px}
 /* Embedded project demo (YouTube) */
 .work-embed{
   border:1px solid var(--line);background:var(--paper);overflow:hidden;
-  display:flex;flex-direction:column;
+  display:flex;flex-direction:column;width:100%;
 }
 .work-embed-frame{
   position:relative;width:100%;aspect-ratio:16/9;background:#0b0d0f;
@@ -286,6 +286,7 @@ section[id],footer[id]{scroll-margin-top:24px}
   font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;
   text-transform:uppercase;color:var(--ink-70);background:var(--panel);
 }
+.work-copy > .stats{margin-top:auto}
 
 .chips{display:flex;flex-wrap:wrap;gap:8px}
 .chip{font-family:var(--mono);font-size:11.5px;color:var(--ink);border:1px solid var(--line);padding:6px 9px;background:var(--panel)}
@@ -391,35 +392,36 @@ section[id],footer[id]{scroll-margin-top:24px}
   display:grid;
   grid-template-columns:repeat(2, minmax(0,1fr));
   gap:12px;
-  align-items:start;
+  align-items:stretch;
 }
-.xp-media-video,.xp-media-still{
-  border:1px solid var(--line);
-  background:var(--paper);
-  overflow:hidden;
-  min-width:0;
-}
-.xp-media-video{
+.xp-media-tile{
   display:flex;flex-direction:column;
+  border:1px solid var(--line);background:var(--paper);
+  overflow:hidden;min-width:0;height:100%;
+  text-decoration:none;color:inherit;
 }
-.xp-media-video video{
-  display:block;width:100%;aspect-ratio:16/9;object-fit:cover;
-  background:#0b0d0f;
+.xp-media-frame{
+  position:relative;flex:0 0 auto;
+  width:100%;aspect-ratio:16 / 9;
+  background:#0b0d0f;overflow:hidden;
 }
-.xp-media-still{
-  position:relative;display:block;text-decoration:none;color:inherit;
+.xp-media-frame video,
+.xp-media-frame img{
+  display:block;width:100%;height:100%;
+  object-fit:cover;object-position:center;
 }
-.xp-media-still img{
-  display:block;width:100%;aspect-ratio:16/9;object-fit:cover;object-position:top left;
+.xp-media-frame img{
+  object-fit:contain;object-position:center;
+  background:var(--paper);
 }
 .xp-media-label{
   display:flex;align-items:center;justify-content:space-between;gap:10px;
+  margin-top:auto;
   padding:8px 10px;border-top:1px solid var(--line);
   font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;
   text-transform:uppercase;color:var(--ink-70);background:var(--panel);
 }
-.xp-media-still .xp-media-label{position:absolute;left:0;right:0;bottom:0;border-top:1px solid var(--line);background:var(--panel-fade)}
-.xp-media-still:hover{border-color:var(--line-2)}
+a.xp-media-tile:hover{border-color:var(--line-2)}
 .xp-links{margin-top:16px}
 @media (max-width:720px){
   .xp-media{grid-template-columns:1fr}
@@ -746,14 +748,18 @@ html,body{overflow-x:clip}
             <li class="metric"><div class="metric-num">0.5<span class="u">mm</span></div><div class="metric-label">Read-height<br>precision</div></li>
           </ul>
           <div class="xp-media" aria-label="rf IDEAS project media">
-            <figure class="xp-media-video">
-              <video controls playsinline preload="metadata" poster="uploads/rf-ideas/gui.jpg">
-                <source src="uploads/rf-ideas/demo.mp4" type="video/mp4">
-              </video>
+            <figure class="xp-media-tile">
+              <div class="xp-media-frame">
+                <video controls playsinline preload="metadata" poster="uploads/rf-ideas/gui.jpg">
+                  <source src="uploads/rf-ideas/demo.mp4" type="video/mp4">
+                </video>
+              </div>
               <figcaption class="xp-media-label"><span>Demo</span><span>1:25</span></figcaption>
             </figure>
-            <a class="xp-media-still" href="uploads/rf-ideas/gui.jpg" target="_blank" rel="noopener">
-              <img src="uploads/rf-ideas/gui.jpg" alt="Credential Read Height Test control software GUI" loading="lazy" width="960" height="540">
+            <a class="xp-media-tile" href="uploads/rf-ideas/gui.jpg" target="_blank" rel="noopener">
+              <div class="xp-media-frame">
+                <img src="uploads/rf-ideas/gui.jpg" alt="Credential Read Height Test control software GUI" loading="lazy" width="960" height="540">
+              </div>
               <span class="xp-media-label"><span>Control GUI</span><span>Screenshot</span></span>
             </a>
           </div>
@@ -833,6 +839,10 @@ html,body{overflow-x:clip}
               <a class="link" href="https://devpost.com/software/glancescribe" target="_blank" rel="noopener"><span class="sq" aria-hidden="true"></span>Devpost <span aria-hidden="true">&#8599;</span></a>
               <a class="link" href="https://www.youtube.com/watch?v=C1dSdK3tr18" target="_blank" rel="noopener"><span class="sq" aria-hidden="true"></span>YouTube <span aria-hidden="true">&#8599;</span></a>
             </div>
+            <div class="stats">
+              <div class="stat"><div class="stat-num">Winner</div><div class="stat-label">Best Healthcare<br>Hack Brooklyn &rsquo;26</div></div>
+              <div class="stat"><div class="stat-num">Hands-free</div><div class="stat-label">Zero clinician<br>screen time</div></div>
+            </div>
           </div>
           <div class="work-visual">
             <div class="work-embed">
@@ -846,10 +856,6 @@ html,body{overflow-x:clip}
                   allowfullscreen></iframe>
               </div>
               <div class="work-embed-label"><span>Demo</span><span>YouTube</span></div>
-            </div>
-            <div class="stats">
-              <div class="stat"><div class="stat-num">Winner</div><div class="stat-label">Best Healthcare<br>Hack Brooklyn &rsquo;26</div></div>
-              <div class="stat"><div class="stat-num">Hands-free</div><div class="stat-label">Zero clinician<br>screen time</div></div>
             </div>
           </div>
         </article>
