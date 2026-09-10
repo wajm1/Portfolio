@@ -1,0 +1,53 @@
+import assert from 'node:assert/strict';
+import { readFileSync, existsSync } from 'node:fs';
+import vm from 'node:vm';
+
+const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
+const scripts = [...html.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g)].map(m => m[1]);
+scripts.forEach((source, i) => new vm.Script(source, { filename: `inline-${i}.js` }));
+const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(m => m[1]);
+assert.equal(ids.length, new Set(ids).size, 'Duplicate HTML IDs');
+for (const [, target] of html.matchAll(/(?:href|src|poster)="([^"]+)"/g)) {
+  if (target.startsWith('#')) assert(ids.includes(target.slice(1)), `Missing anchor ${target}`);
+  else if (!/^(https?:|mailto:|data:)/.test(target)) {
+    assert(existsSync(new URL('../' + target, import.meta.url)), `Missing local asset ${target}`);
+  }
+}
+assert.equal((html.match(/<h1\b/g) || []).length, 1, 'Exactly one primary heading');
+assert(!/1,600|rtt 24ms|Jan &rsquo;27|0\.5&nbsp;mm/.test(html), 'Stale claims');
+assert(html.includes('uploads/resume_swe.pdf') && html.includes('uploads/resume_robotics.pdf'));
+
+// Exercise the actual checked-in solver without a browser or hardware.
+const main = scripts.find(s => s.includes('function IKArm'));
+const solverSource = main.slice(main.indexOf('function IKArm'), main.indexOf('function CollabEditor'));
+let scheduled = 0;
+const context = vm.createContext({ Math, REDUCED: true, requestAnimationFrame: () => ++scheduled });
+vm.runInContext(solverSource, context);
+const arm = Object.create(context.IKArm.prototype);
+Object.assign(arm, { ratios: [.4, .34, .26], limits: [1.75, 2.55, 2.55], segs: 3,
+  base: { x: 0, y: 0 }, R: 100, L: [40, 34, 26], rest: { x: 18, y: -62 },
+  _draw() {}, _hud() {}, visible: true, armed: true, active: false });
+let cases = 0;
+for (let x = -140; x <= 140; x += 20) for (let y = -140; y <= 140; y += 20) {
+  arm._seed();
+  const target = { x, y };
+  for (let i = 0; i < 18; i++) arm._fabrik(target);
+  assert.equal(arm.points[0].x, 0); assert.equal(arm.points[0].y, 0);
+  for (let j = 0; j < 3; j++) {
+    const a = arm.points[j], b = arm.points[j + 1];
+    assert(Math.abs(Math.hypot(b.x-a.x, b.y-a.y)-arm.L[j]) < 1e-8, 'Fixed link length');
+    const prev = j ? Math.atan2(a.y-arm.points[j-1].y, a.x-arm.points[j-1].x) : -Math.PI/2;
+    const delta = arm._norm(Math.atan2(b.y-a.y,b.x-a.x)-prev);
+    assert(Math.abs(delta) <= arm.limits[j] + 1e-8, 'Joint constraint');
+  }
+  const tip = arm.points[3], error = Math.hypot(tip.x-x, tip.y-y);
+  if (arm._solutionStatus(target) === 'SOLVED') assert(error <= 1, 'No false solved status');
+  if (Math.hypot(x,y) > 100) assert.equal(arm._solutionStatus(target), 'UNREACHABLE');
+  cases++;
+}
+arm.target = { x: 30, y: -65 }; arm._kick();
+assert.equal(scheduled, 0, 'Reduced motion must not animate');
+assert.equal(arm.rawTarget.x, 30, 'Reduced motion still accepts targets');
+arm.visible = false; arm.target = { x: 40, y: -60 }; arm._kick();
+assert.equal(arm.rawTarget.x, 30, 'Offscreen solver does not run');
+console.log(`PASS: inline syntax, local links, anchors, metadata checks; ${cases} solver poses; reduced-motion and offscreen behavior.`);

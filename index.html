@@ -3,14 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Wajahat Mahmood · Software Engineer · Robotics &amp; Real-Time Systems</title>
-<meta name="description" content="Wajahat Mahmood · software engineer building real-time systems and the tools that test the hardware they run on. Robotics, C++, Python, ROS 2. Open to 2027 SWE roles.">
+<title>Wajahat Mahmood · Software &amp; Robotics Engineer</title>
+<meta name="description" content="C++ robot drivers, Python test automation, and full-stack applications. Wajahat Mahmood, Queens College CS, May 2027. IROS 2026 co-author.">
 <meta name="theme-color" content="#ECEDEA" id="theme-color">
 
 <!-- Open Graph (nice link previews when recruiters share the page) -->
 <meta property="og:title" content="Wajahat Mahmood · Software Engineer">
-<meta property="og:description" content="Real-time systems, robotics, and the tools that test the hardware they run on.">
+<meta property="og:description" content="C++ robot drivers, Python test automation, and full-stack applications. Queens College CS · May 2027.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://wajm1.com/">
+<meta property="og:image" content="https://wajm1.com/uploads/rf-ideas/poster.jpg">
+<meta property="og:image:alt" content="Robotic RFID validation setup built during my rf IDEAS internship">
+<link rel="canonical" href="https://wajm1.com/">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -615,6 +620,39 @@ html,body{overflow-x:clip}
   html{scroll-behavior:auto}
   *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition:none!important}
 }
+/* Career refresh: preserve the datasheet system, improve reading and touch use. */
+.xp-desc,.work-desc{font-size:16px;max-width:65ch;line-height:1.7}
+.xp-lead{flex:1 1 520px}
+.xp-chips{max-width:320px}
+.chip,.link,.xp-meta,.metric-label,.stat-label,.head-note{font-size:12px}
+.link,.nav a,.copy-btn{min-height:40px;align-content:center}
+.hero-note{margin-top:22px;color:var(--ink-70);font-size:15px;line-height:1.7}
+.resume-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+.resume-actions a{padding:12px 16px;border:1px solid var(--line-2);font-size:14px;font-weight:600;background:var(--panel)}
+.resume-actions a:first-child{background:var(--ink);color:var(--paper)}
+.xp-media{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:960px}
+.xp-media-frame{aspect-ratio:16/9;height:auto;min-height:0}
+.xp-media-frame video,.xp-media-frame img{width:100%;height:100%;object-fit:contain}
+.technical{margin-top:22px;border-top:1px solid var(--line-2);padding-top:12px;max-width:78ch}
+.technical summary{cursor:pointer;font-family:var(--mono);font-size:14px;padding:10px 0;color:var(--accent-ink)}
+.technical p{font-size:16px;line-height:1.75;margin:12px 0;color:var(--ink-70)}
+.technical strong{color:var(--ink);font-weight:600}
+.technical a{text-decoration:underline;text-underline-offset:3px}
+.technical .pipeline{font-family:var(--mono);font-size:13px;padding:16px;background:var(--panel);border-left:2px solid var(--accent);color:var(--ink)}
+.research-note{padding:22px 0 0;max-width:76ch;font-size:16px;line-height:1.7}
+.program-heading{margin-top:42px;font-size:22px}
+.fig{touch-action:none}
+.flow{font-size:12px!important}
+@media(max-width:720px){
+  .xp-media{grid-template-columns:1fr}
+  .nav{font-size:12px;gap:4px 16px}
+  .chip,.link,.xp-meta,.metric-label,.stat-label{font-size:12px}
+  .work-head{flex-wrap:wrap;gap:8px}
+  .fig-label .id,.fig-status .txt,.fig-read{font-size:11px}
+  .fig-hint{font-size:10px}
+  .resume-actions a{flex:1;text-align:center;white-space:nowrap}
+  .head-note{white-space:normal}
+}
 </style>
 </head>
 
@@ -644,7 +682,7 @@ html,body{overflow-x:clip}
         </svg>
       </button>
       <a href="https://github.com/wajm1" target="_blank" rel="noopener">GitHub</a>
-      <a href="uploads/Wajahat_Mahmood_Resume.pdf" target="_blank" rel="noopener">Resume</a>
+      <a href="#resumes">Résumés</a>
     </nav>
   </div>
 </header>
@@ -654,11 +692,16 @@ html,body{overflow-x:clip}
   <!-- ======================= HERO ======================= -->
   <section class="hero">
     <div class="wrap">
-      <p class="eyebrow">Software Engineer &nbsp;&middot;&nbsp; Robotics + Real-Time Systems</p>
+      <p class="eyebrow">Software engineering &nbsp;&middot;&nbsp; Robotics systems</p>
       <div class="hero-grid">
         <div>
           <h1 class="name">Wajahat<br>Mahmood</h1>
-          <p class="lede">Software engineer building real-time systems and the tools that test the hardware they run on.</p>
+          <p class="lede">I build software that moves hardware, tests its limits, and makes the results useful.</p>
+          <p class="hero-note">C++ robot drivers. Python test automation. Full-stack applications.<br>Queens College CS &middot; Graduating May 2027.<br>Open to 2027 software and robotics engineering roles.</p>
+          <div class="resume-actions" id="resumes">
+            <a href="uploads/resume_swe.pdf" target="_blank" rel="noopener">SWE résumé ↗</a>
+            <a href="uploads/resume_robotics.pdf" target="_blank" rel="noopener">Robotics résumé ↗</a>
+          </div>
           <div class="tags">
             <span class="tag">C++</span>
             <span class="tag">Python</span>
@@ -715,6 +758,11 @@ html,body{overflow-x:clip}
           <div class="fig-read" id="ik-read" aria-hidden="true">&theta; &middot; &middot; &middot; &middot; TCP &middot;,&middot; &middot; idle</div>
         </figure>
       </div>
+      <details class="technical">
+        <summary>How the arm demonstration works</summary>
+        <p>A three-link planar chain uses FABRIK: place the tip at the target and work backward, then anchor the base and work forward, preserving each link’s length. Relative joint-angle limits are applied during the forward pass. The readout distinguishes a solved target from one limited by the constraints or outside the reach radius.</p>
+        <p>This is a geometric illustration, not a physical robot controller. Drag the target or focus the arm and use arrow keys; Home resets it. Reduced-motion preferences keep the controls available without animated easing.</p>
+      </details>
     </div>
   </section>
 
@@ -724,7 +772,7 @@ html,body{overflow-x:clip}
       <div class="section-head">
         <h2>Experience</h2>
         <span class="rule" aria-hidden="true"></span>
-        <span class="head-note">measured outcomes</span>
+        <span class="head-note">hardware + software</span>
       </div>
       <ul>
         <li class="xp-item">
@@ -732,22 +780,22 @@ html,body{overflow-x:clip}
             <div class="xp-lead">
               <div class="xp-title"><h3>rf IDEAS</h3><span class="xp-role">Software Engineer Intern, Robotics &amp; Test Automation</span></div>
               <p class="xp-meta">May 2026 &ndash; August 2026 &middot; Schaumburg, IL</p>
-              <p class="xp-desc">Python control software for a 6-axis arm that runs RFID validation unattended overnight. Adds workspace validation, joint-limit enforcement, autosave checkpointing, and automated fault recovery, with C++/GTest suites measuring read height to 0.5&nbsp;mm and response latency at millisecond resolution.</p>
+              <p class="xp-desc">Built Python software that sequences a six-axis xArm through RFID card pickup, barcode identification, reader configuration, and calibrated read-height tests. Background workers keep the interface responsive; completed results go to CSV, and joint telemetry feeds a separate ROS 2 visualization bridge.</p>
             </div>
             <div class="xp-chips">
-              <span class="chip">Python</span><span class="chip">C++</span><span class="chip">GTest</span><span class="chip">UDP</span><span class="chip">Hardware-in-loop</span>
+              <span class="chip">Python</span><span class="chip">xArm SDK</span><span class="chip">pytest</span><span class="chip">UDP</span><span class="chip">Calibration</span>
             </div>
           </div>
           <ul class="metrics">
-            <li class="metric"><div class="metric-num"><span>10<span class="u">h</span></span><span class="to">&rarr; overnight</span></div><div class="metric-label">Manual validation<br>now unattended</div></li>
-            <li class="metric"><div class="metric-num">~20<span class="u" style="font-family:var(--mono)">/wk</span></div><div class="metric-label">Eng-hours<br>saved</div></li>
-            <li class="metric"><div class="metric-num">1,600<span class="accent">+</span></div><div class="metric-label">Configs<br>swept</div></li>
-            <li class="metric"><div class="metric-num">0.5<span class="u">mm</span></div><div class="metric-label">Read-height<br>precision</div></li>
+            <li class="metric"><div class="metric-num">3–12<span class="u">h</span></div><div class="metric-label">Unattended<br>run duration</div></li>
+            <li class="metric"><div class="metric-num">100<span class="accent">+ h</span></div><div class="metric-label">Unattended<br>testing completed</div></li>
+            <li class="metric"><div class="metric-num">50<span class="accent">+</span></div><div class="metric-label">Cards used<br>in validation</div></li>
+            <li class="metric"><div class="metric-num">6</div><div class="metric-label">Reader<br>models</div></li>
           </ul>
           <div class="xp-media" aria-label="rf IDEAS project media">
             <figure class="xp-media-tile">
               <div class="xp-media-frame">
-                <video controls playsinline preload="metadata" poster="uploads/rf-ideas/poster.jpg">
+                <video controls playsinline preload="none" aria-label="Robotic card pickup and RFID validation demonstration" poster="uploads/rf-ideas/poster.jpg">
                   <source src="uploads/rf-ideas/demo.mp4" type="video/mp4">
                 </video>
               </div>
@@ -761,16 +809,23 @@ html,body{overflow-x:clip}
             </a>
           </div>
           <div class="links xp-links">
-            <a class="link" href="https://lnkd.in/p/gMrrD7Ci" target="_blank" rel="noopener"><span class="sq" aria-hidden="true"></span>LinkedIn post <span aria-hidden="true">&#8599;</span></a>
             <a class="link" href="https://github.com/wajm1/card-read-height" target="_blank" rel="noopener"><span class="sq" aria-hidden="true"></span>GitHub <span aria-hidden="true">&#8599;</span></a>
           </div>
+          <details class="technical">
+            <summary>Inside the test system</summary>
+            <p class="pipeline">Scan card → map credentials → configure reader → pick + orient → descend until read → append result</p>
+            <p><strong>Problem.</strong> The manual validation workflow took roughly 30–40 engineer-hours per week. I automated the repeated positioning and configuration steps so large runs could continue unattended.</p>
+            <p><strong>Implementation.</strong> A keyboard-wedge listener identifies cards; a CSV maps them to reader configurations. A robot worker uses vacuum feedback and bounded pickup retries, then approaches a calibrated reader-top reference at four orientations. Tool-offset correction and wrist normalization make the poses and height calculation consistent.</p>
+            <p><strong>The difficult part.</strong> A card already inside the RF field can contaminate the next height measurement. Field-clearance moves and a final dwell at the approach floor give the reader time to register a new entry. Scanner focus handling also has to distinguish device input from someone typing in the GUI.</p>
+            <p><strong>Validation and boundaries.</strong> The repository has pytest checks for geometry, scanner focus, calibration storage, and result handling with fake-arm fixtures. Operational runs covered the cards, readers, and hours shown above. CSV records completed results; it is not a full crash-resume system. The vendor SDK supplies low-level motor control and inverse kinematics.</p>
+          </details>
         </li>
         <li class="xp-item">
           <div class="xp-head">
             <div class="xp-lead">
               <div class="xp-title"><h3>University of Michigan, Laboratory for Progress</h3><span class="xp-role">Robotics Software Engineering Researcher</span></div>
               <p class="xp-meta">May 2025 &ndash; Jul 2025 &middot; Ann Arbor, MI</p>
-              <p class="xp-desc">C++ teleoperation of a Trossen Interbotix RX-200 arm: SDL2 controller input to joint-velocity commands through the vendor SDK. Diagnosed and eliminated race conditions crashing the vendor driver by guarding shared state with mutexes and atomics. Co-author on an accepted IROS 2026 paper; presented at ABRCMS 2025.</p>
+              <p class="xp-desc">Implemented C++/SDL2 teleoperation for an RX-200 arm and contributed to RIX robotics middleware. Used atomics for desired joint velocities and a mutex around concurrent driver access. Added POSIX/TCP tests and fixed signal-bit reset and publisher handshake-readiness bugs.</p>
             </div>
             <div class="xp-chips">
               <span class="chip">C++</span><span class="chip">SDL2</span><span class="chip">Interbotix SDK</span><span class="chip">Mutexes / atomics</span>
@@ -780,12 +835,16 @@ html,body{overflow-x:clip}
             <li class="metric"><div class="metric-num">IROS <span class="accent">&rsquo;26</span></div><div class="metric-label">Accepted paper<br>co-author</div></li>
             <li class="metric"><div class="metric-num">ABRCMS <span class="accent">&rsquo;25</span></div><div class="metric-label">Research<br>presented</div></li>
           </ul>
+          <p class="research-note"><strong>Research:</strong> Co-author, “RIX: A Minimal POSIX-Compliant Robot Operating System for Portable Robotics Education,” accepted to IEEE/RSJ IROS 2026. Related research presented at ABRCMS 2025. <a class="link" href="https://robotics.umich.edu/news/2026/michigan-robotics-at-iros-2026-in-pittsburgh/" target="_blank" rel="noopener">Michigan’s accepted-paper announcement ↗</a></p>
         </li>
+      </ul>
+      <h3 class="program-heading">Programs &amp; activities</h3>
+      <ul>
         <li class="xp-item">
           <div class="xp-head">
             <div class="xp-lead">
               <div class="xp-title"><h3>Google G-SWEP</h3><span class="xp-role">via Basta</span></div>
-              <p class="xp-meta">Jun 2026 &ndash; Present</p>
+              <p class="xp-meta">2026 &middot; Mentorship program, not employment</p>
               <p class="xp-desc">Selected for one-on-one mentorship from a Google software engineer through a 10-week program covering data structures, algorithms, and technical interview preparation.</p>
             </div>
             <div class="xp-chips">
@@ -798,7 +857,7 @@ html,body{overflow-x:clip}
             <div class="xp-lead">
               <div class="xp-title"><h3>CUNY Tech Prep</h3><span class="xp-role">Software Engineering Fellow</span></div>
               <p class="xp-meta">Jul 2026 &ndash; Present</p>
-              <p class="xp-desc">Year-long full-stack fellowship with industry mentorship, code reviews, and agile / TDD / CI/CD practices across TypeScript, React/Next.js, Node.js, and PostgreSQL.</p>
+              <p class="xp-desc">Year-long full-stack fellowship with technical instruction, team projects, and industry mentorship across TypeScript, React/Next.js, Node.js, and PostgreSQL.</p>
             </div>
             <div class="xp-chips">
               <span class="chip">TypeScript</span><span class="chip">React</span><span class="chip">Next.js</span><span class="chip">Node.js</span><span class="chip">PostgreSQL</span>
@@ -827,9 +886,9 @@ html,body{overflow-x:clip}
               <h3 class="work-title">GlanceScribe</h3>
               <span class="work-kicker">AI MEDICAL SCRIBE</span>
             </div>
-            <p class="work-desc">AI medical scribe that turns a clinician&rsquo;s first-person Meta smart-glasses video into structured SOAP notes, eliminating manual note-taking during patient encounters.</p>
+            <p class="work-desc">A four-person hackathon prototype pairing a live Meta-glasses video feed with browser-microphone transcription. ElevenLabs transcribes the audio; Gemini turns the committed transcript into draft SOAP notes. FFmpeg assembles recordings and selected highlights.</p>
             <div class="chips">
-              <span class="chip">Swift</span><span class="chip">Node</span><span class="chip">Gemini</span><span class="chip">ElevenLabs</span><span class="chip">FFmpeg</span>
+              <span class="chip">Node.js / Express</span><span class="chip">SSE</span><span class="chip">Gemini</span><span class="chip">ElevenLabs</span><span class="chip">FFmpeg</span>
             </div>
             <div class="links">
               <a class="link" href="https://github.com/wajm1/GlanceScribe" target="_blank" rel="noopener"><span class="sq" aria-hidden="true"></span>GitHub <span aria-hidden="true">&#8599;</span></a>
@@ -838,8 +897,15 @@ html,body{overflow-x:clip}
             </div>
             <div class="stats">
               <div class="stat"><div class="stat-num">Winner</div><div class="stat-label">Best Healthcare<br>Hack Brooklyn &rsquo;26</div></div>
-              <div class="stat"><div class="stat-num">Hands-free</div><div class="stat-label">Zero clinician<br>screen time</div></div>
+              <div class="stat"><div class="stat-num">Prototype</div><div class="stat-label">Draft notes<br>for review</div></div>
             </div>
+            <details class="technical">
+              <summary>From live streams to draft notes</summary>
+              <p class="pipeline">Microphone → 16 kHz PCM → ElevenLabs WebSocket → transcript → SSE dashboard + Gemini SOAP</p>
+              <p><strong>My work in the team build.</strong> I contributed the initial backend and recording integration; the final app combines that work with teammates’ interface and note-generation changes. The glasses stream arrives through an external client and an HTTP proxy, while browser microphone audio follows a separate path.</p>
+              <p><strong>Implementation.</strong> The browser resamples audio to mono PCM and uses a short-lived transcription token. Committed text is appended on the server and sent to dashboards over SSE. Recording chunks are assembled with FFmpeg; transcript and body-focus intervals help select highlights.</p>
+              <p><strong>Tradeoff.</strong> Simple in-memory session state made the hackathon integration quick, but does not isolate multiple clinical users. Gemini receives text for note generation, not video. JSON parsing is not clinical validation; this is a demonstration, not a deployed medical system.</p>
+            </details>
           </div>
           <div class="work-visual">
             <div class="work-embed">
@@ -864,17 +930,24 @@ html,body{overflow-x:clip}
               <h3 class="work-title">CUNY Connect</h3>
               <span class="work-kicker">STUDENT&nbsp;NETWORK</span>
             </div>
-            <p class="work-desc">Verified CUNY-only networking platform for discovering teammates, mentors, and collaborators across 25 campuses. Profiles, posts, realtime messaging, and Gemini-powered recommendations that explain why two students should connect, with cached results and a local scoring fallback.</p>
+            <p class="work-desc">A networking platform for CUNY students, built with a hackathon team. Next.js Server Actions handle connections and messages; Supabase Realtime delivers new chat messages. Profile similarity and Gemini explanations drive recommendations, with caching and deterministic fallback scoring.</p>
             <div class="chips">
               <span class="chip">Next.js</span><span class="chip">TypeScript</span><span class="chip">Supabase</span><span class="chip">Gemini</span><span class="chip">Tailwind</span><span class="chip">Zod</span>
             </div>
             <div class="links">
-              <a class="link" href="https://devpost.com/software/cuny-connect" target="_blank" rel="noopener"><span class="sq" aria-hidden="true"></span>Devpost <span aria-hidden="true">&#8599;</span></a>
+              <a class="link" href="https://github.com/wajm1/CTP-Hacks-2026-CUNY-Connect" target="_blank" rel="noopener"><span class="sq" aria-hidden="true"></span>GitHub <span aria-hidden="true">&#8599;</span></a>
             </div>
+            <details class="technical">
+              <summary>Messaging, matching, and failure paths</summary>
+              <p class="pipeline">Profile → candidate filtering → weighted score → Gemini + Zod → seven-day cache or local fallback</p>
+              <p><strong>My contribution.</strong> Built core networking, messaging, and recommendation features within the team project. Conversation creation checks accepted connections and uses a database function to reuse the same user pair. New-message subscriptions deduplicate messages by ID.</p>
+              <p><strong>Implementation.</strong> Recommendations combine profile similarity with generated explanations. The response is validated with Zod and checked against allowed candidate IDs. Profile hashes and a seven-day expiry bound cache reuse; timeouts and missing credentials fall back to local scores.</p>
+              <p><strong>Result and limits.</strong> Around 40 people were logged in during the demo, across different features; this was not a messaging load test. The app checks CUNY email domains, not student identity. Its RLS policies still need adversarial authorization tests and membership hardening before a wider release.</p>
+            </details>
           </div>
           <div class="work-visual">
             <div class="flow" style="grid-template-columns:1fr auto 1fr auto 1fr;font-size:10px">
-              <div class="step">@cuny.edu<br>verify</div>
+              <div class="step">Student<br>profile</div>
               <div class="arrow" aria-hidden="true">&rarr;</div>
               <div class="step">Feed +<br>network</div>
               <div class="arrow" aria-hidden="true">&rarr;</div>
@@ -882,7 +955,7 @@ html,body{overflow-x:clip}
             </div>
             <div class="stats">
               <div class="stat"><div class="stat-num">CTP <span class="u-accent">&rsquo;26</span></div><div class="stat-label">Built at<br>CTP Hacks</div></div>
-              <div class="stat"><div class="stat-num">AI + RLS</div><div class="stat-label">Explainable matches<br>with live auth</div></div>
+              <div class="stat"><div class="stat-num">~40</div><div class="stat-label">Logged-in users<br>during demo</div></div>
             </div>
           </div>
         </article>
@@ -894,13 +967,20 @@ html,body{overflow-x:clip}
               <h3 class="work-title">Interbotix RX-200 Driver</h3>
               <span class="work-kicker">MICHIGAN&nbsp;RESEARCH</span>
             </div>
-            <p class="work-desc">The C++ driver behind the research arm: game-controller input mapped through SDL2 to joint-velocity commands, then bridged to the lab&rsquo;s pub/sub robot OS. Shared state guarded with mutexes and atomics to kill the race conditions that crashed the vendor stack.</p>
+            <p class="work-desc">The robot-facing part of my Michigan research: controller deadzones map to desired velocities for five arm joints plus a gripper. The original threaded controller and later modular RIX publishers separate human input, commands, and joint-state feedback.</p>
             <div class="chips">
               <span class="chip">C++</span><span class="chip">SDL2</span><span class="chip">Interbotix SDK</span><span class="chip">Pub/Sub</span><span class="chip">Mutexes / atomics</span>
             </div>
             <div class="links">
               <a class="link" href="https://github.com/wajm1/rix-interbotix-driver" target="_blank" rel="noopener"><span class="sq" aria-hidden="true"></span>GitHub <span aria-hidden="true">&#8599;</span></a>
             </div>
+            <details class="technical">
+              <summary>Threads, driver ownership, and middleware</summary>
+              <p class="pipeline">SDL2 input → atomic velocity values → serialized SDK calls → RX-200 → joint-state publication</p>
+              <p><strong>My implementation.</strong> The original controller has input and command threads with 10 ms and 20 ms sleeps. My synchronization change adds a driver mutex, uses atomics for shared desired values, and moves shutdown motion after thread joins.</p>
+              <p><strong>Architecture evolved.</strong> Later executables separate controller messages, joint commands, and hardware state through RIX pub/sub. The modular driver requests a 60 Hz loop; that is a target, not a hard real-time deadline or measured rate for every executable.</p>
+              <p><strong>Beyond the driver.</strong> In upstream RIX libraries, I added GTests covering memory mappings, shared objects, endpoint semantics, and TCP modes. I also fixed a signal-bit clearing bug and waited for socket readability before a publisher handshake read. Those tests belong to middleware, not a driver-specific GTest suite.</p>
+            </details>
           </div>
           <div class="work-visual">
             <div class="flow" style="grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;font-size:10px">
@@ -914,7 +994,7 @@ html,body{overflow-x:clip}
             </div>
             <div class="stats">
               <div class="stat"><div class="stat-num">IROS <span class="u-accent">&rsquo;26</span></div><div class="stat-label">Paper this<br>code powers</div></div>
-              <div class="stat"><div class="stat-num">0 <span class="u-accent">crashes</span></div><div class="stat-label">Race conditions<br>eliminated</div></div>
+              <div class="stat"><div class="stat-num">C++</div><div class="stat-label">Threads + atomics<br>serialized driver access</div></div>
             </div>
           </div>
         </article>
@@ -926,13 +1006,13 @@ html,body{overflow-x:clip}
               <h3 class="work-title">Real-Time Collaborative Code Editor</h3>
               <span class="work-kicker">CODING&nbsp;PLATFORM</span>
             </div>
-            <p class="work-desc">Concurrent edits and presence synced over Socket.IO, with session recovery and sandboxed runs via the Piston API. Open the <a href="https://wajm1.github.io/Code-Interview-Platform/" target="_blank" rel="noopener">live demo</a>, or type a line in the pane and press <strong>Enter</strong> to add it. Mateo and Ren are simulated peers.</p>
+            <p class="work-desc">A React/Monaco editor with debounced full-document updates through Flask and Socket.IO. C++ and Java runs use the Piston service; the static demo uses a separate peer-to-peer adapter. The pane here is an illustration with simulated peers, not a live session or a performance benchmark.</p>
             <div class="chips">
-              <span class="chip">Flask</span><span class="chip">Socket.IO</span><span class="chip">WebSockets</span><span class="chip">React</span><span class="chip">Session recovery</span><span class="chip">Piston sandbox</span>
+              <span class="chip">Flask</span><span class="chip">Socket.IO</span><span class="chip">Monaco</span><span class="chip">React</span><span class="chip">Piston API</span>
             </div>
             <div class="stats">
-              <div class="stat"><div class="stat-num">24<span class="u">ms</span></div><div class="stat-label">Median edit<br>round-trip</div></div>
-              <div class="stat"><div class="stat-num">0<span class="u-accent"> lost</span></div><div class="stat-label">Edits after<br>reconnect</div></div>
+              <div class="stat"><div class="stat-num">120<span class="u">ms</span></div><div class="stat-label">Configured edit<br>debounce, not latency</div></div>
+              <div class="stat"><div class="stat-num">Full buffer</div><div class="stat-label">Simple synchronization<br>not CRDT / OT</div></div>
             </div>
             <div class="links">
               <a class="link" href="https://wajm1.github.io/Code-Interview-Platform/" target="_blank" rel="noopener"><span class="sq" aria-hidden="true"></span>Live demo <span aria-hidden="true">&#8599;</span></a>
@@ -940,7 +1020,7 @@ html,body{overflow-x:clip}
             </div>
           </div>
           <div class="work-visual">
-            <p class="editor-hint" aria-hidden="true">try the editor</p>
+            <p class="editor-hint">Interactive illustration · simulated peers</p>
             <!--
               The lines below are the STATIC FALLBACK. If JS runs, initEditor()
               replaces them with the animated peers + editable line. If JS fails,
@@ -964,7 +1044,7 @@ html,body{overflow-x:clip}
                 <div class="code-line"><span class="ln">05</span><span class="code-mid">run(doc, Piston);</span></div>
                 <div class="code-line is-you"><span class="ln">06</span><span class="code-mid" style="color:var(--ink-70)">// type · press Enter</span></div>
               </div>
-              <div class="editor-foot" id="ed-foot">socket.io &middot; rtt 24ms &middot; 0 ops</div>
+              <div class="editor-foot" id="ed-foot">local illustration &middot; 0 interactions</div>
             </div>
           </div>
         </article>
@@ -979,23 +1059,23 @@ html,body{overflow-x:clip}
       <div class="section-head" style="margin-bottom:clamp(8px,2vw,18px)">
         <h2>Stack</h2>
         <span class="rule" aria-hidden="true"></span>
-        <span class="head-note">BS CS &middot; Queens College &middot; Jan &rsquo;27</span>
+        <span class="head-note">BS CS &middot; Queens College &middot; May 2027</span>
       </div>
       <dl class="stack">
         <div class="row"><dt>Languages</dt><dd>
-          <span class="chip">Python</span><span class="chip">C++</span><span class="chip">Java</span><span class="chip">TypeScript/JS</span><span class="chip">Swift</span><span class="chip">SQL</span>
+          <span class="chip">Python</span><span class="chip">C++</span><span class="chip">TypeScript/JS</span><span class="chip">SQL</span>
         </dd></div>
         <div class="row"><dt>Robotics &amp; Systems</dt><dd>
-          <span class="chip">ROS 2</span><span class="chip">Multithreading</span><span class="chip">TCP / UDP</span><span class="chip">Pub/Sub</span><span class="chip">GTest</span>
+          <span class="chip">ROS 2 telemetry</span><span class="chip">Multithreading</span><span class="chip">TCP / UDP</span><span class="chip">RIX pub/sub</span><span class="chip">Calibration</span>
         </dd></div>
         <div class="row"><dt>Web</dt><dd>
           <span class="chip">React</span><span class="chip">Next.js</span><span class="chip">Node.js</span><span class="chip">Flask</span><span class="chip">PostgreSQL</span><span class="chip">Supabase</span><span class="chip">Socket.IO</span><span class="chip">WebSockets</span><span class="chip">REST APIs</span>
         </dd></div>
-        <div class="row"><dt>AI / ML</dt><dd>
-          <span class="chip">Gemini API</span><span class="chip">Claude API</span><span class="chip">Multimodal pipelines</span><span class="chip">Schema-constrained JSON</span>
+        <div class="row"><dt>AI integration</dt><dd>
+          <span class="chip">Gemini API</span><span class="chip">ElevenLabs transcription</span><span class="chip">Zod validation</span><span class="chip">FFmpeg</span>
         </dd></div>
         <div class="row"><dt>Tools</dt><dd>
-          <span class="chip">Git</span><span class="chip">GitHub</span><span class="chip">Linux</span><span class="chip">CI/CD</span><span class="chip">FFmpeg</span><span class="chip">NumPy</span><span class="chip">Pandas</span><span class="chip">SDL2</span>
+          <span class="chip">Git</span><span class="chip">Linux</span><span class="chip">GTest</span><span class="chip">pytest</span><span class="chip">Vitest</span><span class="chip">SDL2</span>
         </dd></div>
       </dl>
     </div>
@@ -1151,7 +1231,11 @@ html,body{overflow-x:clip}
     }
     // Pause the loop when the figure scrolls out of view (battery friendly).
     if (window.IntersectionObserver) {
-      this._io = new IntersectionObserver(function (e) { self.visible = e[0].isIntersecting; }, { threshold: 0.01 });
+      this._io = new IntersectionObserver(function (e) {
+        self.visible = e[0].isIntersecting;
+        if (!self.visible) { cancelAnimationFrame(self._raf); self.active = false; }
+        else if (self.armed) self._kick();
+      }, { threshold: 0.01 });
       this._io.observe(this.canvas);
     }
 
@@ -1159,7 +1243,7 @@ html,body{overflow-x:clip}
     var hint = document.getElementById('ik-hint');
     if (hint) hint.lastChild.textContent = TOUCH ? 'DRAG AROUND' : 'DRAG \u00b7 \u2191\u2193\u2190\u2192 KEYS';
 
-    if (REDUCED) { this._staticPose('STATIC'); return; } // freeze for reduced-motion
+    // Reduced motion keeps controls usable, solving directly without easing.
 
     var fig = this.figure;
     // Mouse: arm on hover, disarm on leave. Touch keeps the last target (a tap
@@ -1181,6 +1265,7 @@ html,body{overflow-x:clip}
     });
     this._onUp = function () { if (self.dragging) { self.dragging = false; self._cursor(); } };
     window.addEventListener('pointerup', this._onUp);
+    window.addEventListener('pointercancel', this._onUp);
     fig.addEventListener('keydown', function (e) { self._onKey(e); });
 
     this._staticPose('IDLE');
@@ -1251,18 +1336,30 @@ html,body{overflow-x:clip}
 
   /* --- loop lifecycle ---------------------------------------------------- */
   IKArm.prototype._arm = function () {
-    if (REDUCED) return;
     this.armed = true; this.settle = 0; this.trail = [];
     if (!this.target) this.target = { x: this.rest.x, y: this.rest.y };
     this._kick();
   };
   IKArm.prototype._disarm = function () {
-    if (REDUCED) return;
     this.armed = false; this.settle = 0; this._kick();
   };
   IKArm.prototype._kick = function () {
     this.settle = 0;
+    if (!this.visible) return;
+    if (REDUCED) {
+      var T = this.armed ? (this.target || this.rest) : this.rest;
+      this.smooth = { x: T.x, y: T.y }; this.rawTarget = T; this.trail = [];
+      for (var i = 0; i < 18; i++) this._fabrik(T);
+      this.status = this.armed ? this._solutionStatus(T) : 'IDLE';
+      this._draw(); this._hud(); return;
+    }
     if (!this.active) { this.active = true; this._raf = requestAnimationFrame(this._loop); }
+  };
+  IKArm.prototype._solutionStatus = function (T) {
+    var reach = this.L.reduce(function (a, b) { return a + b; }, 0);
+    if (Math.hypot(this.base.x - T.x, this.base.y - T.y) > reach) return 'UNREACHABLE';
+    var tip = this.points[this.segs];
+    return Math.hypot(tip.x - T.x, tip.y - T.y) <= 1 ? 'SOLVED' : 'LIMITED';
   };
 
   IKArm.prototype._loop = function () {
@@ -1279,8 +1376,7 @@ html,body{overflow-x:clip}
       this.latency += ((performance.now() - t0) - this.latency) * 0.2;
 
       if (this.armed) {
-        var reach = this.L.reduce(function (a, b) { return a + b; }, 0);
-        this.status = Math.hypot(this.base.x - T.x, this.base.y - T.y) > reach ? 'UNREACHABLE' : 'SOLVED';
+        this.status = this._solutionStatus(T);
         var tip = this.points[this.segs];
         this.trail.push({ x: tip.x, y: tip.y });
         if (this.trail.length > 34) this.trail.shift();
@@ -1383,7 +1479,7 @@ html,body{overflow-x:clip}
     ctx.beginPath(); ctx.arc(base.x, base.y, this.R, Math.PI * 1.03, Math.PI * 1.97); ctx.stroke();
 
     // target marker + tip-to-target lead line
-    if (this.status === 'SOLVED' || unreach) {
+    if (this.status === 'SOLVED' || this.status === 'LIMITED' || unreach) {
       ctx.strokeStyle = unreach ? C.accent : C.line; ctx.setLineDash([2, 4]);
       ctx.beginPath(); ctx.moveTo(end.x, end.y); ctx.lineTo(T.x, T.y); ctx.stroke(); ctx.setLineDash([]);
       this._cross(T, 6, unreach ? C.accent : C.line);
@@ -1489,8 +1585,9 @@ html,body{overflow-x:clip}
     if (this.status === 'IDLE')   { this.readEl.textContent = '\u03B8 \u00b7 \u00b7 \u00b7 \u00b7 TCP \u00b7,\u00b7 \u00b7 idle'; return; }
     var end = this.points[this.points.length - 1];
     var tx = Math.round(end.x - this.base.x), ty = Math.round(this.base.y - end.y);
-    this.readEl.textContent = '\u03B8 ' + this._angles().join(' ') + ' \u00b7 TCP ' + tx + ',' + ty + ' \u00b7 ' +
-      this.latency.toFixed(3) + 'ms' + (this.atLimit ? ' \u00b7 LIMIT' : '');
+    var target = this.rawTarget || this.smooth;
+    var error = target ? Math.hypot(end.x - target.x, end.y - target.y) : 0;
+    this.readEl.textContent = '\u03B8 ' + this._angles().join(' ') + ' \u00b7 tip ' + tx + ',' + ty + ' px \u00b7 error ' + error.toFixed(1) + ' px';
   };
 
   /* ==========================================================================
@@ -1647,7 +1744,7 @@ html,body{overflow-x:clip}
   };
   CollabEditor.prototype._foot = function (state) {
     if (!this.foot) return;
-    this.foot.textContent = 'socket.io \u00b7 rtt 24ms \u00b7 ' + this.ops + ' ops \u00b7 ' + (state === 'syncing' ? 'syncing\u2026' : 'synced');
+    this.foot.textContent = 'local illustration \u00b7 ' + this.ops + ' interactions \u00b7 ' + (state === 'syncing' ? 'updating\u2026' : 'ready');
   };
 
   // Advance simulated peers one micro-step (type -> hold -> erase -> next variant).

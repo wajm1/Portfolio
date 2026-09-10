@@ -1,2 +1,7 @@
 **/.DS_Store
 .DS_Store
+
+# Private career research, source resumes, and interview preparation.
+/career_refresh/
+/dist/
+/tmp/
