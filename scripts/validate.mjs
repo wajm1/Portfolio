@@ -15,7 +15,7 @@ for (const [, target] of html.matchAll(/(?:href|src|poster)="([^"]+)"/g)) {
 }
 assert.equal((html.match(/<h1\b/g) || []).length, 1, 'Exactly one primary heading');
 assert(!/1,600|rtt 24ms|Jan &rsquo;27|0\.5&nbsp;mm/.test(html), 'Stale claims');
-assert(html.includes('uploads/resume_swe.pdf') && html.includes('uploads/resume_robotics.pdf'));
+assert(!/href="[^"]*resume[^"#]*\.pdf"/i.test(html), 'Resume publication is deferred');
 
 // Exercise the actual checked-in solver without a browser or hardware.
 const main = scripts.find(s => s.includes('function IKArm'));
@@ -50,4 +50,6 @@ assert.equal(scheduled, 0, 'Reduced motion must not animate');
 assert.equal(arm.rawTarget.x, 30, 'Reduced motion still accepts targets');
 arm.visible = false; arm.target = { x: 40, y: -60 }; arm._kick();
 assert.equal(arm.rawTarget.x, 30, 'Offscreen solver does not run');
+arm.visible = true; arm.limits = [.5, .6, .6]; arm.target = { x: -50, y: -50 }; arm._kick();
+assert.equal(arm._solutionStatus(arm.target), 'LIMITED', 'Tight-limit example must be genuinely constrained');
 console.log(`PASS: inline syntax, local links, anchors, metadata checks; ${cases} solver poses; reduced-motion and offscreen behavior.`);

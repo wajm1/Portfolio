@@ -16,11 +16,11 @@ The project preserves its HTML/CSS/JavaScript stack and light/dark engineering-d
 
 ## Files and public output
 
-`index.html` contains the active site. `favicon.svg` and selected `uploads/` files are public assets. Both one-page résumé PDFs are available; the older résumé URL remains an alias of the SWE version.
+`index.html` contains the active site. `favicon.svg` and selected robot-demo media are public assets. Resume publication is deferred: no resume links or new resume PDFs appear on the site. The original historical PDF is retained unchanged in the checkout, unlinked and excluded from the Sites package.
 
 `Portfolio.dc.html` and `support.js` are historical design/export artifacts, not loaded by the active page and not included in the Sites package. They are retained unchanged to preserve prior work.
 
-Private career research, LaTeX source, LinkedIn copy and interview preparation live in ignored `career_refresh/`. **Do not serve, publish or force-add that directory.** The build copies an explicit eight-file allowlist into `dist/` and refuses unexpected output files. Package public output, never the whole checkout.
+Private career research, Overleaf LaTeX source, LinkedIn copy and interview preparation live in ignored `career_refresh/`. **Do not serve, publish or force-add that directory.** The build copies an explicit five-file allowlist into `dist/` and refuses unexpected output files. Package public output, never the whole checkout.
 
 ## Validate and preview
 
@@ -32,7 +32,7 @@ python3 -m http.server 8000 --bind 127.0.0.1 --directory dist
 
 Validation checks inline JavaScript syntax, local links/anchors, duplicate IDs, selected content invariants, 225 deterministic poses against the actual IK solver, and reduced-motion/offscreen behavior. It is not a full HTML/CSS accessibility audit or a substitute for browser testing.
 
-Browser QA should cover desktop/mobile, both themes, keyboard controls, disclosures, email copy and résumé links. Video uses `preload="none"`; the external demonstration iframe is lazy-loaded. No API keys or backend credentials are needed.
+Browser QA should cover desktop/mobile, both themes, keyboard controls, the three IK examples, disclosures and email copy. Verify there are no resume-download links. Video uses `preload="none"`; the external demonstration iframe is lazy-loaded. No API keys or backend credentials are needed.
 
 ## Publishing
 
