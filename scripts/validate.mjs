@@ -52,4 +52,32 @@ arm.visible = false; arm.target = { x: 40, y: -60 }; arm._kick();
 assert.equal(arm.rawTarget.x, 30, 'Offscreen solver does not run');
 arm.visible = true; arm.limits = [.5, .6, .6]; arm.target = { x: -50, y: -50 }; arm._kick();
 assert.equal(arm._solutionStatus(arm.target), 'LIMITED', 'Tight-limit example must be genuinely constrained');
-console.log(`PASS: inline syntax, local links, anchors, metadata checks; ${cases} solver poses; reduced-motion and offscreen behavior.`);
+// Run the real preset click handlers against a minimal event surface.
+// This is a behavior regression test, not a browser layout substitute.
+const explanation = { textContent: '' };
+const buttons = ['reachable', 'limited', 'unreachable', 'reset'].map(mode => ({
+  dataset: { ikPreset: mode }, attributes: {}, listeners: {},
+  setAttribute(name, value) { this.attributes[name] = value; },
+  addEventListener(name, callback) { this.listeners[name] = callback; }
+}));
+context.window = { addEventListener() {} };
+context.document = {
+  getElementById(id) { return id === 'ik-explanation' ? explanation : null; },
+  querySelectorAll(selector) {
+    return selector.includes('[aria-pressed]') ? buttons.slice(0, 3) : buttons;
+  }
+};
+context.TOUCH = false;
+arm.figure = { addEventListener() {} }; arm.canvas = {}; arm._fit = () => {};
+arm.limits = [1.75, 2.55, 2.55]; arm.armed = false; arm._init();
+for (const [index, expected] of [[0, 'SOLVED'], [1, 'LIMITED'], [2, 'UNREACHABLE']]) {
+  buttons[index].listeners.click();
+  assert.equal(arm.status, expected, `${buttons[index].dataset.ikPreset} click`);
+  assert.equal(buttons[index].attributes['aria-pressed'], 'true');
+  assert(explanation.textContent.length > 30, 'Preset explains its geometry');
+}
+buttons[3].listeners.click();
+assert.deepEqual([...arm.limits], [1.75, 2.55, 2.55]);
+assert.equal(arm.target.x, arm.rest.x); assert.equal(arm.target.y, arm.rest.y);
+assert(buttons.slice(0, 3).every(b => b.attributes['aria-pressed'] === 'false'));
+console.log(`PASS: inline syntax, local links, anchors, metadata checks; ${cases} solver poses; reduced-motion/offscreen behavior; four preset click handlers.`);
