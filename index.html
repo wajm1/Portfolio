@@ -760,6 +760,7 @@ html,body{overflow-x:clip}
         <button type="button" data-ik-preset="reset">Reset arm</button>
       </div>
       <p class="ik-explanation" id="ik-explanation" aria-live="polite">Try a target, then change the constraints. You can also drag the arm’s target or focus the drawing and use arrow keys.</p>
+      <p class="ik-explanation"><a href="workcell.html">Open the Workcell Feasibility Lab →</a> Go beyond a single target: check a six-pose transfer, compare fixture positions, and export a motion report.</p>
       <details class="technical">
         <summary>How the arm demonstration works</summary>
         <p>A three-link planar chain uses FABRIK: place the tip at the target and work backward, then anchor the base and work forward, preserving each link’s length. Relative joint-angle limits are applied during the forward pass. The readout distinguishes a solved target from one limited by the constraints or outside the reach radius.</p>

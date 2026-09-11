@@ -5,7 +5,7 @@ import path from 'node:path';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 execFileSync(process.execPath, [path.join(root, 'scripts/validate.mjs')], { stdio: 'inherit' });
-const files = ['index.html', 'favicon.svg', 'uploads/rf-ideas/demo.mp4',
+const files = ['index.html', 'favicon.svg', 'workcell.html', 'workcell/model.mjs', 'workcell/lab.mjs', 'workcell/lab.css', 'uploads/rf-ideas/demo.mp4',
   'uploads/rf-ideas/poster.jpg', 'uploads/rf-ideas/gui.jpg'];
 // Refuse unexpected existing output instead of silently packaging private files.
 function walk(dir, prefix = '') {
