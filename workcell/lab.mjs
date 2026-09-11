@@ -1,7 +1,8 @@
-import {evaluate,fk,report,csv,MODEL} from './model.mjs';
+import {evaluate,fk,report,csv,MODEL,VERSION} from './model.mjs';
 const $=id=>document.getElementById(id), canvas=$('cell'),ctx=canvas.getContext('2d');
 let result, index=0, selected=null, raf=null, startTime=0;
 const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+if ($('model-version')) $('model-version').textContent = VERSION;
 function stop(){if(raf!==null)cancelAnimationFrame(raf);raf=null;$('play').textContent='Play checked sequence';}
 function draw(){
   if(!ctx)return;
@@ -42,5 +43,11 @@ $('json').addEventListener('click',()=>download('workcell-report.json',JSON.stri
 $('csv').addEventListener('click',()=>{if(result.ok)download('workcell-path.csv',csv(result),'text/csv');});
 $('compare').addEventListener('click',()=>{const rs=Array.from({length:12},(_,i)=>evaluate(140+i*20,$('obstacle').checked));$('comparison').replaceChildren();rs.forEach(r=>{const b=document.createElement('button');b.textContent=`${r.fixtureX} mm · ${r.ok?r.duration.toFixed(2)+' s':'blocked'}`;b.className=r.ok?'pass':'fail';b.addEventListener('click',()=>{$('fixture').value=String(r.fixtureX);update();});$('comparison').append(b);});$('comparison-note').textContent=`${rs.filter(r=>r.ok).length} / 12 layouts pass the sampled sequence. Times are motion-only estimates, not measured cycle times. Select any layout to inspect its diagnosis.`;});
 $('theme').addEventListener('click',()=>{document.documentElement.dataset.theme=document.documentElement.dataset.theme==='dark'?'light':'dark';draw();});
+document.addEventListener('keydown',e=>{
+  if(e.target.matches('input,textarea,button,summary,a')) return;
+  if(e.key==='ArrowRight'&&result?.ok){e.preventDefault();stop();index=Math.min(result.samples.length-1,index+1);displayFrame();}
+  if(e.key==='ArrowLeft'&&result?.ok){e.preventDefault();stop();index=Math.max(0,index-1);displayFrame();}
+  if((e.key===' '||e.key==='Enter')&&result?.ok&&!reduced.matches){e.preventDefault();$('play').click();}
+});
 if(matchMedia('(prefers-color-scheme: dark)').matches)document.documentElement.dataset.theme='dark';
 update();

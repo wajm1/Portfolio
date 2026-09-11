@@ -1,41 +1,127 @@
 <!doctype html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Workcell Feasibility Lab | Wajahat Mahmood</title>
-<meta name="description" content="Evaluate a planar robot transfer sequence, compare fixture locations, and export reproducible kinematic results.">
-<link rel="icon" href="favicon.svg"><link rel="stylesheet" href="workcell/lab.css">
+<meta name="description" content="Can a modeled planar robot complete a six-pose transfer from this fixture while respecting joint limits and an obstacle? Local kinematic screening with exportable evidence.">
+<link rel="icon" href="favicon.svg">
+<link rel="stylesheet" href="workcell/lab.css">
 </head>
 <body>
-<header><a href="index.html">← Wajahat Mahmood</a><span>ROBOTICS / ENGINEERING TOOLS</span><button id="theme" type="button">Switch theme</button></header>
+<header>
+  <a href="index.html">← Wajahat Mahmood</a>
+  <span>ROBOTICS / ENGINEERING TOOLS</span>
+  <div class="header-tools">
+    <a href="index.html#pose-lab">Pose check</a>
+    <button id="theme" type="button">Switch theme</button>
+  </div>
+</header>
 <main>
-<div class="heading"><div><p class="eyebrow">WORKCELL FEASIBILITY LAB · 01</p><h1>Will the arm complete the transfer?</h1><p>Move the destination fixture. Check six tool poses, then the motion between them. Export the evidence behind the result.</p></div><span class="badge">PLANAR SIMULATION<br>NO HARDWARE CONNECTION</span></div>
-<div class="workspace">
-<section class="drawing" aria-label="Workcell drawing and playback">
-<div class="drawing-head"><span>3R ARM / TOP VIEW</span><span>mm · origin at base</span></div>
-<canvas id="cell" width="780" height="590" role="img" aria-label="Robot workcell diagram. Pose feasibility and motion results are also available in the table below."></canvas>
-<div class="legend"><span>● Arm / selected pose</span><span>○ Required tool poses</span><span>▧ Obstacle</span></div>
-<div class="playback"><button id="play" disabled>Play checked sequence</button><label for="scrub">Motion sample</label><input id="scrub" type="range" min="0" max="1" value="0" disabled><output id="frame">No passing sequence</output></div>
-</section>
-<section class="panel" aria-labelledby="layout-title"><p class="eyebrow">01 / LAYOUT</p><h2 id="layout-title">Destination fixture</h2>
-<label for="fixture">X position <output id="fixture-value">220 mm</output></label><input id="fixture" type="range" min="140" max="360" step="10" value="220">
-<label class="check"><input id="obstacle" type="checkbox" checked> Include equipment obstacle</label>
-<div class="buttons"><button id="baseline">Blocked example</button><button id="clear">Move fixture inward</button></div>
-<hr><p class="eyebrow">02 / RESULT</p><h2 id="status" aria-live="polite">Checking layout…</h2><p id="reason"></p>
-<dl><div><dt>Valid tool poses</dt><dd id="coverage">—</dd></div><div><dt>Motion-only time</dt><dd id="duration">—</dd></div><div><dt>Min. sampled clearance</dt><dd id="clearance">—</dd></div><div><dt>Checked path samples</dt><dd id="samples">—</dd></div></dl>
-<p class="small">Time assumes a 60°/s per-joint cap. No acceleration, grasping or dwell time is modeled. Clearance includes an 8 mm link radius.</p>
-<div class="buttons"><button id="json">Export report</button><button id="csv" disabled>Export path CSV</button></div>
-</section></div>
-<section class="results"><div class="section-heading"><div><p class="eyebrow">03 / DIAGNOSIS</p><h2>Every required pose, not just the endpoint</h2></div><p>Tool orientation is fixed at −90°. Select a row to inspect an available pose.</p></div>
-<div class="table-scroll"><table><caption class="sr-only">Tool pose feasibility</caption><thead><tr><th>Pose</th><th>X / Y (mm)</th><th>Valid IK branches</th><th>Result</th></tr></thead><tbody id="poses"></tbody></table></div>
-</section>
-<section class="results"><div class="section-heading"><div><p class="eyebrow">04 / DECISION</p><h2>Compare 12 fixture positions</h2></div><button id="compare">Run layout comparison</button></div><p id="comparison-note" aria-live="polite">Evaluate the same task from 140 to 360 mm, with the current obstacle setting. Passing layouts can be loaded below.</p><div id="comparison" class="comparison"></div></section>
-<details class="method"><summary>Model, method, and limits</summary>
-<p>This extends my portfolio’s point-following arm into a fixture-layout screening tool. It uses a separate, dimensioned three-revolute-joint model with 180 / 150 / 70 mm links and ±170° / ±150° / ±170° joint limits. It is not a model of the xArm or RX-200.</p>
-<p>Analytical inverse kinematics solves both elbow branches for each position and tool orientation. Dynamic programming selects the lowest motion-time route among sampled-valid, straight joint-space transitions between those branches. Capsule-to-rectangle and nonadjacent-link distance checks reject intersecting poses. Interpolation samples are at most 1° apart per joint.</p>
-<p><strong>A failed direct sequence does not prove that no detour exists.</strong> A sampled pass does not prove continuous collision freedom or safe physical motion. The model omits acceleration, payload, the grasped object, ground, cables, 3D geometry and controller behavior. CSV output is analysis data, not executable robot commands.</p>
-<p>The report records dimensions, limits, fixture position, obstacle, sample spacing and software version so the calculation can be reproduced. No data leaves your browser.</p>
-<p>Method reference: <a href="https://ompl.kavrakilab.org/core/classompl_1_1base_1_1DiscreteMotionValidator.html" target="_blank" rel="noopener noreferrer">OMPL discrete motion validation</a>. This implementation is independent and does not use OMPL.</p>
-</details><noscript><p>JavaScript is required for calculations. This is a local mathematical simulation with no robot connection.</p></noscript>
-</main><footer>Wajahat Mahmood · Software that makes engineering decisions inspectable.</footer>
+  <div class="heading">
+    <div>
+      <p class="eyebrow">WORKCELL FEASIBILITY LAB · MODEL v<span id="model-version">1.0.0</span></p>
+      <h1>Can this modeled robot complete the transfer?</h1>
+      <p>Move the destination fixture. Check six named tool poses for reachability, joint limits, and obstacle clearance. Then evaluate sampled straight joint-space transitions, pick a lowest-motion-time valid branch sequence when one exists, and export the evidence.</p>
+    </div>
+    <span class="badge">PLANAR SIMULATION<br>NO HARDWARE CONNECTION<br>ANALYSIS ONLY</span>
+  </div>
+
+  <section class="model-strip" aria-labelledby="model-title">
+    <div>
+      <p class="eyebrow" id="model-title">DIMENSIONED 3R MODEL</p>
+      <p class="model-line"><strong>Links</strong> 180 / 150 / 70&nbsp;mm · <strong>Limits</strong> ±170° / ±150° / ±170° · <strong>Link radius</strong> 8&nbsp;mm · <strong>Sample step</strong> ≤1°/joint · <strong>Speed cap</strong> 60°/s</p>
+      <p class="small">Units are millimeters, radians, and seconds. This is not an xArm, RX-200, production planner, or hardware-validated controller.</p>
+    </div>
+  </section>
+
+  <div class="workspace">
+    <section class="drawing" aria-label="Workcell drawing and playback">
+      <div class="drawing-head"><span>3R ARM / TOP VIEW</span><span>mm · origin at base</span></div>
+      <canvas id="cell" width="780" height="590" role="img" aria-label="Robot workcell diagram. Pose feasibility and motion results are also available in the diagnosis table."></canvas>
+      <div class="legend">
+        <span>● Arm / selected pose</span>
+        <span>○ Required tool poses</span>
+        <span>▧ Obstacle</span>
+      </div>
+      <div class="playback">
+        <button id="play" type="button" disabled>Play checked sequence</button>
+        <label for="scrub">Motion sample</label>
+        <input id="scrub" type="range" min="0" max="1" value="0" disabled aria-describedby="frame">
+        <output id="frame">No passing sequence</output>
+      </div>
+    </section>
+
+    <section class="panel" aria-labelledby="layout-title">
+      <p class="eyebrow">01 / LAYOUT</p>
+      <h2 id="layout-title">Destination fixture</h2>
+      <label for="fixture">X position <output id="fixture-value">220 mm</output></label>
+      <input id="fixture" type="range" min="140" max="360" step="10" value="220">
+      <label class="check"><input id="obstacle" type="checkbox" checked> Include equipment obstacle</label>
+      <div class="buttons">
+        <button id="baseline" type="button">Blocked example</button>
+        <button id="clear" type="button">Move fixture inward</button>
+      </div>
+      <hr>
+      <p class="eyebrow">02 / RESULT</p>
+      <h2 id="status" aria-live="polite">Checking layout…</h2>
+      <p id="reason"></p>
+      <dl>
+        <div><dt>Valid tool poses</dt><dd id="coverage">—</dd></div>
+        <div><dt>Motion-only time</dt><dd id="duration">—</dd></div>
+        <div><dt>Min. sampled clearance</dt><dd id="clearance">—</dd></div>
+        <div><dt>Checked path samples</dt><dd id="samples">—</dd></div>
+      </dl>
+      <p class="small">Time assumes a 60°/s per-joint cap. No acceleration, grasping, or dwell time is modeled. Clearance includes an 8&nbsp;mm link radius. Sampled collision checking is not continuous safety certification.</p>
+      <div class="buttons">
+        <button id="json" type="button">Export JSON report</button>
+        <button id="csv" type="button" disabled>Export path CSV</button>
+      </div>
+      <p class="small">CSV is joint/time analysis data only. It is not executable robot control.</p>
+    </section>
+  </div>
+
+  <section class="results">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">03 / DIAGNOSIS</p>
+        <h2>Every required pose, not just the endpoint</h2>
+      </div>
+      <p>Named poses: Ready, Pick, Lift, Approach, Place, Retract. Tool orientation is fixed at −90°. Select a row to inspect an available IK branch.</p>
+    </div>
+    <div class="table-scroll">
+      <table>
+        <caption class="sr-only">Tool pose feasibility</caption>
+        <thead>
+          <tr><th>Pose</th><th>X / Y (mm)</th><th>Valid IK branches</th><th>Result</th></tr>
+        </thead>
+        <tbody id="poses"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="results">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">04 / DECISION</p>
+        <h2>Compare 12 fixture positions</h2>
+      </div>
+      <button id="compare" type="button">Run layout comparison</button>
+    </div>
+    <p id="comparison-note" aria-live="polite">Evaluate the same task from 140 to 360&nbsp;mm with the current obstacle setting. Passing layouts can be loaded for inspection.</p>
+    <div id="comparison" class="comparison"></div>
+  </section>
+
+  <details class="method" open>
+    <summary>Model, method, and limits</summary>
+    <p>This extends the portfolio’s single-pose feasibility check into a fixture-layout screening tool. It uses a separate, dimensioned three-revolute-joint planar model (version shown above). It is not a model of the xArm or RX-200, and it is not production-ready, collision-safe, real-time, or hardware-validated.</p>
+    <p>Analytical inverse kinematics solves both elbow branches for each position and tool orientation. Dynamic programming selects the lowest motion-time route among sampled-valid, straight joint-space transitions between those branches. Capsule-to-rectangle and nonadjacent-link distance checks reject intersecting poses. Interpolation samples are at most 1° apart per joint.</p>
+    <p><strong>A failed direct sequence does not prove that no detour exists.</strong> A sampled pass does not prove continuous collision freedom or safe physical motion. The model omits acceleration, payload, the grasped object, ground, cables, 3D geometry, and controller behavior. CSV output is analysis data, not executable robot commands. No data leaves your browser.</p>
+    <p>Method reference: <a href="https://ompl.kavrakilab.org/core/classompl_1_1base_1_1DiscreteMotionValidator.html" target="_blank" rel="noopener noreferrer">OMPL discrete motion validation</a>. This implementation is independent and does not use OMPL.</p>
+  </details>
+  <noscript><p>JavaScript is required for calculations. This is a local mathematical simulation with no robot connection.</p></noscript>
+</main>
+<footer>Wajahat Mahmood · Software that makes engineering decisions inspectable.</footer>
 <script type="module" src="workcell/lab.mjs"></script>
-</body></html>
+</body>
+</html>

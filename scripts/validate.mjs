@@ -1,22 +1,34 @@
 import assert from 'node:assert/strict';
 import { readFileSync, existsSync } from 'node:fs';
+import { execFileSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
+import path from 'node:path';
 import vm from 'node:vm';
 
+const root = fileURLToPath(new URL('../', import.meta.url));
 const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
+const workcellHtml = readFileSync(new URL('../workcell.html', import.meta.url), 'utf8');
 const scripts = [...html.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g)].map(m => m[1]);
 scripts.forEach((source, i) => new vm.Script(source, { filename: `inline-${i}.js` }));
 const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(m => m[1]);
 assert.equal(ids.length, new Set(ids).size, 'Duplicate HTML IDs');
-for (const [, target] of html.matchAll(/(?:href|src|poster)="([^"]+)"/g)) {
-  if (target.startsWith('#')) assert(ids.includes(target.slice(1)), `Missing anchor ${target}`);
-  else if (!/^(https?:|mailto:|data:)/.test(target)) {
-    assert(existsSync(new URL('../' + target, import.meta.url)), `Missing local asset ${target}`);
+for (const page of [html, workcellHtml]) {
+  for (const [, target] of page.matchAll(/(?:href|src|poster)="([^"]+)"/g)) {
+    if (target.startsWith('#')) {
+      if (page === html) assert(ids.includes(target.slice(1)), `Missing anchor ${target}`);
+    } else if (!/^(https?:|mailto:|data:)/.test(target)) {
+      assert(existsSync(new URL('../' + target, import.meta.url)), `Missing local asset ${target}`);
+    }
   }
 }
 assert.equal((html.match(/<h1\b/g) || []).length, 1, 'Exactly one primary heading');
 assert(!/1,600|rtt 24ms|Jan &rsquo;27|0\.5&nbsp;mm/.test(html), 'Stale claims');
 assert(!/href="[^"]*resume[^"#]*\.pdf"/i.test(html), 'Resume publication is deferred');
-
+assert(!/career_refresh|\.tex\b|résumé/i.test(html + workcellHtml), 'Private career materials must stay off the public site');
+assert(/Workcell Feasibility Lab/i.test(workcellHtml), 'Workcell page must keep its engineering-tool title');
+assert(/OMPL discrete motion validation/i.test(workcellHtml), 'Workcell must cite discrete motion-validation method');
+assert(/not executable robot/i.test(workcellHtml), 'CSV must be labeled non-executable');
+execFileSync(process.execPath, [path.join(root, 'scripts/test-workcell.mjs')], { stdio: 'inherit' });
 // Exercise the actual checked-in solver without a browser or hardware.
 const main = scripts.find(s => s.includes('function IKArm'));
 const solverSource = main.slice(main.indexOf('function IKArm'), main.indexOf('function CollabEditor'));
@@ -63,6 +75,7 @@ const buttons = ['reachable', 'limited', 'unreachable', 'reset'].map(mode => ({
 context.window = { addEventListener() {} };
 context.document = {
   getElementById(id) { return id === 'ik-explanation' ? explanation : null; },
+  querySelector() { return null; },
   querySelectorAll(selector) {
     return selector.includes('[aria-pressed]') ? buttons.slice(0, 3) : buttons;
   }
