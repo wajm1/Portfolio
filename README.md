@@ -36,6 +36,6 @@ Browser QA should cover desktop/mobile, both themes, keyboard controls, the thre
 
 ## Publishing
 
-`CNAME` preserves the custom domain. `.openai/hosting.json` identifies a separate owner-private Sites preview. A private preview does not update GitHub Pages or the custom domain. Public publication requires a separate user decision; do not push to the GitHub origin as an incidental validation step.
+`CNAME` preserves the custom domain for GitHub Pages. Public publication is a separate decision from local validation.
 
 Contact: [wajm1.dev@gmail.com](mailto:wajm1.dev@gmail.com).
