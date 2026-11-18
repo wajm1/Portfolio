@@ -1,6 +1,6 @@
 # Wajahat Mahmood · Engineering portfolio
 
-Static personal website for software engineering, robot integration, and test automation. Queens College CS, expected May 2027.
+Static personal website for software engineering, robot integration, and test automation. Queens College CS, expected December 2026.
 
 [Custom domain](https://wajm1.com/) · [GitHub](https://github.com/wajm1) · [LinkedIn](https://www.linkedin.com/in/wajm1/)
 
@@ -8,16 +8,18 @@ Static personal website for software engineering, robot integration, and test au
 
 - rf IDEAS: Python robotic RFID validation, calibration, configuration, feedback and result logging.
 - Michigan/RIX: C++/SDL2 teleoperation, synchronization, POSIX/TCP tests, and accepted IROS 2026 research.
+- Viam dual-arm throw and catch: PyBullet physics, gravity-aware catch replanning, and a read-only/dry-run Viam adapter.
+- xArm Robot Learning: Isaac Lab PPO cube-lift training with randomized states and parallel simulation.
 - CUNY Connect: Next.js/Supabase networking, realtime messaging and validated/cached recommendations.
 - GlanceScribe: team-built Healthcare track winner; live media, browser audio transcription, transcript-based SOAP drafts, and FFmpeg.
-- Three-link FABRIK arm with joint limits and pointer/keyboard controls; a clearly labeled simulated collaborative-editor illustration.
+- Three-link FABRIK arm with joint limits and pointer/keyboard controls; project filters for robotics and software work.
 - Workcell Feasibility Lab: browser-only planar screening of a six-pose transfer under joint limits and an obstacle, with JSON/CSV analysis exports.
 
 The project preserves its HTML/CSS/JavaScript stack and light/dark engineering-drawing design. No frontend framework or runtime package installation is required.
 
 ## Files and public output
 
-`index.html` contains the active site. `workcell.html` plus `workcell/` implement the Workcell Feasibility Lab. `favicon.svg` and selected robot-demo media are public assets. Resume publication is deferred: no resume links or new resume PDFs appear on the site. The original historical PDF is retained unchanged in the checkout, unlinked and excluded from the public package.
+`index.html` contains the active site. `workcell.html` plus `workcell/` implement the Workcell Feasibility Lab. `favicon.svg` and selected robot-demo media are public assets. The current master resume PDF is stored in the repository, but it is unlinked from the site and excluded from the public package.
 
 `Portfolio.dc.html` and `support.js` are historical design/export artifacts, not loaded by the active page and not included in the public package. They are retained unchanged to preserve prior work.
 
