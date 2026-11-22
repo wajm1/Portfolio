@@ -5,7 +5,7 @@ import path from 'node:path';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 execFileSync(process.execPath, [path.join(root, 'scripts/validate.mjs')], { stdio: 'inherit' });
-const files = ['index.html', 'favicon.svg', 'workcell.html', 'workcell/model.mjs', 'workcell/lab.mjs', 'workcell/lab.css', 'uploads/viam-throw-catch.gif', 'uploads/rf-ideas/demo.mp4',
+const files = ['index.html', 'favicon.svg', 'uploads/viam-throw-catch.gif', 'uploads/rf-ideas/demo.mp4',
   'uploads/rf-ideas/poster.jpg', 'uploads/rf-ideas/gui.jpg'];
 const banned = /(career_refresh|\.tex$|\.pdf$|\.log$|credentials?|token|secret)/i;
 // Refuse unexpected existing output instead of silently packaging private files.

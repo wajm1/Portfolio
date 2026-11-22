@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Wajahat Mahmood · Software &amp; Robotics Engineer</title>
-<meta name="description" content="C++ robot drivers, Python test automation, and full-stack applications. Wajahat Mahmood, Queens College CS, December 2026. IROS 2026 co-author.">
+<title>Wajahat Mahmood · Software Engineer</title>
+<meta name="description" content="Full-stack applications, Python test automation, and C++ robot drivers. Wajahat Mahmood, Queens College CS, December 2026. IROS 2026 co-author.">
 <meta name="theme-color" content="#ECEDEA" id="theme-color">
 
 <!-- Open Graph (nice link previews when recruiters share the page) -->
 <meta property="og:title" content="Wajahat Mahmood · Software Engineer">
-<meta property="og:description" content="C++ robot drivers, Python test automation, and full-stack applications. Queens College CS · December 2026.">
+<meta property="og:description" content="Full-stack applications, Python test automation, and C++ robot drivers. Queens College CS · December 2026.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://wajm1.com/">
 <meta property="og:image" content="https://wajm1.com/uploads/rf-ideas/poster.jpg">
@@ -96,12 +96,6 @@ body{
   line-height:1.5;
   -webkit-font-smoothing:antialiased;
   text-rendering:optimizeLegibility;
-  /* faint engineering grid */
-  background-image:
-    linear-gradient(var(--faint) 1px,transparent 1px),
-    linear-gradient(90deg,var(--faint) 1px,transparent 1px);
-  background-size:32px 32px;
-  background-position:center top;
 }
 h1,h2,h3,p,ul,figure,dl,dd{margin:0}
 ul{list-style:none;padding:0}
@@ -123,7 +117,7 @@ section[id],footer[id]{scroll-margin-top:24px}
 .skip:focus{top:8px;color:var(--paper)}
 
 /* --- Section scaffolding -------------------------------------------------- */
-.section{padding:clamp(52px,8vh,104px) 0;border-top:1px solid var(--line)}
+.section{padding:clamp(36px,6vw,72px) 0;border-top:1px solid var(--line)}
 .section-head{display:flex;align-items:baseline;gap:16px;margin-bottom:clamp(26px,4vw,44px)}
 .section-head h2{
   font-family:var(--mono);font-size:13px;font-weight:600;
@@ -174,51 +168,13 @@ section[id],footer[id]{scroll-margin-top:24px}
   letter-spacing:.16em;text-transform:uppercase;color:var(--ink-70);
   margin-bottom:clamp(20px,3vw,34px);
 }
-.hero-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));
-  gap:clamp(28px,4vw,56px);align-items:center;
-}
-.name{font-weight:600;font-size:clamp(44px,8.4vw,94px);line-height:.9;letter-spacing:-.035em}
-.lede{max-width:34ch;margin-top:clamp(20px,3vw,30px);font-size:clamp(16px,1.5vw,19px);color:var(--ink-70);text-wrap:pretty}
+
+.name{font-weight:600;font-size:clamp(40px,7vw,74px);line-height:1;letter-spacing:-.035em}
+.lede{max-width:55ch;margin-top:clamp(20px,3vw,30px);font-size:clamp(16px,1.5vw,19px);color:var(--ink-70);text-wrap:pretty}
 .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:clamp(22px,3vw,30px)}
 .tag{
   font-family:var(--mono);font-size:12px;letter-spacing:.02em;color:var(--ink);
   border:1px solid var(--line);padding:7px 10px;background:var(--panel);
-}
-
-/* --- IK arm figure (interactive demo #1) ---------------------------------- */
-.fig{
-  position:relative;width:100%;aspect-ratio:5/4;
-  border:1px solid var(--line);background:var(--panel);
-  overflow:hidden;cursor:crosshair;transition:border-color .2s ease;
-}
-.fig:hover{border-color:var(--line-2)}
-.fig .corner{position:absolute;width:11px;height:11px;z-index:2}
-.fig .corner.tl{top:8px;left:8px;border-top:1.5px solid var(--accent);border-left:1.5px solid var(--accent)}
-.fig .corner.tr{top:8px;right:8px;border-top:1.5px solid var(--accent);border-right:1.5px solid var(--accent)}
-.fig .corner.bl{bottom:8px;left:8px;border-bottom:1.5px solid var(--accent);border-left:1.5px solid var(--accent)}
-.fig .corner.br{bottom:8px;right:8px;border-bottom:1.5px solid var(--accent);border-right:1.5px solid var(--accent)}
-.fig svg,.fig canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
-.fig-label{position:absolute;top:11px;left:13px;z-index:3;pointer-events:none;display:flex;flex-direction:column;gap:5px;align-items:flex-start}
-.fig-label .id{font-family:var(--mono);font-size:11px;letter-spacing:.05em;color:var(--ink-70)}
-.fig-hint{
-  display:inline-flex;align-items:center;gap:6px;
-  font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.05em;
-  color:var(--accent-ink);border:1px solid var(--accent);
-  background:rgba(226,74,0,0.09);padding:3px 7px;
-  animation:hintpulse 2.2s ease-in-out infinite;
-}
-.fig-status{
-  position:absolute;top:11px;right:13px;z-index:3;pointer-events:none;
-  display:inline-flex;align-items:center;gap:6px;padding:4px 8px;
-  border:1px solid var(--line);background:var(--panel-a);
-}
-.fig-status .txt{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.06em;color:var(--ink-70)}
-.fig-read{
-  position:absolute;left:0;right:0;bottom:0;z-index:3;pointer-events:none;
-  padding:9px 12px;font-family:var(--mono);font-size:10.5px;letter-spacing:.02em;color:var(--ink-70);
-  background:linear-gradient(0deg,var(--panel-fade),transparent);
 }
 
 /* --- Selected work -------------------------------------------------------- */
@@ -243,6 +199,7 @@ section[id],footer[id]{scroll-margin-top:24px}
   transition:transform .2s ease,border-color .2s ease;
 }
 .work-row:hover{transform:translateY(-2px);border-color:var(--line-2)}
+.work-copy:only-child{max-width:100%}
 .work-row[hidden]{display:none !important}
 .work-copy,.work-visual{
   display:flex;flex-direction:column;gap:16px;min-width:0;
@@ -314,88 +271,6 @@ section[id],footer[id]{scroll-margin-top:24px}
 .link{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;color:var(--ink)}
 .link:hover{color:var(--accent-ink)}
 .link .sq{width:6px;height:6px;background:var(--accent);flex:0 0 auto}
-
-.editor-hint{
-  display:block;
-  margin:0;
-  font-family:var(--mono);
-  font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent-ink);
-}
-
-/* --- Collaborative editor (interactive demo #2) --------------------------- */
-.editor{
-  border:1px solid var(--line);background:var(--paper);
-  display:flex;flex-direction:column;flex:1 1 auto;min-height:280px;
-}
-.editor-bar{
-  display:flex;align-items:center;justify-content:space-between;gap:8px 12px;
-  padding:10px 12px;border-bottom:1px solid var(--line);
-  font-family:var(--mono);font-size:11px;letter-spacing:.03em;color:var(--ink-70);
-  flex-wrap:wrap;
-}
-.editor-dots{display:flex;align-items:center;gap:6px;flex:0 1 auto;min-width:0}
-.editor-dots > span:not(.editor-file){width:8px;height:8px;border:1px solid var(--line-2);flex:0 0 auto}
-.editor-file{
-  margin-left:6px;color:var(--ink);flex:0 0 auto;white-space:nowrap;font-weight:500;
-}
-.editor-sync{display:inline-flex;align-items:center;gap:6px;transition:opacity .4s ease;flex:0 0 auto;white-space:nowrap}
-.editor-presence{
-  display:inline-flex;align-items:center;gap:10px;flex-wrap:wrap;
-  font-size:10px;letter-spacing:.04em;text-transform:uppercase;
-}
-.editor-presence .who{display:inline-flex;align-items:center;gap:5px;color:var(--ink-70)}
-.editor-presence .who .pd{width:6px;height:6px;border-radius:50%;flex:0 0 auto}
-.code{
-  flex:1 1 auto;
-  padding:16px 18px;
-  min-height:220px;
-  overflow-x:auto;
-  font-family:var(--mono);
-  font-size:13.5px;
-  line-height:1.8;
-}
-.code-line{
-  display:grid;
-  grid-template-columns:2rem minmax(0,1fr) 4rem;
-  column-gap:14px;
-  align-items:center;
-  min-height:1.8em;
-  padding:1px 0;
-}
-.code-line.is-you{
-  background:rgba(226,74,0,0.06);
-  margin-inline:-8px;padding-inline:8px;border-radius:2px;
-}
-.ln{text-align:right;color:var(--ln);user-select:none;font-variant-numeric:tabular-nums}
-.code-mid{
-  min-width:0;white-space:pre;overflow-x:auto;overflow-y:hidden;
-  scrollbar-width:none;-ms-overflow-style:none;
-  color:var(--ink);
-}
-/* Author colors live in CSS so they follow the light/dark toggle. */
-.peer-mateo{--peer:var(--peer-a)}
-.peer-ren{--peer:var(--peer-b)}
-.peer-you{--peer:var(--accent)}
-.code-mid .caret,
-.peer-tag .pd,
-.editor-presence .who .pd{background:var(--peer,var(--accent))}
-.code-mid::-webkit-scrollbar{display:none;width:0;height:0}
-.code-edit{display:inline-block;min-width:8px;white-space:pre;outline:none;color:var(--ink);caret-color:var(--accent)}
-/* Placeholder as generated content, so it can never be committed as real text. */
-.code-edit:empty::before{content:attr(data-placeholder);color:var(--ink-70)}
-.caret{display:inline-block;width:2px;height:15px;margin:0 1px;vertical-align:-3px;animation:blink 1s step-end infinite}
-.peer-tag{
-  display:inline-flex;align-items:center;gap:5px;
-  font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-70);
-  white-space:nowrap;justify-self:start;
-}
-.peer-tag .pd{width:6px;height:6px;border-radius:50%;flex:0 0 auto}
-.editor-foot{
-  padding:8px 12px;border-top:1px solid var(--line);
-  font-family:var(--mono);font-size:10.5px;letter-spacing:.03em;color:var(--ink-70);
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-}
-
 
 /* Experience media gallery (rf IDEAS) */
 .xp-media{
@@ -500,7 +375,7 @@ a.xp-media-tile:hover{border-color:var(--line-2)}
 
 /* --- Responsive: stop text collisions / overflow on phones ---------------- */
 html,body{overflow-x:clip}
-.wrap,.work-row,.card,.editor,.fig,.xp-item,.contact-grid,.stack{min-width:0}
+.wrap,.work-row,.card,.xp-item,.contact-grid,.stack{min-width:0}
 .link{max-width:100%;overflow-wrap:anywhere;word-break:break-word}
 
 /* Below this width the copy/visual split gets too cramped, so rows stack. */
@@ -508,8 +383,8 @@ html,body{overflow-x:clip}
   .work-row{flex-direction:column !important;gap:18px}
   .work-copy,.work-visual{max-width:none;flex:1 1 auto}
   .work-desc,.card-desc{max-width:none}
-  .editor{min-height:0}
-  .nav{gap:8px 10px;font-size:11px}
+
+.nav{gap:8px 10px;font-size:11px}
 }
 
 @media (max-width:720px){
@@ -538,19 +413,11 @@ html,body{overflow-x:clip}
   .name{font-size:clamp(40px,12vw,72px)}
   .lede{max-width:none;font-size:16px}
 
-  .fig-label{max-width:calc(100% - 110px)}
-  .fig-hint{font-size:9px;padding:3px 6px}
-  .fig-status{padding:3px 6px}
-  .fig-status .txt{font-size:9.5px}
-  .fig-read{
-    font-size:9.5px;
-    padding:8px 10px;
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
-  }
+.fig-hint{font-size:9px;padding:3px 6px}
 
-  .work-row,.card{padding:18px;gap:16px}
+.fig-status .txt{font-size:9.5px}
+
+.work-row,.card{padding:18px;gap:16px}
   .work-head,.card-head{flex-direction:column;gap:4px;align-items:flex-start}
   .work-kicker,.card-kicker{text-align:left;white-space:normal}
   .work-title,.card-title{font-size:clamp(20px,6vw,24px)}
@@ -559,30 +426,18 @@ html,body{overflow-x:clip}
   .flow{font-size:9px}
   .flow .step{padding:10px 4px}
 
-  .editor-bar{
-    display:flex;
-    flex-wrap:wrap;
-    gap:6px 10px;
-    padding:8px 10px;
-  }
-  .editor-sync{font-size:10px}
-  .editor-file{max-width:none}
-  .editor-presence{gap:8px;font-size:9.5px}
-  .code{font-size:12.5px;line-height:1.75;padding:14px 12px;min-height:200px}
-  .code-line{
+.editor-sync{font-size:10px}
+
+.editor-presence{gap:8px;font-size:9.5px}
+
+.code-line{
     grid-template-columns:1.6rem minmax(0,1fr);
     column-gap:10px;
   }
-  .peer-tag{display:none} /* names collide with code on narrow widths */
-  .editor-foot{
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
-    font-size:10px;
-    padding:8px 10px;
-  }
 
-  .links{gap:10px 14px}
+/* names collide with code on narrow widths */
+
+.links{gap:10px 14px}
   .link{font-size:11px}
 
   .xp-head{flex-direction:column;gap:12px}
@@ -635,32 +490,6 @@ html,body{overflow-x:clip}
 .chip,.link,.xp-meta,.metric-label,.stat-label,.head-note{font-size:12px}
 .link,.nav a,.copy-btn{min-height:40px;align-content:center}
 .hero-note{margin-top:22px;color:var(--ink-70);font-size:15px;line-height:1.7}
-.ik-lab{margin-top:clamp(28px,5vh,48px);padding-top:clamp(22px,4vh,36px);border-top:1px solid var(--line)}
-.ik-lab-head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:18px 32px;align-items:end;margin-bottom:18px}
-.ik-lab-head h2{font-size:clamp(20px,2.4vw,28px);letter-spacing:-.02em;margin:6px 0 0;max-width:28ch}
-.ik-lab-copy{max-width:54ch;margin:0;color:var(--ink-70);font-size:15px;line-height:1.65}
-.ik-lab-badge{flex-shrink:0;border-left:2px solid var(--accent);padding:2px 0 2px 14px;font:12px/1.6 var(--mono);color:var(--accent-ink);max-width:18ch}
-.ik-board{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(240px,.85fr);gap:18px 22px;align-items:start}
-.ik-diagnosis{border:1px solid var(--line);background:var(--panel);padding:18px 18px 16px}
-.ik-diagnosis h3{font:600 12px/1.4 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-70);margin:0 0 12px}
-.ik-verdict{font:600 22px/1.2 inherit;margin:0 0 8px}
-.ik-verdict[data-state="SOLVED"]{color:var(--ink)}
-.ik-verdict[data-state="LIMITED"],.ik-verdict[data-state="UNREACHABLE"]{color:var(--accent-ink)}
-.ik-verdict[data-state="IDLE"],.ik-verdict[data-state="STATIC"]{color:var(--ink-70)}
-.ik-verdict[data-state="SOLVING"]{color:var(--ink-70)}
-.ik-reason{margin:0 0 14px;font-size:14px;line-height:1.65;color:var(--ink-70);min-height:3.2em}
-.ik-metrics{margin:0;display:grid;gap:0}
-.ik-metrics div{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-top:1px solid var(--line);font-size:13px}
-.ik-metrics dt{color:var(--ink-70)}
-.ik-metrics dd{margin:0;font-family:var(--mono);font-size:12px;text-align:right}
-.ik-controls{display:flex;flex-wrap:wrap;gap:8px;margin-top:0}
-.ik-controls button{font:500 13px var(--mono);padding:11px 13px;border:1px solid var(--line-2);background:var(--panel);color:var(--ink);cursor:pointer}
-.ik-controls button[aria-pressed="true"]{border-color:var(--accent-ink);color:var(--accent-ink)}
-.ik-explanation{font-size:14px;color:var(--ink-70);max-width:75ch;line-height:1.7;margin-top:12px}
-.ik-next{margin-top:16px;padding:14px 16px;border:1px solid var(--line);background:var(--panel);display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;justify-content:space-between}
-.ik-next p{margin:0;font-size:14px;line-height:1.6;color:var(--ink-70);max-width:62ch}
-.ik-next a{font:500 14px var(--mono);color:var(--accent-ink);text-decoration:none;white-space:nowrap}
-.ik-next a:hover{text-decoration:underline;text-underline-offset:3px}
 .xp-media{display:grid;grid-template-columns:1fr;gap:14px;width:100%;max-width:none}
 .xp-media-frame{aspect-ratio:16/9;height:auto;min-height:0}
 .xp-media-frame video,.xp-media-frame img{width:100%;height:100%;object-fit:contain}
@@ -672,17 +501,15 @@ html,body{overflow-x:clip}
 .technical .pipeline{font-family:var(--mono);font-size:13px;padding:16px;background:var(--panel);border-left:2px solid var(--accent);color:var(--ink)}
 .research-note{padding:22px 0 0;max-width:76ch;font-size:16px;line-height:1.7}
 .program-heading{margin-top:42px;font-size:22px}
-.fig{touch-action:none}
+
 .flow{font-size:12px!important}
 @media(max-width:720px){
-  .ik-board{grid-template-columns:1fr}
-  .ik-lab-badge{display:none}
   .xp-media{grid-template-columns:1fr}
   .nav{font-size:12px;gap:4px 16px}
   .chip,.link,.xp-meta,.metric-label,.stat-label{font-size:12px}
   .work-head{flex-wrap:wrap;gap:8px}
-  .fig-label .id,.fig-status .txt,.fig-read{font-size:11px}
-  .fig-hint{font-size:10px}
+
+.fig-hint{font-size:10px}
   .head-note{white-space:normal}
 }
 </style>
@@ -700,13 +527,9 @@ html,body{overflow-x:clip}
       <span class="brand-name">Wajahat Mahmood</span>
     </a>
     <nav class="nav" aria-label="Sections">
-      <a href="#experience">Experience</a>
       <a href="#work">Projects</a>
-      <a href="#pose-lab">Pose check</a>
-      <a href="workcell.html">Workcell Lab</a>
+      <a href="#experience">Experience</a>
       <a href="#contact">Contact</a>
-      <span class="sep" aria-hidden="true"></span>
-      <span class="avail"><span class="dot" aria-hidden="true"></span>Open to 2027 SWE</span>
       <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch to dark mode" title="Toggle theme">
         <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
           <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>
@@ -722,134 +545,194 @@ html,body{overflow-x:clip}
 
 <main id="main">
 
-  <!-- ======================= HERO ======================= -->
   <section class="hero">
     <div class="wrap">
-      <p class="eyebrow">Software engineering &nbsp;&middot;&nbsp; Robotics systems</p>
-      <div class="hero-grid">
-        <div>
-          <h1 class="name">Wajahat<br>Mahmood</h1>
-          <p class="lede">I build software that moves hardware, tests its limits, and makes the results inspectable.</p>
-          <p class="hero-note">Targeting software engineering and robotics software roles.<br>C++ robot drivers, Python test automation, and full-stack applications with concrete systems ownership.<br>Queens College CS &middot; Graduating December 2026.</p>
-          <div class="tags">
-            <span class="tag">C++</span>
-            <span class="tag">Python</span>
-            <span class="tag">TypeScript</span>
-            <span class="tag">ROS 2</span>
-          </div>
-        </div>
+      <p class="eyebrow">Software engineer</p>
+      <h1 class="name">Wajahat Mahmood</h1>
+      <p class="lede">I build web apps, test automation, and robot control software.</p>
+      <p class="hero-note">Queens College &middot; BA in Computer Science &middot; December 2026</p>
+    </div>
+  </section>
 
-        <!--
-          Interactive demo #1 - inverse-kinematics arm.
-          Tap / drag inside the box (or use arrow keys) to move the target;
-          a FABRIK solver repositions the arm to reach it.
-          GRACEFUL DEGRADATION: the <svg> below is a static arm that shows if
-          JS is disabled/slow or the canvas fails - the box is never blank.
-          The <canvas> is painted on top only once the solver is running.
-        -->
-        <figure id="ik" class="fig" tabindex="0" role="application"
-                aria-label="Tool-pose feasibility screener. Drag or use arrow keys to place a target; the diagnosis panel reports whether the tip pose is reachable under the current joint limits. Home resets the target.">
-          <span class="corner tl" aria-hidden="true"></span>
-          <span class="corner tr" aria-hidden="true"></span>
-          <span class="corner bl" aria-hidden="true"></span>
-          <span class="corner br" aria-hidden="true"></span>
-
-          <!-- static fallback pose -->
-          <svg viewBox="0 0 500 400" aria-hidden="true">
-            <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="250" y1="360" x2="188" y2="250" stroke-width="9"/>
-              <line x1="188" y1="250" x2="300" y2="168" stroke-width="7.4"/>
-              <line x1="300" y1="168" x2="372" y2="98" stroke-width="5.8"/>
-              <rect x="224" y="362" width="52" height="14" fill="var(--panel)" stroke-width="2"/>
-              <circle cx="250" cy="360" r="6.5" fill="var(--panel)" stroke-width="2"/>
-              <circle cx="188" cy="250" r="5.5" fill="var(--panel)" stroke-width="2"/>
-              <circle cx="300" cy="168" r="5.5" fill="var(--panel)" stroke-width="2"/>
-            </g>
-            <g fill="none" stroke="var(--accent)" stroke-width="2">
-              <circle cx="372" cy="98" r="7"/>
-              <line x1="358" y1="98" x2="365" y2="98"/><line x1="379" y1="98" x2="386" y2="98"/>
-              <line x1="372" y1="84" x2="372" y2="91"/><line x1="372" y1="105" x2="372" y2="112"/>
-            </g>
-          </svg>
-
-          <!-- solver renders here -->
-          <canvas id="ik-canvas" aria-hidden="true"></canvas>
-
-          <!-- HUD overlays -->
-          <div class="fig-label" aria-hidden="true">
-            <span class="id">POSE CHECK</span>
-            <span class="fig-hint" id="ik-hint"><span aria-hidden="true" style="font-size:11px;line-height:1">&#10021;</span>SET TOOL TARGET</span>
-          </div>
-          <div class="fig-status" aria-hidden="true">
-            <span class="dot"></span>
-            <span class="txt" id="ik-state">IDLE</span>
-          </div>
-          <div class="fig-read" id="ik-read" aria-hidden="true">&theta; &middot; &middot; &middot; &middot; TCP &middot;,&middot; &middot; idle</div>
-        </figure>
+  <section id="work" class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Projects</h2>
+        <span class="rule" aria-hidden="true"></span>
       </div>
 
-      <div class="ik-lab" id="pose-lab">
-        <div class="ik-lab-head">
-          <div>
-            <p class="eyebrow">TOOL-POSE FEASIBILITY · 00</p>
-            <h2>Is this tip pose feasible under these constraints?</h2>
-          </div>
-          <p class="ik-lab-copy">Before sequencing a workcell, check one pose. The dashed arc is the reach envelope. The verdict separates three failure modes engineers care about: solved, joint-limited, or out of reach.</p>
-          <span class="ik-lab-badge">PLANAR MODEL<br>NOT A ROBOT CONTROLLER</span>
-        </div>
+      <div class="project-filters" role="group" aria-label="Filter projects">
+        <button type="button" class="project-filter" data-filter="all" aria-pressed="true">All</button>
+        <button type="button" class="project-filter" data-filter="robotics" aria-pressed="false">Robotics</button>
+        <button type="button" class="project-filter" data-filter="software" aria-pressed="false">Software</button>
+      </div>
 
-        <div class="ik-board">
-          <div>
-            <div class="ik-controls" aria-label="Pose feasibility scenarios">
-              <button type="button" data-ik-preset="reachable" aria-pressed="false">Nominal pick pose</button>
-              <button type="button" data-ik-preset="limited" aria-pressed="false">Joint-limited approach</button>
-              <button type="button" data-ik-preset="unreachable" aria-pressed="false">Out-of-reach place</button>
-              <button type="button" data-ik-preset="reset">Clear diagnosis</button>
+      <div class="work-list">
+
+        <!-- Project 1 - GlanceScribe -->
+        <article class="work-row" data-category="software">
+          <div class="work-copy">
+            <div class="work-head">
+              <h3 class="work-title">GlanceScribe</h3>
             </div>
-            <p class="ik-explanation" id="ik-explanation" aria-live="polite">Load a scenario, or drag the target yourself. Focus the drawing and use arrow keys; Home restores the rest pose.</p>
+            <p class="work-desc">A four-person hackathon prototype pairing a live Meta-glasses video feed with browser-microphone transcription. ElevenLabs transcribes the audio; Gemini turns the committed transcript into draft SOAP notes. FFmpeg assembles recordings and selected highlights.</p>
+            <div class="chips">
+              <span class="chip">Node.js / Express</span><span class="chip">SSE</span><span class="chip">Gemini</span><span class="chip">ElevenLabs</span><span class="chip">FFmpeg</span>
+            </div>
+            <div class="links">
+              <a class="link" href="https://github.com/wajm1/GlanceScribe" target="_blank" rel="noopener"><span class="sq" aria-hidden="true"></span>GitHub <span aria-hidden="true">&#8599;</span></a>
+              <a class="link" href="https://devpost.com/software/glancescribe" target="_blank" rel="noopener"><span class="sq" aria-hidden="true"></span>Devpost <span aria-hidden="true">&#8599;</span></a>
+              <a class="link" href="https://www.youtube.com/watch?v=C1dSdK3tr18" target="_blank" rel="noopener"><span class="sq" aria-hidden="true"></span>YouTube <span aria-hidden="true">&#8599;</span></a>
+            </div>
+            <div class="stats">
+              <div class="stat"><div class="stat-num">Winner</div><div class="stat-label">Best Healthcare<br>Hack Brooklyn &rsquo;26</div></div>
+              <div class="stat"><div class="stat-num">Prototype</div><div class="stat-label">Draft notes<br>for review</div></div>
+            </div>
             <details class="technical">
-              <summary>What this pose check proves — and does not</summary>
-              <p>A three-link planar chain uses FABRIK: place the tip at the target and work backward, then anchor the base and work forward, preserving each link’s length. Relative joint-angle limits are applied during the forward pass. The diagnosis reports tip error against the commanded target and which joints sit on their limit stops.</p>
-              <p><strong>Purpose.</strong> This is the single-pose half of layout screening: reach and joint limits before you spend time on a full transfer sequence. Coordinates are canvas units scaled to the drawn reach radius, not calibrated robot millimeters.</p>
-              <p><strong>Limits.</strong> Geometric illustration only — no dynamics, obstacles, tool orientation branches, or hardware connection. Reduced-motion preferences keep the diagnosis available without animated easing.</p>
+              <summary>From live streams to draft notes</summary>
+              <p class="pipeline">Microphone → 16 kHz PCM → ElevenLabs WebSocket → transcript → SSE dashboard + Gemini SOAP</p>
+              <p><strong>My work in the team build.</strong> I contributed the initial backend and recording integration; the final app combines that work with teammates’ interface and note-generation changes. The glasses stream arrives through an external client and an HTTP proxy, while browser microphone audio follows a separate path.</p>
+              <p><strong>Implementation.</strong> The browser resamples audio to mono PCM and uses a short-lived transcription token. Committed text is appended on the server and sent to dashboards over SSE. Recording chunks are assembled with FFmpeg; transcript and body-focus intervals help select highlights.</p>
+              <p><strong>Tradeoff.</strong> Simple in-memory session state made the hackathon integration quick, but does not isolate multiple clinical users. Gemini receives text for note generation, not video. JSON parsing is not clinical validation; this is a demonstration, not a deployed medical system.</p>
             </details>
           </div>
+          <div class="work-visual">
+            <div class="work-embed">
+              <div class="work-embed-frame">
+                <iframe
+                  src="https://www.youtube-nocookie.com/embed/C1dSdK3tr18"
+                  title="GlanceScribe demo video"
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen></iframe>
+              </div>
+              <div class="work-embed-label"><span>Demo</span><span>YouTube</span></div>
+            </div>
+          </div>
+        </article>
 
-          <aside class="ik-diagnosis" aria-live="polite">
-            <h3>Live diagnosis</h3>
-            <p class="ik-verdict" id="ik-verdict" data-state="IDLE">Waiting for a target</p>
-            <p class="ik-reason" id="ik-reason">Choose a scenario or place a tool target on the drawing. The panel updates with the solver’s verdict.</p>
-            <dl class="ik-metrics">
-              <div><dt>Reach envelope</dt><dd id="ik-reach">—</dd></div>
-              <div><dt>Tip error</dt><dd id="ik-error">—</dd></div>
-              <div><dt>Joints at limit</dt><dd id="ik-joints">—</dd></div>
-              <div><dt>Joint angles</dt><dd id="ik-angles">—</dd></div>
-            </dl>
-          </aside>
-        </div>
+        <!-- Project 2 - CUNY Connect -->
+        <article class="work-row" data-category="software">
+          <div class="work-copy">
+            <div class="work-head">
+              <h3 class="work-title">CUNY Connect</h3>
+            </div>
+            <p class="work-desc">A networking platform for CUNY students, built with a hackathon team. Next.js Server Actions handle connections and messages; Supabase Realtime delivers new chat messages. Profile similarity and Gemini explanations drive recommendations, with caching and deterministic fallback scoring.</p>
+            <div class="chips">
+              <span class="chip">Next.js</span><span class="chip">TypeScript</span><span class="chip">Supabase</span><span class="chip">Gemini</span><span class="chip">Tailwind</span><span class="chip">Zod</span>
+            </div>
+            <div class="links">
+              <a class="link" href="https://github.com/wajm1/CTP-Hacks-2026-CUNY-Connect" target="_blank" rel="noopener"><span class="sq" aria-hidden="true"></span>GitHub <span aria-hidden="true">&#8599;</span></a>
+            </div>
+            <details class="technical">
+              <summary>Messaging, matching, and failure paths</summary>
+              <p class="pipeline">Profile → candidate filtering → weighted score → Gemini + Zod → seven-day cache or local fallback</p>
+              <p><strong>My contribution.</strong> Built core networking, messaging, and recommendation features within the team project. Conversation creation checks accepted connections and uses a database function to reuse the same user pair. New-message subscriptions deduplicate messages by ID.</p>
+              <p><strong>Implementation.</strong> Recommendations combine profile similarity with generated explanations. The response is validated with Zod and checked against allowed candidate IDs. Profile hashes and a seven-day expiry bound cache reuse; timeouts and missing credentials fall back to local scores.</p>
+              <p><strong>Result and limits.</strong> Around 40 people were logged in during the demo, across different features; this was not a messaging load test. The app checks CUNY email domains, not student identity. Its RLS policies still need adversarial authorization tests and membership hardening before a wider release.</p>
+            </details>
+          </div>
+          <div class="work-visual">
+            <div class="flow" style="grid-template-columns:1fr auto 1fr auto 1fr;font-size:10px">
+              <div class="step">Student<br>profile</div>
+              <div class="arrow" aria-hidden="true">&rarr;</div>
+              <div class="step">Feed +<br>network</div>
+              <div class="arrow" aria-hidden="true">&rarr;</div>
+              <div class="step">Gemini<br>match</div>
+            </div>
+            <div class="stats">
+              <div class="stat"><div class="stat-num">CTP <span class="u-accent">&rsquo;26</span></div><div class="stat-label">Built at<br>CTP Hacks</div></div>
+              <div class="stat"><div class="stat-num">~40</div><div class="stat-label">Logged-in users<br>during demo</div></div>
+            </div>
+          </div>
+        </article>
 
-        <div class="ik-next">
-          <p>Same question for a full six-pose transfer, fixture comparison, sampled clearance, and exportable evidence.</p>
-          <a href="workcell.html">Open the Workcell Feasibility Lab →</a>
-        </div>
+        <!-- Project 4 - Real-Time Collaborative Code Editor -->
+        <article class="work-row" id="editor" data-category="software">
+          <div class="work-copy">
+            <div class="work-head">
+              <h3 class="work-title">Real-Time Collaborative Code Editor</h3>
+            </div>
+            <p class="work-desc">A shared React and Monaco editor that syncs changes through Flask and Socket.IO. Run C++ and Java from the editor with Piston.</p>
+            <div class="chips">
+              <span class="chip">Flask</span><span class="chip">Socket.IO</span><span class="chip">Monaco</span><span class="chip">React</span><span class="chip">Piston API</span>
+            </div>
+            <div class="links">
+              <a class="link" href="https://wajm1.github.io/Code-Interview-Platform/" target="_blank" rel="noopener"><span class="sq" aria-hidden="true"></span>Live demo <span aria-hidden="true">&#8599;</span></a>
+              <a class="link" href="https://github.com/wajm1/Code-Interview-Platform" target="_blank" rel="noopener"><span class="sq" aria-hidden="true"></span>GitHub <span aria-hidden="true">&#8599;</span></a>
+            </div>
+          </div>
+        </article>
+
+        <article class="work-row" data-category="robotics">
+          <div class="work-copy">
+            <div class="work-head">
+              <h3 class="work-title">Viam Dual-Arm Throw &amp; Catch</h3>
+            </div>
+            <p class="work-desc">A PyBullet simulator for dual-arm throws and catches. Inverse kinematics and joint limits screen poses; gravity-aware estimates replan the catch from noisy, delayed observations.</p>
+            <div class="chips">
+              <span class="chip">Python</span><span class="chip">PyBullet</span><span class="chip">Viam SDK</span><span class="chip">Kalman filter</span>
+            </div>
+            <details class="technical">
+              <summary>Simulation and hardware boundary</summary>
+              <p>The demo models two UFACTORY arms, a rigid-body ball, and a moving cup. The Viam adapter reads robot state and supports dry runs; live arm motion is disabled.</p>
+            </details>
+          </div>
+          <div class="work-visual">
+            <div class="work-embed">
+              <div class="work-embed-frame">
+                <img src="uploads/viam-throw-catch.gif" alt="PyBullet simulation of one UFACTORY arm throwing a ball toward a cup held by a second arm." loading="lazy">
+              </div>
+              <div class="work-embed-label"><span>PyBullet simulation</span><span>UF850 + xArm6</span></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="work-row" data-category="robotics">
+          <div class="work-copy">
+            <div class="work-head">
+              <h3 class="work-title">xArm Robot Learning</h3>
+            </div>
+            <p class="work-desc">Trained a simulated xArm7 to lift a 5 cm cube with PPO. Randomized cube states and parallel simulation generate grasp attempts in Isaac Lab and Isaac Sim.</p>
+            <div class="chips">
+              <span class="chip">Python</span><span class="chip">PyTorch</span><span class="chip">Isaac Lab</span><span class="chip">PPO</span>
+            </div>
+            <div class="stats">
+              <div class="stat"><div class="stat-num">~5,000</div><div class="stat-label">Training iterations</div></div>
+              <div class="stat"><div class="stat-num">256</div><div class="stat-label">Parallel environments</div></div>
+            </div>
+            <div class="links">
+              <a class="link" href="https://github.com/wajm1/xarm-robot-learning" target="_blank" rel="noopener"><span class="sq" aria-hidden="true"></span>GitHub <span aria-hidden="true">&#8599;</span></a>
+            </div>
+          </div>
+          <div class="work-visual">
+            <div class="flow" style="grid-template-columns:1fr auto 1fr auto 1fr">
+              <div class="step">Randomized<br>5 cm cube</div>
+              <div class="arrow" aria-hidden="true">&rarr;</div>
+              <div class="step">PPO<br>policy</div>
+              <div class="arrow" aria-hidden="true">&rarr;</div>
+              <div class="step">xArm7<br>lift</div>
+            </div>
+          </div>
+        </article>
+
       </div>
     </div>
   </section>
 
-  <!-- ======================= EXPERIENCE ======================= -->
   <section id="experience" class="section">
     <div class="wrap">
       <div class="section-head">
         <h2>Experience</h2>
         <span class="rule" aria-hidden="true"></span>
-        <span class="head-note">hardware + software</span>
       </div>
       <ul>
         <li class="xp-item">
           <div class="xp-head">
             <div class="xp-lead">
               <div class="xp-title"><h3>rf IDEAS</h3><span class="xp-role">Software Engineer Intern, Robotics &amp; Test Automation</span></div>
-              <p class="xp-meta">May 2026 &ndash; August 2026 &middot; Schaumburg, IL</p>
+              <p class="xp-meta">June 2026 &ndash; August 2026 &middot; Schaumburg, IL</p>
               <p class="xp-desc">Built Python software that sequences a six-axis xArm through RFID card pickup, barcode identification, reader configuration, and calibrated read-height tests. Background workers keep the interface responsive; completed results go to CSV. A one-way ROS&nbsp;2 bridge publishes joint-state telemetry for visualization and does not command the arm.</p>
             </div>
             <div class="xp-chips">
@@ -945,217 +828,12 @@ html,body{overflow-x:clip}
 
   <!-- ======================= PROJECTS ======================= -->
   <!-- layout-fix-2026-08-03: each project is a full-width flex row -->
-  <section id="work" class="section">
-    <div class="wrap">
-      <div class="section-head">
-        <h2>Projects</h2>
-        <span class="rule" aria-hidden="true"></span>
-      </div>
-
-      <div class="project-filters" role="group" aria-label="Filter projects">
-        <button type="button" class="project-filter" data-filter="all" aria-pressed="true">All</button>
-        <button type="button" class="project-filter" data-filter="robotics" aria-pressed="false">Robotics</button>
-        <button type="button" class="project-filter" data-filter="software" aria-pressed="false">Software</button>
-      </div>
-
-      <div class="work-list">
-
-        <article class="work-row" data-category="robotics">
-          <div class="work-copy">
-            <div class="work-head">
-              <h3 class="work-title">Viam Dual-Arm Throw &amp; Catch</h3>
-              <span class="work-kicker">DYNAMIC CATCH</span>
-            </div>
-            <p class="work-desc">A PyBullet simulator for dual-arm throws and catches. Inverse kinematics and joint limits screen poses; gravity-aware estimates replan the catch from noisy, delayed observations.</p>
-            <div class="chips">
-              <span class="chip">Python</span><span class="chip">PyBullet</span><span class="chip">Viam SDK</span><span class="chip">Kalman filter</span>
-            </div>
-            <details class="technical">
-              <summary>Simulation and hardware boundary</summary>
-              <p>The demo models two UFACTORY arms, a rigid-body ball, and a moving cup. The Viam adapter reads robot state and supports dry runs; live arm motion is disabled.</p>
-            </details>
-          </div>
-          <div class="work-visual">
-            <div class="work-embed">
-              <div class="work-embed-frame">
-                <img src="uploads/viam-throw-catch.gif" alt="PyBullet simulation of one UFACTORY arm throwing a ball toward a cup held by a second arm." loading="lazy">
-              </div>
-              <div class="work-embed-label"><span>PyBullet simulation</span><span>UF850 + xArm6</span></div>
-            </div>
-          </div>
-        </article>
-
-        <article class="work-row" data-category="robotics">
-          <div class="work-copy">
-            <div class="work-head">
-              <h3 class="work-title">xArm Robot Learning</h3>
-              <span class="work-kicker">PPO / ISAAC LAB</span>
-            </div>
-            <p class="work-desc">Trained a simulated xArm7 to lift a 5 cm cube with PPO. Randomized cube states and parallel simulation generate grasp attempts in Isaac Lab and Isaac Sim.</p>
-            <div class="chips">
-              <span class="chip">Python</span><span class="chip">PyTorch</span><span class="chip">Isaac Lab</span><span class="chip">PPO</span>
-            </div>
-            <div class="stats">
-              <div class="stat"><div class="stat-num">~5,000</div><div class="stat-label">Training iterations</div></div>
-              <div class="stat"><div class="stat-num">256</div><div class="stat-label">Parallel environments</div></div>
-            </div>
-            <div class="links">
-              <a class="link" href="https://github.com/wajm1/xarm-robot-learning" target="_blank" rel="noopener"><span class="sq" aria-hidden="true"></span>GitHub <span aria-hidden="true">&#8599;</span></a>
-            </div>
-          </div>
-          <div class="work-visual">
-            <div class="flow" style="grid-template-columns:1fr auto 1fr auto 1fr">
-              <div class="step">Randomized<br>5 cm cube</div>
-              <div class="arrow" aria-hidden="true">&rarr;</div>
-              <div class="step">PPO<br>policy</div>
-              <div class="arrow" aria-hidden="true">&rarr;</div>
-              <div class="step">xArm7<br>lift</div>
-            </div>
-          </div>
-        </article>
-
-        <!-- Project 1 - GlanceScribe -->
-        <article class="work-row" data-category="software">
-          <div class="work-copy">
-            <div class="work-head">
-              <h3 class="work-title">GlanceScribe</h3>
-              <span class="work-kicker">AI MEDICAL SCRIBE</span>
-            </div>
-            <p class="work-desc">A four-person hackathon prototype pairing a live Meta-glasses video feed with browser-microphone transcription. ElevenLabs transcribes the audio; Gemini turns the committed transcript into draft SOAP notes. FFmpeg assembles recordings and selected highlights.</p>
-            <div class="chips">
-              <span class="chip">Node.js / Express</span><span class="chip">SSE</span><span class="chip">Gemini</span><span class="chip">ElevenLabs</span><span class="chip">FFmpeg</span>
-            </div>
-            <div class="links">
-              <a class="link" href="https://github.com/wajm1/GlanceScribe" target="_blank" rel="noopener"><span class="sq" aria-hidden="true"></span>GitHub <span aria-hidden="true">&#8599;</span></a>
-              <a class="link" href="https://devpost.com/software/glancescribe" target="_blank" rel="noopener"><span class="sq" aria-hidden="true"></span>Devpost <span aria-hidden="true">&#8599;</span></a>
-              <a class="link" href="https://www.youtube.com/watch?v=C1dSdK3tr18" target="_blank" rel="noopener"><span class="sq" aria-hidden="true"></span>YouTube <span aria-hidden="true">&#8599;</span></a>
-            </div>
-            <div class="stats">
-              <div class="stat"><div class="stat-num">Winner</div><div class="stat-label">Best Healthcare<br>Hack Brooklyn &rsquo;26</div></div>
-              <div class="stat"><div class="stat-num">Prototype</div><div class="stat-label">Draft notes<br>for review</div></div>
-            </div>
-            <details class="technical">
-              <summary>From live streams to draft notes</summary>
-              <p class="pipeline">Microphone → 16 kHz PCM → ElevenLabs WebSocket → transcript → SSE dashboard + Gemini SOAP</p>
-              <p><strong>My work in the team build.</strong> I contributed the initial backend and recording integration; the final app combines that work with teammates’ interface and note-generation changes. The glasses stream arrives through an external client and an HTTP proxy, while browser microphone audio follows a separate path.</p>
-              <p><strong>Implementation.</strong> The browser resamples audio to mono PCM and uses a short-lived transcription token. Committed text is appended on the server and sent to dashboards over SSE. Recording chunks are assembled with FFmpeg; transcript and body-focus intervals help select highlights.</p>
-              <p><strong>Tradeoff.</strong> Simple in-memory session state made the hackathon integration quick, but does not isolate multiple clinical users. Gemini receives text for note generation, not video. JSON parsing is not clinical validation; this is a demonstration, not a deployed medical system.</p>
-            </details>
-          </div>
-          <div class="work-visual">
-            <div class="work-embed">
-              <div class="work-embed-frame">
-                <iframe
-                  src="https://www.youtube-nocookie.com/embed/C1dSdK3tr18"
-                  title="GlanceScribe demo video"
-                  loading="lazy"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  referrerpolicy="strict-origin-when-cross-origin"
-                  allowfullscreen></iframe>
-              </div>
-              <div class="work-embed-label"><span>Demo</span><span>YouTube</span></div>
-            </div>
-          </div>
-        </article>
-
-        <!-- Project 2 - CUNY Connect -->
-        <article class="work-row" data-category="software">
-          <div class="work-copy">
-            <div class="work-head">
-              <h3 class="work-title">CUNY Connect</h3>
-              <span class="work-kicker">STUDENT&nbsp;NETWORK</span>
-            </div>
-            <p class="work-desc">A networking platform for CUNY students, built with a hackathon team. Next.js Server Actions handle connections and messages; Supabase Realtime delivers new chat messages. Profile similarity and Gemini explanations drive recommendations, with caching and deterministic fallback scoring.</p>
-            <div class="chips">
-              <span class="chip">Next.js</span><span class="chip">TypeScript</span><span class="chip">Supabase</span><span class="chip">Gemini</span><span class="chip">Tailwind</span><span class="chip">Zod</span>
-            </div>
-            <div class="links">
-              <a class="link" href="https://github.com/wajm1/CTP-Hacks-2026-CUNY-Connect" target="_blank" rel="noopener"><span class="sq" aria-hidden="true"></span>GitHub <span aria-hidden="true">&#8599;</span></a>
-            </div>
-            <details class="technical">
-              <summary>Messaging, matching, and failure paths</summary>
-              <p class="pipeline">Profile → candidate filtering → weighted score → Gemini + Zod → seven-day cache or local fallback</p>
-              <p><strong>My contribution.</strong> Built core networking, messaging, and recommendation features within the team project. Conversation creation checks accepted connections and uses a database function to reuse the same user pair. New-message subscriptions deduplicate messages by ID.</p>
-              <p><strong>Implementation.</strong> Recommendations combine profile similarity with generated explanations. The response is validated with Zod and checked against allowed candidate IDs. Profile hashes and a seven-day expiry bound cache reuse; timeouts and missing credentials fall back to local scores.</p>
-              <p><strong>Result and limits.</strong> Around 40 people were logged in during the demo, across different features; this was not a messaging load test. The app checks CUNY email domains, not student identity. Its RLS policies still need adversarial authorization tests and membership hardening before a wider release.</p>
-            </details>
-          </div>
-          <div class="work-visual">
-            <div class="flow" style="grid-template-columns:1fr auto 1fr auto 1fr;font-size:10px">
-              <div class="step">Student<br>profile</div>
-              <div class="arrow" aria-hidden="true">&rarr;</div>
-              <div class="step">Feed +<br>network</div>
-              <div class="arrow" aria-hidden="true">&rarr;</div>
-              <div class="step">Gemini<br>match</div>
-            </div>
-            <div class="stats">
-              <div class="stat"><div class="stat-num">CTP <span class="u-accent">&rsquo;26</span></div><div class="stat-label">Built at<br>CTP Hacks</div></div>
-              <div class="stat"><div class="stat-num">~40</div><div class="stat-label">Logged-in users<br>during demo</div></div>
-            </div>
-          </div>
-        </article>
-
-        <!-- Project 4 - Real-Time Collaborative Code Editor (interactive demo #2) -->
-        <article class="work-row" id="editor" data-category="software">
-          <div class="work-copy">
-            <div class="work-head">
-              <h3 class="work-title">Real-Time Collaborative Code Editor</h3>
-              <span class="work-kicker">CODING&nbsp;PLATFORM</span>
-            </div>
-            <p class="work-desc">A React/Monaco editor with debounced full-document updates through Flask and Socket.IO. C++ and Java runs use the Piston service; the static demo uses a separate peer-to-peer adapter. The pane here is an illustration with simulated peers, not a live session or a performance benchmark.</p>
-            <div class="chips">
-              <span class="chip">Flask</span><span class="chip">Socket.IO</span><span class="chip">Monaco</span><span class="chip">React</span><span class="chip">Piston API</span>
-            </div>
-            <div class="stats">
-              <div class="stat"><div class="stat-num">120<span class="u">ms</span></div><div class="stat-label">Configured edit<br>debounce, not latency</div></div>
-              <div class="stat"><div class="stat-num">Full buffer</div><div class="stat-label">Simple synchronization<br>not CRDT / OT</div></div>
-            </div>
-            <div class="links">
-              <a class="link" href="https://wajm1.github.io/Code-Interview-Platform/" target="_blank" rel="noopener"><span class="sq" aria-hidden="true"></span>Live demo <span aria-hidden="true">&#8599;</span></a>
-              <a class="link" href="https://github.com/wajm1/Code-Interview-Platform" target="_blank" rel="noopener"><span class="sq" aria-hidden="true"></span>GitHub <span aria-hidden="true">&#8599;</span></a>
-            </div>
-          </div>
-          <div class="work-visual">
-            <p class="editor-hint">Interactive illustration · simulated peers</p>
-            <!--
-              The lines below are the STATIC FALLBACK. If JS runs, initEditor()
-              replaces them with the animated peers + editable line. If JS fails,
-              this stays put and reads as a normal C++ snippet - never blank.
-            -->
-            <div class="editor">
-              <div class="editor-bar">
-                <span class="editor-dots"><span></span><span></span><span></span><span class="editor-file">session.cpp</span></span>
-                <span class="editor-presence" aria-hidden="true">
-                  <span class="who peer-mateo"><span class="pd"></span>Mateo</span>
-                  <span class="who peer-ren"><span class="pd"></span>Ren</span>
-                  <span class="who peer-you"><span class="pd"></span>You</span>
-                </span>
-                <span class="editor-sync" id="ed-peers"><span class="dot"></span><span id="ed-sync">synced</span></span>
-              </div>
-              <div class="code" id="ed-code">
-                <div class="code-line"><span class="ln">01</span><span class="code-mid">#include &lt;asio.hpp&gt;</span></div>
-                <div class="code-line"><span class="ln">02</span><span class="code-mid">SharedDoc doc;</span></div>
-                <div class="code-line"><span class="ln">03</span><span class="code-mid">on("edit", broadcast);</span></div>
-                <div class="code-line"><span class="ln">04</span><span class="code-mid">auto n = merge(a, b);</span></div>
-                <div class="code-line"><span class="ln">05</span><span class="code-mid">run(doc, Piston);</span></div>
-                <div class="code-line is-you"><span class="ln">06</span><span class="code-mid" style="color:var(--ink-70)">// type · press Enter</span></div>
-              </div>
-              <div class="editor-foot" id="ed-foot">local illustration &middot; 0 interactions</div>
-            </div>
-          </div>
-        </article>
-
-      </div>
-    </div>
-  </section>
-
   <!-- ======================= STACK ======================= -->
   <section id="skills" class="section">
     <div class="wrap">
       <div class="section-head" style="margin-bottom:clamp(8px,2vw,18px)">
         <h2>Stack</h2>
         <span class="rule" aria-hidden="true"></span>
-        <span class="head-note">BA CS &middot; Queens College &middot; December 2026</span>
       </div>
       <dl class="stack">
         <div class="row"><dt>Languages</dt><dd>
@@ -1170,9 +848,7 @@ html,body{overflow-x:clip}
         <div class="row"><dt>Web</dt><dd>
           <span class="chip">React</span><span class="chip">Next.js</span><span class="chip">Node.js</span><span class="chip">Flask</span><span class="chip">PostgreSQL</span><span class="chip">Supabase</span><span class="chip">Socket.IO</span><span class="chip">WebSockets</span><span class="chip">REST APIs</span>
         </dd></div>
-        <div class="row"><dt>AI integration</dt><dd>
-          <span class="chip">Gemini API</span><span class="chip">ElevenLabs transcription</span><span class="chip">Zod validation</span><span class="chip">FFmpeg</span>
-        </dd></div>
+
         <div class="row"><dt>Tools</dt><dd>
           <span class="chip">Git</span><span class="chip">Linux</span><span class="chip">GTest</span><span class="chip">pytest</span><span class="chip">Vitest</span><span class="chip">SDL2</span>
         </dd></div>
@@ -1186,7 +862,6 @@ html,body{overflow-x:clip}
       <div class="section-head" style="margin-bottom:clamp(24px,4vw,40px)">
         <h2>Contact</h2>
         <span class="rule" aria-hidden="true"></span>
-        <span class="head-note">let&rsquo;s build</span>
       </div>
       <div class="contact-grid">
         <div class="contact-cell">
@@ -1206,7 +881,6 @@ html,body{overflow-x:clip}
         <span>Wajahat Mahmood</span>
         <span>Software Engineer</span>
         <span>Portfolio &middot; 2026</span>
-        <span>Sheet 01 / 01</span>
       </div>
       <div style="height:clamp(28px,5vh,56px)"></div>
     </div>
@@ -1215,41 +889,8 @@ html,body{overflow-x:clip}
 </main>
 
 <script>
-/* ============================================================================
-   Interactive pieces - plain ES2015, no framework, no build.
-   Each demo is a small self-contained module and is started inside a try/catch
-   so a failure in one never blanks the page (the static HTML/SVG fallbacks
-   already in the markup remain visible).
-   ========================================================================== */
 (function () {
   'use strict';
-
-  var REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var TOUCH   = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
-
-  // Shared datasheet palette (mirrors the CSS tokens above).
-  var C = {
-    paper:'#F5F6F3', ink:'#171A1C', ink2:'#8B8F92',
-    line:'rgba(20,24,28,0.22)', faint:'rgba(20,24,28,0.10)',
-    accent:'#E24A00', accentInk:'#B23A00'
-  };
-  var ikArm = null;
-
-  function syncPalette() {
-    var s = getComputedStyle(document.documentElement);
-    function v(name, fallback) {
-      var raw = s.getPropertyValue(name).trim();
-      return raw || fallback;
-    }
-    C.paper = v('--panel', C.paper);
-    C.ink = v('--ink', C.ink);
-    C.ink2 = v('--ink-70', C.ink2);
-    C.line = v('--line-2', C.line);
-    C.faint = v('--faint', C.faint);
-    C.accent = v('--accent', C.accent);
-    C.accentInk = v('--accent-ink', C.accentInk);
-  }
-  syncPalette();
 
   function initThemeToggle() {
     var btn = document.getElementById('theme-toggle');
@@ -1261,11 +902,7 @@ html,body{overflow-x:clip}
       try { localStorage.setItem('theme', theme); } catch (e) {}
       if (meta) meta.setAttribute('content', theme === 'dark' ? '#121416' : '#ECEDEA');
       btn.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
-      syncPalette();
-      if (ikArm) {
-        if (ikArm.active && typeof ikArm._kick === 'function') ikArm._kick();
-        else if (typeof ikArm._staticPose === 'function') ikArm._staticPose(ikArm.status || 'IDLE');
-      }
+
     }
 
     apply(document.documentElement.getAttribute('data-theme') || 'light');
@@ -1290,745 +927,6 @@ html,body{overflow-x:clip}
       });
     });
   }
-
-  /* ==========================================================================
-     DEMO 1 - Inverse-kinematics arm (FABRIK solver)
-     --------------------------------------------------------------------------
-     A 3-segment planar arm reaches toward a target the visitor controls by
-     tap / drag / arrow keys. FABRIK = Forward And Backward Reaching Inverse
-     Kinematics: cheap, stable, and easy to read. Per-joint angle limits keep
-     the pose physically plausible.
-     ======================================================================== */
-  function IKArm(figure) {
-    var canvas = figure.querySelector('canvas');
-    var ctx = canvas && canvas.getContext ? canvas.getContext('2d') : null;
-    if (!ctx) return; // no canvas support -> static SVG fallback stays visible
-
-    this.figure = figure;
-    this.canvas = canvas;
-    this.ctx = ctx;
-    this.stateEl = document.getElementById('ik-state');
-    this.readEl  = document.getElementById('ik-read');
-
-    // Kinematic config: link-length ratios and per-joint angle limits (rad).
-    this.ratios = [0.40, 0.34, 0.26];
-    this.limits = [1.75, 2.55, 2.55];
-    this.segs   = this.ratios.length;
-
-    // Runtime state.
-    this.points = null;      // joint positions, base -> tip
-    this.target = null;      // where the tip is trying to reach
-    this.smooth = null;      // eased target (prevents jitter)
-    this.trail  = [];        // fading tip trail
-    this.status = 'IDLE';
-    this.armed = false;      // is the solver actively tracking a target?
-    this.active = false;     // is the rAF loop running?
-    this.dragging = false;
-    this.hoverTarget = false;
-    this.settle = 0;
-    this.latency = 0;
-    this.visible = true;
-    this.atLimit = false;
-
-    this._loop = this._loop.bind(this);
-    this._init();
-  }
-
-  IKArm.prototype._init = function () {
-    var self = this;
-
-    this._fit();
-    if (window.ResizeObserver) {
-      this._ro = new ResizeObserver(function () { self._fit(); });
-      this._ro.observe(this.canvas);
-    } else {
-      window.addEventListener('resize', function () { self._fit(); });
-    }
-    // Pause the loop when the figure scrolls out of view (battery friendly).
-    if (window.IntersectionObserver) {
-      this._io = new IntersectionObserver(function (e) {
-        self.visible = e[0].isIntersecting;
-        if (!self.visible) { cancelAnimationFrame(self._raf); self.active = false; }
-        else if (self.armed) self._kick();
-      }, { threshold: 0.01 });
-      this._io.observe(this.canvas);
-    }
-
-    // Device-specific hint copy.
-    var hint = document.getElementById('ik-hint');
-    if (hint) hint.lastChild.textContent = TOUCH ? 'DRAG TARGET' : 'DRAG \u00b7 \u2191\u2193\u2190\u2192 KEYS';
-
-    // Reduced motion keeps controls usable, solving directly without easing.
-
-    var fig = this.figure;
-    document.querySelectorAll('[data-ik-preset]').forEach(function (button) {
-      button.addEventListener('click', function () {
-        var mode = button.dataset.ikPreset;
-        self.limits = mode === 'limited' ? [0.5, 0.6, 0.6] : [1.75, 2.55, 2.55];
-        var offsets = mode === 'limited' ? [-0.5, -0.5] : (mode === 'unreachable' ? [-0.95, -0.5] : [0.3, -0.65]);
-        self.target = mode === 'reset' ? { x: self.rest.x, y: self.rest.y } : {
-          x: self.base.x + offsets[0] * self.R,
-          y: self.base.y + offsets[1] * self.R
-        };
-        document.querySelectorAll('[data-ik-preset][aria-pressed]').forEach(function (b) {
-          b.setAttribute('aria-pressed', String(b === button && mode !== 'reset'));
-        });
-        var explanations = {
-          reachable: 'Nominal pick: the target sits inside the reach envelope and within normal joint limits, so tip error collapses to approximately zero. That is a feasible single pose — not yet a sequenced workcell.',
-          limited: 'Joint-limited approach: the target is still inside the reach circle, but tighter joint stops prevent the tip from arriving. Distance alone would have incorrectly passed this pose.',
-          unreachable: 'Out-of-reach place: the commanded tip is farther than the sum of link lengths. No joint configuration can close the gap; the layout itself is wrong for this arm.',
-          reset: 'Diagnosis cleared. Place a new tool target to re-run the check, or load a scenario above.'
-        };
-        var expl = document.getElementById('ik-explanation');
-        if (expl) expl.textContent = explanations[mode];
-        self.scenarioHeld = mode !== 'reset';
-        if (mode === 'reset') { self.armed = false; self._kick(); }
-        else self._arm();
-      });
-    });
-    // Mouse: arm on hover, disarm on leave. Touch keeps the last target (a tap
-    // sets it and it stays put - no need to hold).
-    fig.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') self._arm(); });
-    fig.addEventListener('pointerleave', function (e) { if (e.pointerType === 'mouse' && !self.scenarioHeld) self._disarm(); });
-    fig.addEventListener('focus', function () { self._arm(); });
-    fig.addEventListener('blur', function () { if (!TOUCH && !self.scenarioHeld) self._disarm(); });
-    fig.addEventListener('pointerdown', function (e) {
-      self.scenarioHeld = false;
-      self._arm(); self.dragging = true;
-      try { fig.setPointerCapture(e.pointerId); } catch (_) {}
-      self._targetFrom(e); self._kick(); self._cursor();
-    });
-    fig.addEventListener('pointermove', function (e) {
-      if (!self.armed) return;
-      self.hoverTarget = self._nearTarget(e);
-      if (self.dragging) { self._targetFrom(e); self._kick(); }
-      self._cursor();
-    });
-    this._onUp = function () { if (self.dragging) { self.dragging = false; self._cursor(); } };
-    window.addEventListener('pointerup', this._onUp);
-    window.addEventListener('pointercancel', this._onUp);
-    fig.addEventListener('keydown', function (e) { self._onKey(e); });
-
-    this._staticPose('IDLE');
-    // Start with a purposeful diagnosis rather than an idle toy state.
-    var start = typeof document.querySelector === 'function'
-      ? document.querySelector('[data-ik-preset="reachable"]')
-      : null;
-    if (start && typeof start.click === 'function') {
-      this.scenarioHeld = true;
-      start.click();
-    }
-  };
-
-  /* --- geometry setup ---------------------------------------------------- */
-  IKArm.prototype._fit = function () {
-    var r = this.canvas.getBoundingClientRect();
-    if (r.width < 2 || r.height < 2) return;
-    var dpr = Math.min(window.devicePixelRatio || 1, 2);
-    this.canvas.width  = Math.round(r.width * dpr);
-    this.canvas.height = Math.round(r.height * dpr);
-    this.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-    this.w = r.width; this.h = r.height;
-    this.base = { x: r.width * 0.5, y: r.height * 0.87 };
-    this.R = Math.min(r.width * 0.46, r.height * 0.78);       // total reach
-    this.L = this.ratios.map(function (x) { return x * this.R; }, this);
-    this.rest = { x: this.base.x + this.R * 0.18, y: this.base.y - this.R * 0.62 };
-
-    if (!this.points) this._seed();
-    if (REDUCED) this._staticPose('STATIC');
-    else if (!this.active) this._staticPose(this.armed ? this.status : 'IDLE');
-  };
-
-  IKArm.prototype._seed = function () {
-    var pts = [{ x: this.base.x, y: this.base.y }], ang = -Math.PI / 2 + 0.3, cur = { x: this.base.x, y: this.base.y };
-    for (var i = 0; i < this.segs; i++) {
-      ang += i ? -0.4 : 0;
-      cur = { x: cur.x + Math.cos(ang) * this.L[i], y: cur.y + Math.sin(ang) * this.L[i] };
-      pts.push({ x: cur.x, y: cur.y });
-    }
-    this.points = pts;
-    this.smooth = { x: this.rest.x, y: this.rest.y };
-  };
-
-  /* --- input helpers ----------------------------------------------------- */
-  IKArm.prototype._targetFrom = function (e) {
-    var r = this.canvas.getBoundingClientRect();
-    this.target = { x: e.clientX - r.left, y: e.clientY - r.top };
-  };
-  IKArm.prototype._nearTarget = function (e) {
-    var p = this.rawTarget || this.smooth; if (!p) return false;
-    var r = this.canvas.getBoundingClientRect();
-    return Math.hypot((e.clientX - r.left) - p.x, (e.clientY - r.top) - p.y) < 24;
-  };
-  IKArm.prototype._cursor = function () {
-    this.figure.style.cursor = this.dragging ? 'grabbing' : (this.hoverTarget ? 'grab' : 'crosshair');
-  };
-  IKArm.prototype._onKey = function (e) {
-    if (e.key === 'Home') { e.preventDefault(); this._arm(); this.target = { x: this.rest.x, y: this.rest.y }; this._kick(); return; }
-    var step = Math.max(6, this.R * 0.04), d = null;
-    if (e.key === 'ArrowUp') d = { x: 0, y: -step };
-    else if (e.key === 'ArrowDown') d = { x: 0, y: step };
-    else if (e.key === 'ArrowLeft') d = { x: -step, y: 0 };
-    else if (e.key === 'ArrowRight') d = { x: step, y: 0 };
-    if (!d) return;
-    e.preventDefault();
-    this.scenarioHeld = false;
-    this._arm();
-    if (!this.target) this.target = { x: (this.smooth || this.rest).x, y: (this.smooth || this.rest).y };
-    var pad = 10;
-    this.target = {
-      x: Math.max(pad, Math.min(this.w - pad, this.target.x + d.x)),
-      y: Math.max(pad, Math.min(this.h - pad, this.target.y + d.y))
-    };
-    this._kick();
-  };
-
-  /* --- loop lifecycle ---------------------------------------------------- */
-  IKArm.prototype._arm = function () {
-    this.armed = true; this.settle = 0; this.trail = []; this.verdictReady = false;
-    if (!this.target) this.target = { x: this.rest.x, y: this.rest.y };
-    this._kick();
-  };
-  IKArm.prototype._disarm = function () {
-    this.armed = false; this.settle = 0; this.verdictReady = false; this._kick();
-  };
-  IKArm.prototype._kick = function () {
-    this.settle = 0;
-    this.verdictReady = false;
-    if (!this.visible) return;
-    if (REDUCED) {
-      var T = this.armed ? (this.target || this.rest) : this.rest;
-      this.smooth = { x: T.x, y: T.y }; this.rawTarget = T; this.trail = [];
-      for (var i = 0; i < 18; i++) this._fabrik(T);
-      this.status = this.armed ? this._solutionStatus(T) : 'IDLE';
-      this.verdictReady = true;
-      this._draw(); this._hud(); return;
-    }
-    this._hud();
-    if (!this.active) { this.active = true; this._raf = requestAnimationFrame(this._loop); }
-  };
-  IKArm.prototype._solutionStatus = function (T) {
-    var reach = this.L.reduce(function (a, b) { return a + b; }, 0);
-    if (Math.hypot(this.base.x - T.x, this.base.y - T.y) > reach) return 'UNREACHABLE';
-    var tip = this.points[this.segs];
-    return Math.hypot(tip.x - T.x, tip.y - T.y) <= 1 ? 'SOLVED' : 'LIMITED';
-  };
-
-  IKArm.prototype._loop = function () {
-    if (!this.active) return;
-    if (this.visible && this.points) {
-      var T = this.armed ? (this.target || this.rest) : this.rest;
-      if (!this.smooth) this.smooth = { x: this.rest.x, y: this.rest.y };
-      this.smooth.x += (T.x - this.smooth.x) * 0.18;   // ease toward target
-      this.smooth.y += (T.y - this.smooth.y) * 0.18;
-      this.rawTarget = T;
-
-      var t0 = performance.now();
-      this._fabrik(this.smooth);
-      this.latency += ((performance.now() - t0) - this.latency) * 0.2;
-
-      if (this.armed) {
-        this.status = this._solutionStatus(T);
-        var tip = this.points[this.segs];
-        this.trail.push({ x: tip.x, y: tip.y });
-        if (this.trail.length > 34) this.trail.shift();
-      } else if (this.trail.length) {
-        this.trail.shift();
-      }
-
-      // Hold the published verdict until easing finishes (or the pointer releases).
-      if (this.dragging) this.verdictReady = false;
-
-      this._draw();
-      this._hud();
-
-      // Stop the loop once settled (armed pose held, or returned to rest).
-      if (!this.dragging) {
-        var tgt = this.armed ? (this.target || this.rest) : this.rest;
-        var d = Math.hypot(this.smooth.x - tgt.x, this.smooth.y - tgt.y);
-        if (d < 0.6) this.settle++; else this.settle = 0;
-        if (this.settle > 8) {
-          this.active = false;
-          this.verdictReady = true;
-          if (!this.armed) { this.status = 'IDLE'; this.trail = []; }
-          this._draw(); this._hud();
-          return;
-        }
-      }
-    }
-    this._raf = requestAnimationFrame(this._loop);
-  };
-
-  IKArm.prototype._staticPose = function (status) {
-    if (!this.points) this._seed();
-    this.smooth = { x: this.rest.x, y: this.rest.y };
-    this.rawTarget = this.smooth; this.trail = [];
-    for (var k = 0; k < 18; k++) this._fabrik(this.smooth); // let it converge
-    this.status = status || 'IDLE';
-    this._draw(); this._hud();
-  };
-
-  /* --- the solver -------------------------------------------------------- */
-  IKArm.prototype._norm = function (a) { return Math.atan2(Math.sin(a), Math.cos(a)); };
-
-  IKArm.prototype._fabrik = function (T) {
-    var P = this.points, L = this.L, n = this.segs, base = this.base;
-    var reach = L.reduce(function (a, b) { return a + b; }, 0);
-    var dist = Math.hypot(base.x - T.x, base.y - T.y);
-
-    if (dist > reach) {
-      // Target out of range: stretch straight toward it.
-      P[0] = { x: base.x, y: base.y };
-      for (var i = 0; i < n; i++) {
-        var r = Math.hypot(P[i].x - T.x, P[i].y - T.y) || 1e-6, lam = L[i] / r;
-        P[i + 1] = { x: P[i].x + (T.x - P[i].x) * lam, y: P[i].y + (T.y - P[i].y) * lam };
-        this._clamp(i);
-      }
-      return;
-    }
-    // Iterate backward (tip->base) then forward (base->tip).
-    for (var it = 0; it < 6; it++) {
-      P[n] = { x: T.x, y: T.y };
-      for (var b = n - 1; b >= 0; b--) {
-        var rb = Math.hypot(P[b + 1].x - P[b].x, P[b + 1].y - P[b].y) || 1e-6, lb = L[b] / rb;
-        P[b] = { x: P[b + 1].x + (P[b].x - P[b + 1].x) * lb, y: P[b + 1].y + (P[b].y - P[b + 1].y) * lb };
-      }
-      P[0] = { x: base.x, y: base.y };
-      for (var f = 0; f < n; f++) {
-        var rf = Math.hypot(P[f].x - P[f + 1].x, P[f].y - P[f + 1].y) || 1e-6, lf = L[f] / rf;
-        P[f + 1] = { x: P[f].x + (P[f + 1].x - P[f].x) * lf, y: P[f].y + (P[f + 1].y - P[f].y) * lf };
-        this._clamp(f);
-      }
-    }
-  };
-
-  // Constrain joint i's bend to +/- limit relative to the previous link.
-  IKArm.prototype._clamp = function (i) {
-    var P = this.points, L = this.L;
-    var ref = i === 0 ? -Math.PI / 2 : Math.atan2(P[i].y - P[i - 1].y, P[i].x - P[i - 1].x);
-    var delta = this._norm(Math.atan2(P[i + 1].y - P[i].y, P[i + 1].x - P[i].x) - ref);
-    var lim = this.limits[i];
-    if (delta > lim) delta = lim; else if (delta < -lim) delta = -lim;
-    var a = ref + delta;
-    P[i + 1] = { x: P[i].x + Math.cos(a) * L[i], y: P[i].y + Math.sin(a) * L[i] };
-  };
-
-  /* --- rendering --------------------------------------------------------- */
-  IKArm.prototype._draw = function () {
-    var ctx = this.ctx, w = this.w, h = this.h, P = this.points;
-    var base = this.base, end = P[P.length - 1], T = this.rawTarget || this.smooth;
-    var unreach = this.status === 'UNREACHABLE';
-    this.atLimit = false;
-
-    ctx.clearRect(0, 0, w, h);
-    ctx.fillStyle = C.paper; ctx.fillRect(0, 0, w, h);
-
-    // background dot grid
-    ctx.fillStyle = C.faint;
-    var gs = 26;
-    for (var x = (w % gs) / 2; x < w; x += gs)
-      for (var y = (h % gs) / 2; y < h; y += gs) ctx.fillRect(x, y, 1, 1);
-
-    // reach envelope
-    ctx.strokeStyle = unreach ? 'rgba(226,74,0,0.42)' : C.faint;
-    ctx.lineWidth = 1; ctx.setLineDash([2, 5]);
-    ctx.beginPath(); ctx.arc(base.x, base.y, this.R, Math.PI * 1.03, Math.PI * 1.97); ctx.stroke();
-    ctx.setLineDash([]);
-    ctx.fillStyle = C.ink2;
-    ctx.font = '10px ui-monospace, SFMono-Regular, Menlo, monospace';
-    ctx.fillText('REACH ENVELOPE', base.x + this.R * 0.42, base.y - this.R * 0.78);
-
-    // target marker + tip-to-target lead line
-    if (this.status === 'SOLVED' || this.status === 'LIMITED' || unreach) {
-      ctx.strokeStyle = unreach ? C.accent : C.line; ctx.setLineDash([2, 4]);
-      ctx.beginPath(); ctx.moveTo(end.x, end.y); ctx.lineTo(T.x, T.y); ctx.stroke(); ctx.setLineDash([]);
-      this._cross(T, 6, unreach ? C.accent : C.line);
-      if (this.dragging || this.hoverTarget) {
-        ctx.strokeStyle = C.accent; ctx.lineWidth = 1.5;
-        ctx.beginPath(); ctx.arc(T.x, T.y, this.dragging ? 11 : 9, 0, 7); ctx.stroke();
-      }
-    }
-    ctx.setLineDash([]);
-
-    if (this.trail.length > 1 && this.status !== 'IDLE' && this.status !== 'STATIC') this._drawTrail();
-    this._drawBase(base);
-
-    // links
-    ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.strokeStyle = C.ink;
-    for (var i = 0; i < P.length - 1; i++) {
-      ctx.lineWidth = 9 - i * 1.7;
-      ctx.beginPath(); ctx.moveTo(P[i].x, P[i].y); ctx.lineTo(P[i + 1].x, P[i + 1].y); ctx.stroke();
-    }
-
-    if (this.status !== 'IDLE' && this.status !== 'STATIC') this._drawJointArcs();
-    for (var j = 0; j < P.length; j++) this._joint(P[j], j === 0 ? 6 : 5);
-    this._effector(end);
-
-    // idle affordance: dashed grab ring on the tip so it reads as movable
-    if (this.status === 'IDLE') {
-      ctx.save(); ctx.globalAlpha = 0.55; ctx.strokeStyle = C.accent; ctx.lineWidth = 1.4; ctx.setLineDash([3, 4]);
-      ctx.beginPath(); ctx.arc(end.x, end.y, 13, 0, 7); ctx.stroke(); ctx.restore();
-    }
-  };
-  IKArm.prototype._drawTrail = function () {
-    var ctx = this.ctx, T = this.trail, n = T.length;
-    ctx.lineCap = 'round';
-    for (var i = 1; i < n; i++) {
-      ctx.strokeStyle = 'rgba(226,74,0,' + ((i / n) * 0.5).toFixed(3) + ')';
-      ctx.lineWidth = 1.6;
-      ctx.beginPath(); ctx.moveTo(T[i - 1].x, T[i - 1].y); ctx.lineTo(T[i].x, T[i].y); ctx.stroke();
-    }
-  };
-  IKArm.prototype._drawJointArcs = function () {
-    var ctx = this.ctx, P = this.points, r = 15;
-    for (var i = 0; i < this.segs; i++) {
-      var ref = i === 0 ? -Math.PI / 2 : Math.atan2(P[i].y - P[i - 1].y, P[i].x - P[i - 1].x);
-      var cur = Math.atan2(P[i + 1].y - P[i].y, P[i + 1].x - P[i].x);
-      var lim = this.limits[i];
-      var near = Math.abs(this._norm(cur - ref)) >= lim * 0.94;
-      if (near) this.atLimit = true;
-      ctx.strokeStyle = near ? 'rgba(226,74,0,0.55)' : C.line; ctx.lineWidth = 1.5;
-      ctx.beginPath(); ctx.arc(P[i].x, P[i].y, r, ref - lim, ref + lim); ctx.stroke();
-      ctx.strokeStyle = near ? C.accent : C.line; ctx.lineWidth = near ? 2 : 1.4;
-      ctx.beginPath();
-      ctx.moveTo(P[i].x + Math.cos(cur) * (r - 4), P[i].y + Math.sin(cur) * (r - 4));
-      ctx.lineTo(P[i].x + Math.cos(cur) * (r + 3), P[i].y + Math.sin(cur) * (r + 3));
-      ctx.stroke();
-    }
-  };
-  IKArm.prototype._cross = function (p, r, c) {
-    var ctx = this.ctx; ctx.strokeStyle = c; ctx.lineWidth = 1;
-    ctx.beginPath(); ctx.moveTo(p.x - r, p.y); ctx.lineTo(p.x + r, p.y); ctx.moveTo(p.x, p.y - r); ctx.lineTo(p.x, p.y + r); ctx.stroke();
-  };
-  IKArm.prototype._joint = function (p, r) {
-    var ctx = this.ctx;
-    ctx.fillStyle = C.paper; ctx.strokeStyle = C.ink; ctx.lineWidth = 2;
-    ctx.beginPath(); ctx.arc(p.x, p.y, r, 0, 7); ctx.fill(); ctx.stroke();
-    ctx.fillStyle = C.ink; ctx.beginPath(); ctx.arc(p.x, p.y, 1.3, 0, 7); ctx.fill();
-  };
-  IKArm.prototype._drawBase = function (b) {
-    var ctx = this.ctx, bw = 46, bh = 13, top = b.y + 4;
-    ctx.save(); ctx.beginPath(); ctx.rect(b.x - bw / 2, top, bw, bh);
-    ctx.fillStyle = C.paper; ctx.fill(); ctx.clip();
-    ctx.strokeStyle = C.line; ctx.lineWidth = 1; ctx.beginPath();
-    for (var x = -bh; x < bw; x += 6) { ctx.moveTo(b.x - bw / 2 + x, top + bh); ctx.lineTo(b.x - bw / 2 + x + bh, top); }
-    ctx.stroke(); ctx.restore();
-    ctx.strokeStyle = C.ink; ctx.lineWidth = 2; ctx.strokeRect(b.x - bw / 2, top, bw, bh);
-  };
-  IKArm.prototype._effector = function (p) {
-    var ctx = this.ctx; ctx.strokeStyle = C.accent; ctx.lineWidth = 2;
-    ctx.beginPath(); ctx.arc(p.x, p.y, 6.5, 0, 7); ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(p.x - 11, p.y); ctx.lineTo(p.x - 6, p.y); ctx.moveTo(p.x + 6, p.y); ctx.lineTo(p.x + 11, p.y);
-    ctx.moveTo(p.x, p.y - 11); ctx.lineTo(p.x, p.y - 6); ctx.moveTo(p.x, p.y + 6); ctx.lineTo(p.x, p.y + 11);
-    ctx.stroke();
-    ctx.fillStyle = C.accent; ctx.beginPath(); ctx.arc(p.x, p.y, 1.6, 0, 7); ctx.fill();
-  };
-
-  /* --- HUD readout ------------------------------------------------------- */
-  IKArm.prototype._angles = function () {
-    var P = this.points, out = [];
-    for (var i = 1; i < P.length; i++) {
-      var ref = i === 1 ? -Math.PI / 2 : Math.atan2(P[i - 1].y - P[i - 2].y, P[i - 1].x - P[i - 2].x);
-      var deg = Math.round(this._norm(Math.atan2(P[i].y - P[i - 1].y, P[i].x - P[i - 1].x) - ref) * 180 / Math.PI);
-      out.push((deg >= 0 ? '+' : '') + deg + '\u00B0');
-    }
-    return out;
-  };
-  IKArm.prototype._jointReport = function () {
-    var P = this.points, out = [];
-    if (!P || P.length < 2) return out;
-    for (var i = 0; i < this.segs; i++) {
-      var ref = i === 0 ? -Math.PI / 2 : Math.atan2(P[i].y - P[i - 1].y, P[i].x - P[i - 1].x);
-      var delta = this._norm(Math.atan2(P[i + 1].y - P[i].y, P[i + 1].x - P[i].x) - ref);
-      var lim = this.limits[i];
-      out.push({
-        index: i + 1,
-        deg: delta * 180 / Math.PI,
-        limDeg: lim * 180 / Math.PI,
-        at: Math.abs(delta) >= lim - 0.02
-      });
-    }
-    return out;
-  };
-  IKArm.prototype._diagnose = function () {
-    var verdict = document.getElementById('ik-verdict');
-    var reason = document.getElementById('ik-reason');
-    var reachEl = document.getElementById('ik-reach');
-    var errorEl = document.getElementById('ik-error');
-    var jointsEl = document.getElementById('ik-joints');
-    var anglesEl = document.getElementById('ik-angles');
-    if (!verdict) return;
-
-    // Do not publish SOLVED / LIMITED / UNREACHABLE until easing has finished.
-    if (!this.verdictReady && (this.armed || this.active || this.dragging)) {
-      verdict.textContent = 'Calculating…';
-      verdict.setAttribute('data-state', 'SOLVING');
-      if (reason) {
-        reason.textContent = 'Waiting for the tip target and joint solve to settle before reporting feasibility.';
-      }
-      if (reachEl) reachEl.textContent = '…';
-      if (errorEl) errorEl.textContent = '…';
-      if (jointsEl) jointsEl.textContent = '…';
-      if (anglesEl) anglesEl.textContent = '…';
-      return;
-    }
-
-    var labels = {
-      IDLE: 'Waiting for a target',
-      STATIC: 'Static pose · reduced motion',
-      SOLVED: 'Feasible tip pose',
-      LIMITED: 'Blocked by joint limits',
-      UNREACHABLE: 'Outside reach envelope'
-    };
-    var reasons = {
-      IDLE: 'Choose a scenario or place a tool target on the drawing. The panel updates with the solver’s verdict.',
-      STATIC: 'Reduced-motion mode keeps the diagnosis without animated easing. Load a scenario to inspect reach versus limits.',
-      SOLVED: 'Tip error is within the solver tolerance. Link lengths are preserved and no joint is forced past its stop for this target.',
-      LIMITED: 'The target is inside the reach envelope, but at least one joint is hard against its limit. Changing joint travel — or the pose — is required.',
-      UNREACHABLE: 'Commanded tip distance exceeds the sum of link lengths. No joint solution exists; the fixture or target must move closer.'
-    };
-    var status = this.status || 'IDLE';
-    verdict.textContent = labels[status] || status;
-    verdict.setAttribute('data-state', status);
-    if (reason) reason.textContent = reasons[status] || '';
-
-    if (status === 'IDLE' || status === 'STATIC' || !this.points) {
-      if (reachEl) reachEl.textContent = '—';
-      if (errorEl) errorEl.textContent = '—';
-      if (jointsEl) jointsEl.textContent = '—';
-      if (anglesEl) anglesEl.textContent = '—';
-      return;
-    }
-
-    var tip = this.points[this.segs];
-    var target = this.rawTarget || this.smooth || tip;
-    var tipDist = Math.hypot(tip.x - this.base.x, tip.y - this.base.y);
-    var cmdDist = Math.hypot(target.x - this.base.x, target.y - this.base.y);
-    var error = Math.hypot(tip.x - target.x, tip.y - target.y);
-    var joints = this._jointReport();
-    var limited = joints.filter(function (j) { return j.at; }).map(function (j) { return 'J' + j.index; });
-
-    if (reachEl) {
-      reachEl.textContent = Math.round(cmdDist) + ' / ' + Math.round(this.R) + ' px · tip ' + Math.round(tipDist);
-    }
-    if (errorEl) errorEl.textContent = error.toFixed(1) + ' px';
-    if (jointsEl) jointsEl.textContent = limited.length ? limited.join(', ') : 'none';
-    if (anglesEl) anglesEl.textContent = this._angles().join(' ');
-  };
-  IKArm.prototype._hud = function () {
-    var publishing = this.verdictReady || REDUCED || this.status === 'IDLE' || this.status === 'STATIC';
-    if (this.stateEl) {
-      if (!publishing && (this.armed || this.active || this.dragging)) {
-        this.stateEl.textContent = 'SOLVING';
-        this.stateEl.style.color = C.ink2;
-      } else {
-        this.stateEl.textContent = this.status;
-        this.stateEl.style.color = this.status === 'UNREACHABLE' ? C.accentInk : (this.status === 'SOLVED' ? C.ink : C.ink2);
-      }
-    }
-    this._diagnose();
-    if (!this.readEl) return;
-    if (!publishing && (this.armed || this.active || this.dragging)) {
-      this.readEl.textContent = 'settling tip target \u00b7 diagnosis pending';
-      return;
-    }
-    if (this.status === 'STATIC') { this.readEl.textContent = '\u03B8 static \u00b7 reduced-motion'; return; }
-    if (this.status === 'IDLE')   { this.readEl.textContent = '\u03B8 \u00b7 \u00b7 \u00b7 \u00b7 TCP \u00b7,\u00b7 \u00b7 idle'; return; }
-    var end = this.points[this.points.length - 1];
-    var tx = Math.round(end.x - this.base.x), ty = Math.round(this.base.y - end.y);
-    var target = this.rawTarget || this.smooth;
-    var error = target ? Math.hypot(end.x - target.x, end.y - target.y) : 0;
-    this.readEl.textContent = '\u03B8 ' + this._angles().join(' ') + ' \u00b7 tip ' + tx + ',' + ty + ' px \u00b7 error ' + error.toFixed(1) + ' px';
-  };
-
-  /* ==========================================================================
-     DEMO 2 - Real-time collaborative editor (simulated)
-     --------------------------------------------------------------------------
-     Two "peers" type live; the accent line is yours. Press Enter to commit
-     your line into the shared buffer - it lands as a numbered line, bumps the
-     op counter, and flips the sync badge (broadcasting -> synced).
-     GRACEFUL DEGRADATION: the static C++ snippet in the markup is the fallback;
-     this only runs if it can find the mount and rewrites it.
-     ======================================================================== */
-  function CollabEditor() {
-    this.host  = document.getElementById('ed-code');
-    this.foot  = document.getElementById('ed-foot');
-    this.peersEl = document.getElementById('ed-peers');
-    this.syncEl  = document.getElementById('ed-sync');
-    if (!this.host) return;
-
-    this.peers = [];
-    this.committed = [];
-    this.ops = 0;
-
-    // Short, fully-visible lines so peer typing isn't hidden behind ellipsis.
-    this.rows = [
-      { text: '#include <asio.hpp>' },
-      { text: 'SharedDoc doc;' },
-      {
-        author: 'mateo', prefix: '',
-        variants: [
-          'on("edit", broadcast);',
-          'on("edit", enqueue);',
-          'on("edit", merge);'
-        ],
-        startDelay: 0
-      },
-      {
-        author: 'ren', prefix: '',
-        variants: [
-          'auto n = merge(a, b);',
-          'auto n = rebase(a, b);',
-          'auto n = transform(a, b);'
-        ],
-        startDelay: 16
-      },
-      { text: 'run(doc, Piston);' },
-      { author: 'you', editable: true, placeholder: '// type · press Enter' }
-    ];
-
-    this._build();
-  }
-
-  CollabEditor.prototype._build = function () {
-    var self = this;
-    this.host.textContent = '';
-    this.rows.forEach(function (row) { self.host.appendChild(self._line(row)); });
-    this._renumber();
-    this._foot('synced');
-    if (!REDUCED) this._timer = setInterval(function () { self._tick(); }, 42);
-  };
-
-  CollabEditor.prototype._line = function (row) {
-    var self = this;
-    var line = document.createElement('div');
-    line.className = 'code-line';
-    if (row.editable) line.className += ' is-you';
-    if (row.author) line.className += ' peer-' + row.author;
-    var ln = document.createElement('span'); ln.className = 'ln'; line.appendChild(ln);
-    var mid = document.createElement('span'); mid.className = 'code-mid'; line.appendChild(mid);
-
-    if (row.editable) {
-      var ed = document.createElement('span');
-      ed.className = 'code-edit';
-      ed.contentEditable = 'true'; ed.spellcheck = false;
-      ed.setAttribute('role', 'textbox');
-      ed.setAttribute('aria-label', 'Collaborative editor demo. Type a line and press Enter to add it');
-      ed.setAttribute('data-placeholder', row.placeholder);
-      ed.addEventListener('input', function () { self._sync('syncing'); });
-      ed.addEventListener('blur',  function () { self._sync('synced'); });
-      ed.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); self._commit(ed); } });
-      mid.appendChild(ed);
-      line.appendChild(this._tag(row.author));
-    } else if (row.variants) {
-      var code = document.createElement('span');
-      code.textContent = row.prefix + (REDUCED ? row.variants[0] : '');
-      mid.appendChild(code);
-      if (!REDUCED) {
-        var car = document.createElement('span'); car.className = 'caret';
-        mid.appendChild(car);
-        this.peers.push({
-          code: code,
-          prefix: row.prefix,
-          variants: row.variants,
-          vi: 0,
-          text: '',
-          target: row.variants[0],
-          phase: 'type',
-          hold: 0,
-          cd: row.startDelay || 0
-        });
-      }
-      line.appendChild(this._tag(row.author));
-    } else if (row.author) {
-      var c2 = document.createElement('span'); c2.textContent = row.text;
-      mid.appendChild(c2);
-      line.appendChild(this._tag(row.author));
-    } else {
-      var c3 = document.createElement('span'); c3.textContent = row.text;
-      mid.appendChild(c3);
-    }
-    return line;
-  };
-
-  CollabEditor.prototype._tag = function (name) {
-    var t = document.createElement('span'); t.className = 'peer-tag';
-    var dot = document.createElement('span'); dot.className = 'pd';
-    var nm = document.createElement('span'); nm.textContent = name;
-    t.appendChild(dot); t.appendChild(nm); return t;
-  };
-
-  CollabEditor.prototype._renumber = function () {
-    var kids = this.host.children;
-    for (var i = 0; i < kids.length; i++) {
-      var g = kids[i].querySelector('.ln');
-      if (g) g.textContent = String(i + 1).length < 2 ? '0' + (i + 1) : String(i + 1);
-    }
-  };
-
-  // Commit your line into the shared buffer.
-  CollabEditor.prototype._commit = function (ed) {
-    var text = (ed.textContent || '').trim();
-    if (!text) return;
-    var editLine = ed.parentNode.parentNode;             // .code-edit -> .code-mid -> .code-line
-    var line = this._line({ author: 'you', text: text });
-    this.host.insertBefore(line, editLine);
-    this.committed.push(line);
-    while (this.committed.length > 3) this.committed.shift().remove(); // keep it tidy
-    ed.textContent = '';
-    this.ops++;
-    this._renumber();
-    this._sync('syncing');
-    ed.focus();
-  };
-
-  // Sync badge + footer feedback (the "purpose" of typing).
-  CollabEditor.prototype._sync = function (state) {
-    var self = this;
-    if (this.syncEl) { this.syncEl.textContent = state === 'syncing' ? 'syncing…' : 'synced'; this.syncEl.style.color = state === 'syncing' ? 'var(--accent-ink)' : ''; }
-    if (this.peersEl) { this.peersEl.style.opacity = '0.45'; requestAnimationFrame(function () { self.peersEl.style.opacity = '1'; }); }
-    this._foot(state);
-    if (state === 'syncing') {
-      clearTimeout(this._syncT);
-      this._syncT = setTimeout(function () { self._sync('synced'); }, 520);
-    }
-  };
-  CollabEditor.prototype._foot = function (state) {
-    if (!this.foot) return;
-    this.foot.textContent = 'local illustration \u00b7 ' + this.ops + ' interactions \u00b7 ' + (state === 'syncing' ? 'updating\u2026' : 'ready');
-  };
-
-  // Advance simulated peers one micro-step (type -> hold -> erase -> next variant).
-  CollabEditor.prototype._tick = function () {
-    for (var i = 0; i < this.peers.length; i++) {
-      var s = this.peers[i];
-      if (s.cd > 0) { s.cd--; continue; }
-      if (s.phase === 'type') {
-        if (s.text.length < s.target.length) {
-          s.text = s.target.slice(0, s.text.length + 1);
-          s.cd = 1 + Math.floor(Math.random() * 2);
-        } else {
-          s.phase = 'hold';
-          s.hold = 28 + Math.floor(Math.random() * 12);
-        }
-      } else if (s.phase === 'hold') {
-        if (--s.hold <= 0) s.phase = 'erase';
-      } else {
-        if (s.text.length > 0) {
-          s.text = s.text.slice(0, -1);
-          s.cd = 0;
-        } else {
-          s.vi = (s.vi + 1) % s.variants.length;
-          s.target = s.variants[s.vi];
-          s.phase = 'type';
-          s.cd = 4 + Math.floor(Math.random() * 8);
-        }
-      }
-      s.code.textContent = s.prefix + s.text;
-    }
-  };
 
   /* ==========================================================================
      Small utility - copy email to clipboard, with a legacy fallback.
@@ -2063,9 +961,6 @@ html,body{overflow-x:clip}
   function boot() {
     try { initThemeToggle(); } catch (e) {}
     try { initProjectFilters(); } catch (e) {}
-    var ik = document.getElementById('ik');
-    try { if (ik) ikArm = new IKArm(ik); } catch (e) { /* static SVG fallback remains */ }
-    try { new CollabEditor(); } catch (e) { /* static snippet fallback remains */ }
     try { initCopyEmail(); } catch (e) {}
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);

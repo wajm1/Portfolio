@@ -12,14 +12,13 @@ Static personal website for software engineering, robot integration, and test au
 - xArm Robot Learning: Isaac Lab PPO cube-lift training with randomized states and parallel simulation.
 - CUNY Connect: Next.js/Supabase networking, realtime messaging and validated/cached recommendations.
 - GlanceScribe: team-built Healthcare track winner; live media, browser audio transcription, transcript-based SOAP drafts, and FFmpeg.
-- Three-link FABRIK arm with joint limits and pointer/keyboard controls; project filters for robotics and software work.
-- Workcell Feasibility Lab: browser-only planar screening of a six-pose transfer under joint limits and an obstacle, with JSON/CSV analysis exports.
+- Project filters for robotics and software work.
 
 The project preserves its HTML/CSS/JavaScript stack and light/dark engineering-drawing design. No frontend framework or runtime package installation is required.
 
 ## Files and public output
 
-`index.html` contains the active site. `workcell.html` plus `workcell/` implement the Workcell Feasibility Lab. `favicon.svg` and selected robot-demo media are public assets. The current master resume PDF is stored in the repository, but it is unlinked from the site and excluded from the public package.
+`index.html` contains the active site. `favicon.svg` and selected robot-demo media are public assets. The current master resume PDF is stored in the repository, but it is unlinked from the site and excluded from the public package.
 
 `Portfolio.dc.html` and `support.js` are historical design/export artifacts, not loaded by the active page and not included in the public package. They are retained unchanged to preserve prior work.
 
@@ -33,9 +32,9 @@ node scripts/build.mjs
 python3 -m http.server 8000 --bind 127.0.0.1 --directory dist
 ```
 
-Validation checks inline JavaScript syntax, local links/anchors, duplicate IDs, selected content invariants, the workcell model suite, 225 deterministic poses against the actual IK solver, and reduced-motion/offscreen behavior. It is not a full HTML/CSS accessibility audit or a substitute for browser testing.
+Validation checks inline JavaScript syntax, local links, anchors, duplicate IDs, and selected content.
 
-Browser QA should cover desktop/mobile, both themes, keyboard controls, the three IK examples, the Workcell Lab, disclosures and email copy. Verify there are no resume-download links. Video uses `preload="none"`; the external demonstration iframe is lazy-loaded. No API keys or backend credentials are needed.
+Browser QA should cover desktop/mobile, both themes, project filters, disclosures and email copy. Verify there are no resume-download links. Video uses `preload="none"`; the external demonstration iframe is lazy-loaded. No API keys or backend credentials are needed.
 
 ## Publishing
 
