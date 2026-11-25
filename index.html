@@ -91,6 +91,8 @@ html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
 body{
   margin:0;
   background:var(--paper);
+  background-image:linear-gradient(var(--faint) 1px,transparent 1px),linear-gradient(90deg,var(--faint) 1px,transparent 1px);
+  background-size:32px 32px;
   color:var(--ink);
   font-family:var(--grot);
   line-height:1.5;
@@ -169,13 +171,36 @@ section[id],footer[id]{scroll-margin-top:24px}
   margin-bottom:clamp(20px,3vw,34px);
 }
 
-.name{font-weight:600;font-size:clamp(40px,7vw,74px);line-height:1;letter-spacing:-.035em}
-.lede{max-width:55ch;margin-top:clamp(20px,3vw,30px);font-size:clamp(16px,1.5vw,19px);color:var(--ink-70);text-wrap:pretty}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(340px,.9fr);gap:clamp(28px,5vw,72px);align-items:center}
+.name{font-weight:600;font-size:clamp(48px,6.3vw,86px);line-height:.94;letter-spacing:-.045em}
+.lede{max-width:34ch;margin-top:clamp(20px,3vw,30px);font-size:clamp(18px,1.7vw,22px);color:var(--ink-70);text-wrap:pretty}
 .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:clamp(22px,3vw,30px)}
 .tag{
   font-family:var(--mono);font-size:12px;letter-spacing:.02em;color:var(--ink);
   border:1px solid var(--line);padding:7px 10px;background:var(--panel);
 }
+.hero-actions{display:flex;gap:12px 24px;flex-wrap:wrap;align-items:center;margin-top:28px}
+.hero-actions a{display:inline-flex;align-items:center;min-height:42px;font:500 13px var(--mono);border-bottom:1px solid var(--ink)}
+.hero-actions a:first-child{background:var(--ink);color:var(--paper);padding:10px 16px;border:1px solid var(--ink)}
+.hero-actions a:first-child:hover{background:var(--accent-ink);border-color:var(--accent-ink);color:#fff}
+.hero-actions a:last-child:hover{border-color:var(--accent-ink)}
+.arm-demo{border:1px solid var(--line-2);background:var(--panel);min-width:0;box-shadow:12px 12px 0 var(--faint)}
+.arm-top,.arm-foot{display:flex;justify-content:space-between;gap:12px;padding:12px 15px;font:500 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-70)}
+.arm-top{border-bottom:1px solid var(--line)}
+.arm-top strong{color:var(--accent-ink)}
+.arm-foot{border-top:1px solid var(--line);letter-spacing:0;text-transform:none;line-height:1.5}
+.arm-stage{display:block;width:100%;height:auto;aspect-ratio:5/4;touch-action:none;cursor:crosshair}
+.arm-stage .grid-line{stroke:var(--line);stroke-width:.6}
+.arm-stage .reach-ring{stroke:var(--line-2);stroke-dasharray:5 6;fill:none}
+.arm-stage .link-shadow{stroke:var(--line-2);stroke-width:15;stroke-linecap:round}
+.arm-stage .link-body{stroke:var(--ink);stroke-width:8;stroke-linecap:round}
+.arm-stage .joint{fill:var(--panel);stroke:var(--ink);stroke-width:3}
+.arm-stage .target{fill:none;stroke:var(--accent);stroke-width:2}
+.arm-stage .base{fill:var(--ink)}
+.arm-stage text{font:11px var(--mono);fill:var(--ink-70)}
+.arm-caption{font:12px/1.55 var(--mono);color:var(--ink-70);margin:14px 0 0;max-width:45ch}
+.arm-caption strong{color:var(--ink)}
+.work-intro{max-width:62ch;margin:-12px 0 28px;color:var(--ink-70);font-size:16px;line-height:1.6}
 
 /* --- Selected work -------------------------------------------------------- */
 /* Flex column of full-width rows. Each row = copy | visual. */
@@ -380,6 +405,8 @@ html,body{overflow-x:clip}
 
 /* Below this width the copy/visual split gets too cramped, so rows stack. */
 @media (max-width:880px){
+  .hero-grid{grid-template-columns:1fr}
+  .hero-visual{max-width:620px}
   .work-row{flex-direction:column !important;gap:18px}
   .work-copy,.work-visual{max-width:none;flex:1 1 auto}
   .work-desc,.card-desc{max-width:none}
@@ -388,6 +415,9 @@ html,body{overflow-x:clip}
 }
 
 @media (max-width:720px){
+  .hero{padding-top:38px}
+  .hero-grid{gap:34px}
+  .arm-demo{box-shadow:6px 6px 0 var(--faint)}
   /* Section titles + notes stack so they never fight for one row */
   .section-head{
     display:grid;
@@ -547,10 +577,38 @@ html,body{overflow-x:clip}
 
   <section class="hero">
     <div class="wrap">
-      <p class="eyebrow">Software engineer</p>
-      <h1 class="name">Wajahat Mahmood</h1>
-      <p class="lede">I build web apps, test automation, and robot control software.</p>
-      <p class="hero-note">Queens College &middot; BA in Computer Science &middot; December 2026</p>
+      <p class="eyebrow">Software engineering &nbsp;&middot;&nbsp; Robotics systems</p>
+      <div class="hero-grid">
+        <div>
+          <h1 class="name">Wajahat<br>Mahmood</h1>
+          <p class="lede">I build software that moves hardware, tests its limits, and makes the results inspectable.</p>
+          <p class="hero-note">C++ robot drivers, Python test automation, and full-stack applications. Queens College CS &middot; graduating December 2026.</p>
+          <div class="tags" aria-label="Core technologies">
+            <span class="tag">C++</span><span class="tag">Python</span><span class="tag">TypeScript</span><span class="tag">ROS 2</span>
+          </div>
+          <div class="hero-actions"><a href="#work">Explore projects</a><a href="#contact">Get in touch</a></div>
+        </div>
+        <div class="hero-visual">
+          <div class="arm-demo">
+            <div class="arm-top"><span>Interactive sketch / 01</span><strong id="arm-status" role="status">Within reach</strong></div>
+            <svg id="arm-stage" class="arm-stage" viewBox="0 0 500 400" tabindex="0" role="img" aria-label="Interactive two-link arm. Drag or tap to move the orange target. Focus and use arrow keys to move it. Home resets it.">
+              <defs><pattern id="arm-grid" width="25" height="25" patternUnits="userSpaceOnUse"><path class="grid-line" d="M 25 0 L 0 0 0 25" fill="none"/></pattern></defs>
+              <rect width="500" height="400" fill="url(#arm-grid)"/>
+              <circle class="reach-ring" cx="210" cy="330" r="245"/>
+              <path d="M180 345 H240 V355 H180 Z" class="base"/>
+              <line id="arm-upper-shadow" class="link-shadow" x1="210" y1="330" x2="170" y2="185"/>
+              <line id="arm-lower-shadow" class="link-shadow" x1="170" y1="185" x2="315" y2="145"/>
+              <line id="arm-upper" class="link-body" x1="210" y1="330" x2="170" y2="185"/>
+              <line id="arm-lower" class="link-body" x1="170" y1="185" x2="315" y2="145"/>
+              <circle class="joint" cx="210" cy="330" r="9"/><circle id="arm-elbow" class="joint" cx="170" cy="185" r="8"/><circle id="arm-tip" class="joint" cx="315" cy="145" r="6"/>
+              <g id="arm-target" class="target" transform="translate(315 145)"><circle r="13"/><path d="M-22 0h12m20 0h12M0-22v12m0 20v12"/></g>
+              <text x="20" y="32">XY / PLANAR REACH</text><text x="20" y="375">BASE 00</text>
+            </svg>
+            <div class="arm-foot"><span>Move the orange target</span><span id="arm-readout">Tip error 0 units</span></div>
+          </div>
+          <p class="arm-caption"><strong>A small engineering sketch.</strong> Two-link inverse kinematics shows whether a target is within reach. It is a planar illustration, not a hardware controller.</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -560,6 +618,7 @@ html,body{overflow-x:clip}
         <h2>Projects</h2>
         <span class="rule" aria-hidden="true"></span>
       </div>
+      <p class="work-intro">Team prototypes, robotics simulations, and the systems behind them. Open a project’s technical notes for implementation details and limits.</p>
 
       <div class="project-filters" role="group" aria-label="Filter projects">
         <button type="button" class="project-filter" data-filter="all" aria-pressed="true">All</button>
@@ -648,23 +707,6 @@ html,body{overflow-x:clip}
           </div>
         </article>
 
-        <!-- Project 4 - Real-Time Collaborative Code Editor -->
-        <article class="work-row" id="editor" data-category="software">
-          <div class="work-copy">
-            <div class="work-head">
-              <h3 class="work-title">Real-Time Collaborative Code Editor</h3>
-            </div>
-            <p class="work-desc">A shared React and Monaco editor that syncs changes through Flask and Socket.IO. Run C++ and Java from the editor with Piston.</p>
-            <div class="chips">
-              <span class="chip">Flask</span><span class="chip">Socket.IO</span><span class="chip">Monaco</span><span class="chip">React</span><span class="chip">Piston API</span>
-            </div>
-            <div class="links">
-              <a class="link" href="https://wajm1.github.io/Code-Interview-Platform/" target="_blank" rel="noopener"><span class="sq" aria-hidden="true"></span>Live demo <span aria-hidden="true">&#8599;</span></a>
-              <a class="link" href="https://github.com/wajm1/Code-Interview-Platform" target="_blank" rel="noopener"><span class="sq" aria-hidden="true"></span>GitHub <span aria-hidden="true">&#8599;</span></a>
-            </div>
-          </div>
-        </article>
-
         <article class="work-row" data-category="robotics">
           <div class="work-copy">
             <div class="work-head">
@@ -713,6 +755,23 @@ html,body{overflow-x:clip}
               <div class="step">PPO<br>policy</div>
               <div class="arrow" aria-hidden="true">&rarr;</div>
               <div class="step">xArm7<br>lift</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Collaborative code editor -->
+        <article class="work-row" id="editor" data-category="software">
+          <div class="work-copy">
+            <div class="work-head">
+              <h3 class="work-title">Real-Time Collaborative Code Editor</h3>
+            </div>
+            <p class="work-desc">A shared React and Monaco editor that syncs changes through Flask and Socket.IO. Run C++ and Java from the editor with Piston.</p>
+            <div class="chips">
+              <span class="chip">Flask</span><span class="chip">Socket.IO</span><span class="chip">Monaco</span><span class="chip">React</span><span class="chip">Piston API</span>
+            </div>
+            <div class="links">
+              <a class="link" href="https://wajm1.github.io/Code-Interview-Platform/" target="_blank" rel="noopener"><span class="sq" aria-hidden="true"></span>Live demo <span aria-hidden="true">&#8599;</span></a>
+              <a class="link" href="https://github.com/wajm1/Code-Interview-Platform" target="_blank" rel="noopener"><span class="sq" aria-hidden="true"></span>GitHub <span aria-hidden="true">&#8599;</span></a>
             </div>
           </div>
         </article>
@@ -928,6 +987,68 @@ html,body{overflow-x:clip}
     });
   }
 
+  function initArmSketch() {
+    var svg = document.getElementById('arm-stage');
+    if (!svg) return;
+    var base = { x: 210, y: 330 }, upper = 135, lower = 110;
+    var target = { x: 315, y: 145 };
+    var upperLine = document.getElementById('arm-upper');
+    var lowerLine = document.getElementById('arm-lower');
+    var upperShadow = document.getElementById('arm-upper-shadow');
+    var lowerShadow = document.getElementById('arm-lower-shadow');
+    var elbowDot = document.getElementById('arm-elbow');
+    var tipDot = document.getElementById('arm-tip');
+    var targetMark = document.getElementById('arm-target');
+    var status = document.getElementById('arm-status');
+    var readout = document.getElementById('arm-readout');
+    function line(el, x1, y1, x2, y2) {
+      el.setAttribute('x1', x1); el.setAttribute('y1', y1);
+      el.setAttribute('x2', x2); el.setAttribute('y2', y2);
+    }
+    function draw() {
+      var dx = target.x - base.x, dy = target.y - base.y;
+      var distance = Math.hypot(dx, dy);
+      var reach = upper + lower;
+      var solvedDistance = Math.max(Math.abs(upper - lower), Math.min(distance, reach));
+      var heading = Math.atan2(dy, dx);
+      var offset = Math.acos(Math.max(-1, Math.min(1,
+        (upper * upper + solvedDistance * solvedDistance - lower * lower) / (2 * upper * solvedDistance))));
+      var elbow = { x: base.x + upper * Math.cos(heading - offset), y: base.y + upper * Math.sin(heading - offset) };
+      var tip = { x: base.x + solvedDistance * Math.cos(heading), y: base.y + solvedDistance * Math.sin(heading) };
+      [upperLine, upperShadow].forEach(function (el) { line(el, base.x, base.y, elbow.x, elbow.y); });
+      [lowerLine, lowerShadow].forEach(function (el) { line(el, elbow.x, elbow.y, tip.x, tip.y); });
+      elbowDot.setAttribute('cx', elbow.x); elbowDot.setAttribute('cy', elbow.y);
+      tipDot.setAttribute('cx', tip.x); tipDot.setAttribute('cy', tip.y);
+      targetMark.setAttribute('transform', 'translate(' + target.x + ' ' + target.y + ')');
+      var error = Math.round(Math.hypot(target.x - tip.x, target.y - tip.y));
+      status.textContent = error > 1 ? 'Out of reach' : 'Within reach';
+      readout.textContent = 'Tip error ' + error + ' units';
+    }
+    function move(event) {
+      var point = svg.createSVGPoint(); point.x = event.clientX; point.y = event.clientY;
+      var local = point.matrixTransform(svg.getScreenCTM().inverse());
+      target.x = Math.max(22, Math.min(478, local.x));
+      target.y = Math.max(28, Math.min(365, local.y));
+      draw();
+    }
+    svg.addEventListener('pointerdown', function (event) { svg.setPointerCapture(event.pointerId); move(event); });
+    svg.addEventListener('pointermove', function (event) { if (svg.hasPointerCapture(event.pointerId)) move(event); });
+    svg.addEventListener('keydown', function (event) {
+      var step = event.shiftKey ? 20 : 8;
+      if (event.key === 'ArrowLeft') target.x -= step;
+      else if (event.key === 'ArrowRight') target.x += step;
+      else if (event.key === 'ArrowUp') target.y -= step;
+      else if (event.key === 'ArrowDown') target.y += step;
+      else if (event.key === 'Home') target = { x: 315, y: 145 };
+      else return;
+      event.preventDefault();
+      target.x = Math.max(22, Math.min(478, target.x));
+      target.y = Math.max(28, Math.min(365, target.y));
+      draw();
+    });
+    draw();
+  }
+
   /* ==========================================================================
      Small utility - copy email to clipboard, with a legacy fallback.
      ======================================================================== */
@@ -961,6 +1082,7 @@ html,body{overflow-x:clip}
   function boot() {
     try { initThemeToggle(); } catch (e) {}
     try { initProjectFilters(); } catch (e) {}
+    try { initArmSketch(); } catch (e) {}
     try { initCopyEmail(); } catch (e) {}
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);

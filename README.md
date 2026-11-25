@@ -12,9 +12,9 @@ Static personal website for software engineering, robot integration, and test au
 - xArm Robot Learning: Isaac Lab PPO cube-lift training with randomized states and parallel simulation.
 - CUNY Connect: Next.js/Supabase networking, realtime messaging and validated/cached recommendations.
 - GlanceScribe: team-built Healthcare track winner; live media, browser audio transcription, transcript-based SOAP drafts, and FFmpeg.
-- Project filters for robotics and software work.
+- Project filters for robotics and software work, with a small interactive two-link reach sketch in the hero.
 
-The project preserves its HTML/CSS/JavaScript stack and light/dark engineering-drawing design. No frontend framework or runtime package installation is required.
+The project preserves its HTML/CSS/JavaScript stack and light/dark engineering-drawing design. The hero sketch is a planar illustration, not a robot controller. No frontend framework or runtime package installation is required.
 
 ## Files and public output
 
@@ -34,7 +34,7 @@ python3 -m http.server 8000 --bind 127.0.0.1 --directory dist
 
 Validation checks inline JavaScript syntax, local links, anchors, duplicate IDs, and selected content.
 
-Browser QA should cover desktop/mobile, both themes, project filters, disclosures and email copy. Verify there are no resume-download links. Video uses `preload="none"`; the external demonstration iframe is lazy-loaded. No API keys or backend credentials are needed.
+Browser QA should cover desktop/mobile, both themes, the reach sketch (pointer and keyboard), project filters, disclosures and email copy. Verify there are no resume-download links. Video uses `preload="none"`; the external demonstration iframe is lazy-loaded. No API keys or backend credentials are needed.
 
 ## Publishing
 
