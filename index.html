@@ -188,16 +188,17 @@ section[id],footer[id]{scroll-margin-top:24px}
 .arm-top,.arm-foot{display:flex;justify-content:space-between;gap:12px;padding:12px 15px;font:500 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-70)}
 .arm-top{border-bottom:1px solid var(--line)}
 .arm-top strong{color:var(--accent-ink)}
-.arm-foot{border-top:1px solid var(--line);letter-spacing:0;text-transform:none;line-height:1.5}
-.arm-stage{display:block;width:100%;height:auto;aspect-ratio:5/4;touch-action:none;cursor:crosshair}
-.arm-stage .grid-line{stroke:var(--line);stroke-width:.6}
-.arm-stage .reach-ring{stroke:var(--line-2);stroke-dasharray:5 6;fill:none}
-.arm-stage .link-shadow{stroke:var(--line-2);stroke-width:15;stroke-linecap:round}
-.arm-stage .link-body{stroke:var(--ink);stroke-width:8;stroke-linecap:round}
-.arm-stage .joint{fill:var(--panel);stroke:var(--ink);stroke-width:3}
-.arm-stage .target{fill:none;stroke:var(--accent);stroke-width:2}
-.arm-stage .base{fill:var(--ink)}
-.arm-stage text{font:11px var(--mono);fill:var(--ink-70)}
+.arm-foot{border-top:1px solid var(--line);letter-spacing:0;text-transform:none;line-height:1.5;flex-wrap:wrap}
+.arm-stage{display:block;width:100%;height:auto;aspect-ratio:5/4;touch-action:none;cursor:grab}
+.arm-stage:active{cursor:grabbing}
+.arm-controls{border-top:1px solid var(--line);padding:13px 15px 15px}
+.arm-controls-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px;font:500 11px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-70)}
+.arm-reset{border:1px solid var(--line-2);background:var(--panel);color:var(--ink);padding:7px 10px;font:500 11px var(--mono);cursor:pointer}
+.arm-reset:hover{color:var(--accent-ink);border-color:var(--accent-ink)}
+.joint-controls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px 16px}
+.joint-control{display:grid;grid-template-columns:1fr auto;gap:4px 6px;align-items:center;font:11px var(--mono);color:var(--ink-70)}
+.joint-control output{color:var(--ink);font-variant-numeric:tabular-nums}
+.joint-control input{grid-column:1/-1;width:100%;accent-color:var(--accent);cursor:pointer;min-height:20px}
 .arm-caption{font:12px/1.55 var(--mono);color:var(--ink-70);margin:14px 0 0;max-width:45ch}
 .arm-caption strong{color:var(--ink)}
 .work-intro{max-width:62ch;margin:-12px 0 28px;color:var(--ink-70);font-size:16px;line-height:1.6}
@@ -418,6 +419,7 @@ html,body{overflow-x:clip}
   .hero{padding-top:38px}
   .hero-grid{gap:34px}
   .arm-demo{box-shadow:6px 6px 0 var(--faint)}
+  .joint-controls{grid-template-columns:repeat(2,minmax(0,1fr))}
   /* Section titles + notes stack so they never fight for one row */
   .section-head{
     display:grid;
@@ -590,23 +592,22 @@ html,body{overflow-x:clip}
         </div>
         <div class="hero-visual">
           <div class="arm-demo">
-            <div class="arm-top"><span>Interactive sketch / 01</span><strong id="arm-status" role="status">Within reach</strong></div>
-            <svg id="arm-stage" class="arm-stage" viewBox="0 0 500 400" tabindex="0" role="img" aria-label="Interactive two-link arm. Drag or tap to move the orange target. Focus and use arrow keys to move it. Home resets it.">
-              <defs><pattern id="arm-grid" width="25" height="25" patternUnits="userSpaceOnUse"><path class="grid-line" d="M 25 0 L 0 0 0 25" fill="none"/></pattern></defs>
-              <rect width="500" height="400" fill="url(#arm-grid)"/>
-              <circle class="reach-ring" cx="210" cy="330" r="245"/>
-              <path d="M180 345 H240 V355 H180 Z" class="base"/>
-              <line id="arm-upper-shadow" class="link-shadow" x1="210" y1="330" x2="170" y2="185"/>
-              <line id="arm-lower-shadow" class="link-shadow" x1="170" y1="185" x2="315" y2="145"/>
-              <line id="arm-upper" class="link-body" x1="210" y1="330" x2="170" y2="185"/>
-              <line id="arm-lower" class="link-body" x1="170" y1="185" x2="315" y2="145"/>
-              <circle class="joint" cx="210" cy="330" r="9"/><circle id="arm-elbow" class="joint" cx="170" cy="185" r="8"/><circle id="arm-tip" class="joint" cx="315" cy="145" r="6"/>
-              <g id="arm-target" class="target" transform="translate(315 145)"><circle r="13"/><path d="M-22 0h12m20 0h12M0-22v12m0 20v12"/></g>
-              <text x="20" y="32">XY / PLANAR REACH</text><text x="20" y="375">BASE 00</text>
-            </svg>
-            <div class="arm-foot"><span>Move the orange target</span><span id="arm-readout">Tip error 0 units</span></div>
+            <div class="arm-top"><span>Six-axis arm / 01</span><strong id="arm-status">6 joints active</strong></div>
+            <canvas id="arm-stage" class="arm-stage" width="1000" height="800" role="img" aria-label="Interactive 3D six-joint robot arm. Adjust the six labeled joint sliders below, or drag the drawing to rotate the base and shoulder.">Your browser needs canvas to display the arm.</canvas>
+            <div class="arm-foot"><span>Drag: base + shoulder</span><span id="arm-readout" aria-live="polite">Tool pose loading</span></div>
+            <div class="arm-controls">
+              <div class="arm-controls-head"><span>Joint controls / degrees</span><button class="arm-reset" id="arm-reset" type="button">Reset pose</button></div>
+              <div class="joint-controls">
+                <label class="joint-control">J1 Base <output for="joint-1">35°</output><input id="joint-1" type="range" min="-170" max="170" value="35"></label>
+                <label class="joint-control">J2 Shoulder <output for="joint-2">-50°</output><input id="joint-2" type="range" min="-110" max="110" value="-50"></label>
+                <label class="joint-control">J3 Elbow <output for="joint-3">80°</output><input id="joint-3" type="range" min="-140" max="140" value="80"></label>
+                <label class="joint-control">J4 Wrist pitch <output for="joint-4">-30°</output><input id="joint-4" type="range" min="-170" max="170" value="-30"></label>
+                <label class="joint-control">J5 Wrist yaw <output for="joint-5">25°</output><input id="joint-5" type="range" min="-120" max="120" value="25"></label>
+                <label class="joint-control">J6 Tool roll <output for="joint-6">45°</output><input id="joint-6" type="range" min="-180" max="180" value="45"></label>
+              </div>
+            </div>
           </div>
-          <p class="arm-caption"><strong>A small engineering sketch.</strong> Two-link inverse kinematics shows whether a target is within reach. It is a planar illustration, not a hardware controller.</p>
+          <p class="arm-caption"><strong>Explore the chain.</strong> Six revolute joints change the tool’s 3D position and orientation. This is a kinematic illustration, not a hardware controller or an xArm model.</p>
         </div>
       </div>
     </div>
@@ -988,65 +989,109 @@ html,body{overflow-x:clip}
   }
 
   function initArmSketch() {
-    var svg = document.getElementById('arm-stage');
-    if (!svg) return;
-    var base = { x: 210, y: 330 }, upper = 135, lower = 110;
-    var target = { x: 315, y: 145 };
-    var upperLine = document.getElementById('arm-upper');
-    var lowerLine = document.getElementById('arm-lower');
-    var upperShadow = document.getElementById('arm-upper-shadow');
-    var lowerShadow = document.getElementById('arm-lower-shadow');
-    var elbowDot = document.getElementById('arm-elbow');
-    var tipDot = document.getElementById('arm-tip');
-    var targetMark = document.getElementById('arm-target');
-    var status = document.getElementById('arm-status');
+    var canvas = document.getElementById('arm-stage');
+    if (!canvas || !canvas.getContext) return;
+    var ctx = canvas.getContext('2d');
+    if (!ctx) return;
+    var inputs = Array.prototype.slice.call(document.querySelectorAll('.joint-control input'));
+    var defaults = [35, -50, 80, -30, 25, 45];
     var readout = document.getElementById('arm-readout');
-    function line(el, x1, y1, x2, y2) {
-      el.setAttribute('x1', x1); el.setAttribute('y1', y1);
-      el.setAttribute('x2', x2); el.setAttribute('y2', y2);
+    var dragging = null;
+    var rad = Math.PI / 180;
+    function add(a, b, scale) { return a.map(function (n, i) { return n + b[i] * scale; }); }
+    function combine(a, b, ca, cb) { return a.map(function (n, i) { return n * ca + b[i] * cb; }); }
+    function pose() {
+      var q = inputs.map(function (input) { return Number(input.value) * rad; });
+      var x = [1, 0, 0], y = [0, 1, 0], z = [0, 0, 1];
+      function rz(a) { var c = Math.cos(a), s = Math.sin(a), old = x; x = combine(x, y, c, s); y = combine(old, y, -s, c); }
+      function ry(a) { var c = Math.cos(a), s = Math.sin(a), old = x; x = combine(x, z, c, -s); z = combine(old, z, s, c); }
+      function rx(a) { var c = Math.cos(a), s = Math.sin(a), old = y; y = combine(y, z, c, s); z = combine(old, z, -s, c); }
+      var points = [[0, 0, 0], [0, 0, 55]];
+      rz(q[0]); ry(q[1]); points.push(add(points.at(-1), x, 145));
+      ry(q[2]); points.push(add(points.at(-1), x, 125));
+      ry(q[3]); points.push(add(points.at(-1), x, 25));
+      rz(q[4]); points.push(add(points.at(-1), x, 25));
+      rx(q[5]); points.push(add(points.at(-1), x, 32));
+      return { points: points, axes: [x, y, z] };
     }
     function draw() {
-      var dx = target.x - base.x, dy = target.y - base.y;
-      var distance = Math.hypot(dx, dy);
-      var reach = upper + lower;
-      var solvedDistance = Math.max(Math.abs(upper - lower), Math.min(distance, reach));
-      var heading = Math.atan2(dy, dx);
-      var offset = Math.acos(Math.max(-1, Math.min(1,
-        (upper * upper + solvedDistance * solvedDistance - lower * lower) / (2 * upper * solvedDistance))));
-      var elbow = { x: base.x + upper * Math.cos(heading - offset), y: base.y + upper * Math.sin(heading - offset) };
-      var tip = { x: base.x + solvedDistance * Math.cos(heading), y: base.y + solvedDistance * Math.sin(heading) };
-      [upperLine, upperShadow].forEach(function (el) { line(el, base.x, base.y, elbow.x, elbow.y); });
-      [lowerLine, lowerShadow].forEach(function (el) { line(el, elbow.x, elbow.y, tip.x, tip.y); });
-      elbowDot.setAttribute('cx', elbow.x); elbowDot.setAttribute('cy', elbow.y);
-      tipDot.setAttribute('cx', tip.x); tipDot.setAttribute('cy', tip.y);
-      targetMark.setAttribute('transform', 'translate(' + target.x + ' ' + target.y + ')');
-      var error = Math.round(Math.hypot(target.x - tip.x, target.y - tip.y));
-      status.textContent = error > 1 ? 'Out of reach' : 'Within reach';
-      readout.textContent = 'Tip error ' + error + ' units';
+      var style = getComputedStyle(document.documentElement);
+      var color = function (name) { return style.getPropertyValue(name).trim(); };
+      var ink = color('--ink'), muted = color('--ink-70'), line = color('--line-2'), accent = color('--accent'), panel = color('--panel');
+      var scale = canvas.width / 500;
+      ctx.setTransform(scale, 0, 0, scale, 0, 0);
+      ctx.clearRect(0, 0, 500, 400);
+      ctx.fillStyle = panel; ctx.fillRect(0, 0, 500, 400);
+      function project(p) { return [250 + .66 * p[0] - .39 * p[1], 310 + .225 * p[0] + .26 * p[1] - .82 * p[2]]; }
+      function path(a, b, stroke, width, dash) {
+        var u = project(a), v = project(b);
+        ctx.beginPath(); ctx.moveTo(u[0], u[1]); ctx.lineTo(v[0], v[1]);
+        ctx.strokeStyle = stroke; ctx.lineWidth = width; ctx.lineCap = 'round';
+        ctx.setLineDash(dash || []); ctx.stroke(); ctx.setLineDash([]);
+      }
+      ctx.lineWidth = 1;
+      for (var n = -200; n <= 400; n += 50) {
+        path([n, -200, 0], [n, 200, 0], color('--line'), .7);
+        path([-200, n, 0], [400, n, 0], color('--line'), .7);
+      }
+      path([0, 0, 0], [85, 0, 0], muted, 1.5);
+      path([0, 0, 0], [0, 85, 0], muted, 1.5);
+      path([0, 0, 0], [0, 0, 85], accent, 1.5);
+      var state = pose(), points = state.points;
+      var widths = [15, 14, 12, 10, 9, 7];
+      for (var i = 0; i < points.length - 1; i++) {
+        path(points[i], points[i + 1], line, widths[i] + 6);
+        path(points[i], points[i + 1], ink, widths[i]);
+      }
+      points.slice(0, -1).forEach(function (p, i) {
+        var v = project(p); ctx.beginPath(); ctx.arc(v[0], v[1], i < 3 ? 7 : 5, 0, Math.PI * 2);
+        ctx.fillStyle = panel; ctx.fill(); ctx.lineWidth = 2.5; ctx.strokeStyle = i > 2 ? accent : ink; ctx.stroke();
+      });
+      var tip = points.at(-1), tip2 = project(tip);
+      [ink, accent, muted].forEach(function (c, i) { path(tip, add(tip, state.axes[i], 32), c, 2.5); });
+      ctx.beginPath(); ctx.arc(tip2[0], tip2[1], 4, 0, Math.PI * 2); ctx.fillStyle = accent; ctx.fill();
+      ctx.font = '11px JetBrains Mono, monospace'; ctx.fillStyle = muted;
+      ctx.fillText('WORLD / XYZ', 18, 28); ctx.fillText('6 REVOLUTE JOINTS', 18, 382);
+      ctx.fillText('TCP', tip2[0] + 12, tip2[1] - 10);
+      var roll = Math.atan2(state.axes[1][2], state.axes[2][2]) / rad;
+      var pitch = Math.atan2(-state.axes[0][2], Math.hypot(state.axes[0][0], state.axes[0][1])) / rad;
+      var yaw = Math.atan2(state.axes[0][1], state.axes[0][0]) / rad;
+      readout.textContent = 'XYZ ' + tip.map(Math.round).join(', ') + ' · RPY ' + [roll, pitch, yaw].map(Math.round).join('°, ') + '°';
     }
-    function move(event) {
-      var point = svg.createSVGPoint(); point.x = event.clientX; point.y = event.clientY;
-      var local = point.matrixTransform(svg.getScreenCTM().inverse());
-      target.x = Math.max(22, Math.min(478, local.x));
-      target.y = Math.max(28, Math.min(365, local.y));
+    function resize() {
+      var width = Math.max(1, canvas.getBoundingClientRect().width);
+      var pixels = Math.min(window.devicePixelRatio || 1, 2) * width;
+      canvas.width = Math.round(pixels);
+      canvas.height = Math.round(pixels * .8);
       draw();
     }
-    svg.addEventListener('pointerdown', function (event) { svg.setPointerCapture(event.pointerId); move(event); });
-    svg.addEventListener('pointermove', function (event) { if (svg.hasPointerCapture(event.pointerId)) move(event); });
-    svg.addEventListener('keydown', function (event) {
-      var step = event.shiftKey ? 20 : 8;
-      if (event.key === 'ArrowLeft') target.x -= step;
-      else if (event.key === 'ArrowRight') target.x += step;
-      else if (event.key === 'ArrowUp') target.y -= step;
-      else if (event.key === 'ArrowDown') target.y += step;
-      else if (event.key === 'Home') target = { x: 315, y: 145 };
-      else return;
-      event.preventDefault();
-      target.x = Math.max(22, Math.min(478, target.x));
-      target.y = Math.max(28, Math.min(365, target.y));
+    inputs.forEach(function (input) {
+      input.addEventListener('input', function () {
+        input.parentElement.querySelector('output').textContent = input.value + '°';
+        draw();
+      });
+    });
+    document.getElementById('arm-reset').addEventListener('click', function () {
+      inputs.forEach(function (input, i) { input.value = defaults[i]; input.parentElement.querySelector('output').textContent = defaults[i] + '°'; });
       draw();
     });
-    draw();
+    canvas.addEventListener('pointerdown', function (event) {
+      dragging = { id: event.pointerId, x: event.clientX, y: event.clientY };
+      canvas.setPointerCapture(event.pointerId);
+    });
+    canvas.addEventListener('pointermove', function (event) {
+      if (!dragging || dragging.id !== event.pointerId) return;
+      inputs[0].value = Math.max(-170, Math.min(170, Number(inputs[0].value) + (event.clientX - dragging.x) * .6));
+      inputs[1].value = Math.max(-110, Math.min(110, Number(inputs[1].value) - (event.clientY - dragging.y) * .6));
+      inputs.slice(0, 2).forEach(function (input) { input.parentElement.querySelector('output').textContent = input.value + '°'; });
+      dragging.x = event.clientX; dragging.y = event.clientY; draw();
+    });
+    canvas.addEventListener('pointerup', function () { dragging = null; });
+    canvas.addEventListener('pointercancel', function () { dragging = null; });
+    if (window.ResizeObserver) new ResizeObserver(resize).observe(canvas);
+    else window.addEventListener('resize', resize);
+    resize();
+    document.getElementById('theme-toggle').addEventListener('click', draw);
   }
 
   /* ==========================================================================
