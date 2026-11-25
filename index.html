@@ -1225,12 +1225,8 @@ html,body{overflow-x:clip}
         else self._arm();
       });
     });
-    // Mouse: arm on hover, disarm on leave. Touch keeps the last target (a tap
-    // sets it and it stays put - no need to hold).
-    fig.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') self._arm(); });
-    fig.addEventListener('pointerleave', function (e) { if (e.pointerType === 'mouse' && !self.scenarioHeld) self._disarm(); });
-    fig.addEventListener('focus', function () { self._arm(); });
-    fig.addEventListener('blur', function () { if (!TOUCH && !self.scenarioHeld) self._disarm(); });
+    // Keep the last commanded pose when the pointer or keyboard focus leaves.
+    // Only dragging, keyboard input, or scenario buttons change the target.
     fig.addEventListener('pointerdown', function (e) {
       self.scenarioHeld = false;
       self._arm(); self.dragging = true;
@@ -1328,9 +1324,6 @@ html,body{overflow-x:clip}
     this.armed = true; this.settle = 0; this.trail = []; this.verdictReady = false;
     if (!this.target) this.target = { x: this.rest.x, y: this.rest.y };
     this._kick();
-  };
-  IKArm.prototype._disarm = function () {
-    this.armed = false; this.settle = 0; this.verdictReady = false; this._kick();
   };
   IKArm.prototype._kick = function () {
     this.settle = 0;
