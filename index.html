@@ -184,23 +184,62 @@ section[id],footer[id]{scroll-margin-top:24px}
 .hero-actions a:first-child{background:var(--ink);color:var(--paper);padding:10px 16px;border:1px solid var(--ink)}
 .hero-actions a:first-child:hover{background:var(--accent-ink);border-color:var(--accent-ink);color:#fff}
 .hero-actions a:last-child:hover{border-color:var(--accent-ink)}
-.arm-demo{border:1px solid var(--line-2);background:var(--panel);min-width:0;box-shadow:12px 12px 0 var(--faint)}
-.arm-top,.arm-foot{display:flex;justify-content:space-between;gap:12px;padding:12px 15px;font:500 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-70)}
-.arm-top{border-bottom:1px solid var(--line)}
-.arm-top strong{color:var(--accent-ink)}
-.arm-foot{border-top:1px solid var(--line);letter-spacing:0;text-transform:none;line-height:1.5;flex-wrap:wrap}
-.arm-stage{display:block;width:100%;height:auto;aspect-ratio:5/4;touch-action:none;cursor:grab}
-.arm-stage:active{cursor:grabbing}
-.arm-controls{border-top:1px solid var(--line);padding:13px 15px 15px}
-.arm-controls-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px;font:500 11px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-70)}
-.arm-reset{border:1px solid var(--line-2);background:var(--panel);color:var(--ink);padding:7px 10px;font:500 11px var(--mono);cursor:pointer}
-.arm-reset:hover{color:var(--accent-ink);border-color:var(--accent-ink)}
-.joint-controls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px 16px}
-.joint-control{display:grid;grid-template-columns:1fr auto;gap:4px 6px;align-items:center;font:11px var(--mono);color:var(--ink-70)}
-.joint-control output{color:var(--ink);font-variant-numeric:tabular-nums}
-.joint-control input{grid-column:1/-1;width:100%;accent-color:var(--accent);cursor:pointer;min-height:20px}
-.arm-caption{font:12px/1.55 var(--mono);color:var(--ink-70);margin:14px 0 0;max-width:45ch}
-.arm-caption strong{color:var(--ink)}
+/* --- IK arm figure (interactive demo #1) ---------------------------------- */
+.fig{
+  position:relative;width:100%;aspect-ratio:5/4;
+  border:1px solid var(--line);background:var(--panel);
+  overflow:hidden;cursor:crosshair;touch-action:none;transition:border-color .2s ease;
+}
+.fig:hover{border-color:var(--line-2)}
+.fig .corner{position:absolute;width:11px;height:11px;z-index:2}
+.fig .corner.tl{top:8px;left:8px;border-top:1.5px solid var(--accent);border-left:1.5px solid var(--accent)}
+.fig .corner.tr{top:8px;right:8px;border-top:1.5px solid var(--accent);border-right:1.5px solid var(--accent)}
+.fig .corner.bl{bottom:8px;left:8px;border-bottom:1.5px solid var(--accent);border-left:1.5px solid var(--accent)}
+.fig .corner.br{bottom:8px;right:8px;border-bottom:1.5px solid var(--accent);border-right:1.5px solid var(--accent)}
+.fig svg,.fig canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.fig-label{position:absolute;top:11px;left:13px;z-index:3;pointer-events:none;display:flex;flex-direction:column;gap:5px;align-items:flex-start}
+.fig-label .id{font-family:var(--mono);font-size:11px;letter-spacing:.05em;color:var(--ink-70)}
+.fig-hint{
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.05em;
+  color:var(--accent-ink);border:1px solid var(--accent);
+  background:rgba(226,74,0,0.09);padding:3px 7px;
+  animation:hintpulse 2.2s ease-in-out infinite;
+}
+.fig-status{
+  position:absolute;top:11px;right:13px;z-index:3;pointer-events:none;
+  display:inline-flex;align-items:center;gap:6px;padding:4px 8px;
+  border:1px solid var(--line);background:var(--panel-a);
+}
+.fig-status .txt{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.06em;color:var(--ink-70)}
+.fig-read{
+  position:absolute;left:0;right:0;bottom:0;z-index:3;pointer-events:none;
+  padding:9px 12px;font-family:var(--mono);font-size:10.5px;letter-spacing:.02em;color:var(--ink-70);
+  background:linear-gradient(0deg,var(--panel-fade),transparent);
+}
+
+.ik-lab{margin-top:clamp(28px,5vh,48px);padding-top:clamp(22px,4vh,36px);border-top:1px solid var(--line)}
+.ik-lab-head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:18px 32px;align-items:end;margin-bottom:18px}
+.ik-lab-head h2{font-size:clamp(20px,2.4vw,28px);letter-spacing:-.02em;margin:6px 0 0;max-width:28ch}
+.ik-lab-copy{max-width:54ch;margin:0;color:var(--ink-70);font-size:15px;line-height:1.65}
+.ik-lab-badge{flex-shrink:0;border-left:2px solid var(--accent);padding:2px 0 2px 14px;font:12px/1.6 var(--mono);color:var(--accent-ink);max-width:18ch}
+.ik-board{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(240px,.85fr);gap:18px 22px;align-items:start}
+.ik-diagnosis{border:1px solid var(--line);background:var(--panel);padding:18px 18px 16px}
+.ik-diagnosis h3{font:600 12px/1.4 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-70);margin:0 0 12px}
+.ik-verdict{font-size:22px;font-weight:600;line-height:1.2;margin:0 0 8px}
+.ik-verdict[data-state="SOLVED"]{color:var(--ink)}
+.ik-verdict[data-state="LIMITED"],.ik-verdict[data-state="UNREACHABLE"]{color:var(--accent-ink)}
+.ik-verdict[data-state="IDLE"],.ik-verdict[data-state="STATIC"]{color:var(--ink-70)}
+.ik-verdict[data-state="SOLVING"]{color:var(--ink-70)}
+.ik-reason{margin:0 0 14px;font-size:14px;line-height:1.65;color:var(--ink-70);min-height:3.2em}
+.ik-metrics{margin:0;display:grid;gap:0}
+.ik-metrics div{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-top:1px solid var(--line);font-size:13px}
+.ik-metrics dt{color:var(--ink-70)}
+.ik-metrics dd{margin:0;font-family:var(--mono);font-size:12px;text-align:right}
+.ik-controls{display:flex;flex-wrap:wrap;gap:8px;margin-top:0}
+.ik-controls button{font:500 13px var(--mono);padding:11px 13px;border:1px solid var(--line-2);background:var(--panel);color:var(--ink);cursor:pointer}
+.ik-controls button[aria-pressed="true"]{border-color:var(--accent-ink);color:var(--accent-ink)}
+.ik-explanation{font-size:14px;color:var(--ink-70);max-width:75ch;line-height:1.7;margin-top:12px}
 .work-intro{max-width:62ch;margin:-12px 0 28px;color:var(--ink-70);font-size:16px;line-height:1.6}
 
 /* --- Selected work -------------------------------------------------------- */
@@ -416,10 +455,10 @@ html,body{overflow-x:clip}
 }
 
 @media (max-width:720px){
+  .ik-board{grid-template-columns:1fr}
+  .ik-lab-badge{display:none}
   .hero{padding-top:38px}
   .hero-grid{gap:34px}
-  .arm-demo{box-shadow:6px 6px 0 var(--faint)}
-  .joint-controls{grid-template-columns:repeat(2,minmax(0,1fr))}
   /* Section titles + notes stack so they never fight for one row */
   .section-head{
     display:grid;
@@ -445,9 +484,10 @@ html,body{overflow-x:clip}
   .name{font-size:clamp(40px,12vw,72px)}
   .lede{max-width:none;font-size:16px}
 
-.fig-hint{font-size:9px;padding:3px 6px}
-
-.fig-status .txt{font-size:9.5px}
+  .fig-label{max-width:calc(100% - 110px)}
+  .fig-hint{font-size:9px;padding:3px 6px}
+  .fig-status .txt{font-size:9.5px}
+  .fig-read{font-size:9.5px;padding:8px 10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
 .work-row,.card{padding:18px;gap:16px}
   .work-head,.card-head{flex-direction:column;gap:4px;align-items:flex-start}
@@ -591,24 +631,95 @@ html,body{overflow-x:clip}
           <div class="hero-actions"><a href="#work">Explore projects</a><a href="#contact">Get in touch</a></div>
         </div>
         <div class="hero-visual">
-          <div class="arm-demo">
-            <div class="arm-top"><span>Six-axis arm / 01</span><strong id="arm-status">6 joints active</strong></div>
-            <canvas id="arm-stage" class="arm-stage" width="1000" height="800" role="img" aria-label="Interactive 3D six-joint robot arm. Adjust the six labeled joint sliders below, or drag the drawing to rotate the base and shoulder.">Your browser needs canvas to display the arm.</canvas>
-            <div class="arm-foot"><span>Drag: base + shoulder</span><span id="arm-readout" aria-live="polite">Tool pose loading</span></div>
-            <div class="arm-controls">
-              <div class="arm-controls-head"><span>Joint controls / degrees</span><button class="arm-reset" id="arm-reset" type="button">Reset pose</button></div>
-              <div class="joint-controls">
-                <label class="joint-control">J1 Base <output for="joint-1">35°</output><input id="joint-1" type="range" min="-170" max="170" value="35"></label>
-                <label class="joint-control">J2 Shoulder <output for="joint-2">-50°</output><input id="joint-2" type="range" min="-110" max="110" value="-50"></label>
-                <label class="joint-control">J3 Elbow <output for="joint-3">80°</output><input id="joint-3" type="range" min="-140" max="140" value="80"></label>
-                <label class="joint-control">J4 Wrist pitch <output for="joint-4">-30°</output><input id="joint-4" type="range" min="-170" max="170" value="-30"></label>
-                <label class="joint-control">J5 Wrist yaw <output for="joint-5">25°</output><input id="joint-5" type="range" min="-120" max="120" value="25"></label>
-                <label class="joint-control">J6 Tool roll <output for="joint-6">45°</output><input id="joint-6" type="range" min="-180" max="180" value="45"></label>
-              </div>
-            </div>
+        <!--
+          Interactive demo #1 - inverse-kinematics arm.
+          Tap / drag inside the box (or use arrow keys) to move the target;
+          a FABRIK solver repositions the arm to reach it.
+          GRACEFUL DEGRADATION: the <svg> below is a static arm that shows if
+          JS is disabled/slow or the canvas fails - the box is never blank.
+          The <canvas> is painted on top only once the solver is running.
+        -->
+        <figure id="ik" class="fig" tabindex="0" role="application"
+                aria-label="Tool-pose feasibility screener. Drag or use arrow keys to place a target; the diagnosis panel reports whether the tip pose is reachable under the current joint limits. Home resets the target.">
+          <span class="corner tl" aria-hidden="true"></span>
+          <span class="corner tr" aria-hidden="true"></span>
+          <span class="corner bl" aria-hidden="true"></span>
+          <span class="corner br" aria-hidden="true"></span>
+
+          <!-- static fallback pose -->
+          <svg viewBox="0 0 500 400" aria-hidden="true">
+            <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="250" y1="360" x2="188" y2="250" stroke-width="9"/>
+              <line x1="188" y1="250" x2="300" y2="168" stroke-width="7.4"/>
+              <line x1="300" y1="168" x2="372" y2="98" stroke-width="5.8"/>
+              <rect x="224" y="362" width="52" height="14" fill="var(--panel)" stroke-width="2"/>
+              <circle cx="250" cy="360" r="6.5" fill="var(--panel)" stroke-width="2"/>
+              <circle cx="188" cy="250" r="5.5" fill="var(--panel)" stroke-width="2"/>
+              <circle cx="300" cy="168" r="5.5" fill="var(--panel)" stroke-width="2"/>
+            </g>
+            <g fill="none" stroke="var(--accent)" stroke-width="2">
+              <circle cx="372" cy="98" r="7"/>
+              <line x1="358" y1="98" x2="365" y2="98"/><line x1="379" y1="98" x2="386" y2="98"/>
+              <line x1="372" y1="84" x2="372" y2="91"/><line x1="372" y1="105" x2="372" y2="112"/>
+            </g>
+          </svg>
+
+          <!-- solver renders here -->
+          <canvas id="ik-canvas" aria-hidden="true"></canvas>
+
+          <!-- HUD overlays -->
+          <div class="fig-label" aria-hidden="true">
+            <span class="id">POSE CHECK</span>
+            <span class="fig-hint" id="ik-hint"><span aria-hidden="true" style="font-size:11px;line-height:1">&#10021;</span>SET TOOL TARGET</span>
           </div>
-          <p class="arm-caption"><strong>Explore the chain.</strong> Six revolute joints change the tool’s 3D position and orientation. This is a kinematic illustration, not a hardware controller or an xArm model.</p>
+          <div class="fig-status" aria-hidden="true">
+            <span class="dot"></span>
+            <span class="txt" id="ik-state">IDLE</span>
+          </div>
+          <div class="fig-read" id="ik-read" aria-hidden="true">&theta; &middot; &middot; &middot; &middot; TCP &middot;,&middot; &middot; idle</div>
+        </figure>
         </div>
+      </div>
+      <div class="ik-lab" id="pose-lab">
+        <div class="ik-lab-head">
+          <div>
+            <p class="eyebrow">TOOL-POSE FEASIBILITY · 00</p>
+            <h2>Is this tip pose feasible under these constraints?</h2>
+          </div>
+          <p class="ik-lab-copy">Before sequencing a workcell, check one pose. The dashed arc is the reach envelope. The verdict separates three failure modes engineers care about: solved, joint-limited, or out of reach.</p>
+          <span class="ik-lab-badge">PLANAR MODEL<br>NOT A ROBOT CONTROLLER</span>
+        </div>
+
+        <div class="ik-board">
+          <div>
+            <div class="ik-controls" aria-label="Pose feasibility scenarios">
+              <button type="button" data-ik-preset="reachable" aria-pressed="false">Nominal pick pose</button>
+              <button type="button" data-ik-preset="limited" aria-pressed="false">Joint-limited approach</button>
+              <button type="button" data-ik-preset="unreachable" aria-pressed="false">Out-of-reach place</button>
+              <button type="button" data-ik-preset="reset">Clear diagnosis</button>
+            </div>
+            <p class="ik-explanation" id="ik-explanation" aria-live="polite">Load a scenario, or drag the target yourself. Focus the drawing and use arrow keys; Home restores the rest pose.</p>
+            <details class="technical">
+              <summary>What this pose check proves — and does not</summary>
+              <p>A three-link planar chain uses FABRIK: place the tip at the target and work backward, then anchor the base and work forward, preserving each link’s length. Relative joint-angle limits are applied during the forward pass. The diagnosis reports tip error against the commanded target and which joints sit on their limit stops.</p>
+              <p><strong>Purpose.</strong> This is the single-pose half of layout screening: reach and joint limits before you spend time on a full transfer sequence. Coordinates are canvas units scaled to the drawn reach radius, not calibrated robot millimeters.</p>
+              <p><strong>Limits.</strong> Geometric illustration only — no dynamics, obstacles, tool orientation branches, or hardware connection. Reduced-motion preferences keep the diagnosis available without animated easing.</p>
+            </details>
+          </div>
+
+          <aside class="ik-diagnosis" aria-live="polite">
+            <h3>Live diagnosis</h3>
+            <p class="ik-verdict" id="ik-verdict" data-state="IDLE">Waiting for a target</p>
+            <p class="ik-reason" id="ik-reason">Choose a scenario or place a tool target on the drawing. The panel updates with the solver’s verdict.</p>
+            <dl class="ik-metrics">
+              <div><dt>Reach envelope</dt><dd id="ik-reach">—</dd></div>
+              <div><dt>Tip error</dt><dd id="ik-error">—</dd></div>
+              <div><dt>Joints at limit</dt><dd id="ik-joints">—</dd></div>
+              <div><dt>Joint angles</dt><dd id="ik-angles">—</dd></div>
+            </dl>
+          </aside>
+        </div>
+
       </div>
     </div>
   </section>
@@ -952,6 +1063,33 @@ html,body{overflow-x:clip}
 (function () {
   'use strict';
 
+  var REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var TOUCH   = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+
+  // Shared datasheet palette (mirrors the CSS tokens above).
+  var C = {
+    paper:'#F5F6F3', ink:'#171A1C', ink2:'#8B8F92',
+    line:'rgba(20,24,28,0.22)', faint:'rgba(20,24,28,0.10)',
+    accent:'#E24A00', accentInk:'#B23A00'
+  };
+  var ikArm = null;
+
+  function syncPalette() {
+    var s = getComputedStyle(document.documentElement);
+    function v(name, fallback) {
+      var raw = s.getPropertyValue(name).trim();
+      return raw || fallback;
+    }
+    C.paper = v('--panel', C.paper);
+    C.ink = v('--ink', C.ink);
+    C.ink2 = v('--ink-70', C.ink2);
+    C.line = v('--line-2', C.line);
+    C.faint = v('--faint', C.faint);
+    C.accent = v('--accent', C.accent);
+    C.accentInk = v('--accent-ink', C.accentInk);
+  }
+  syncPalette();
+
   function initThemeToggle() {
     var btn = document.getElementById('theme-toggle');
     var meta = document.getElementById('theme-color');
@@ -962,7 +1100,11 @@ html,body{overflow-x:clip}
       try { localStorage.setItem('theme', theme); } catch (e) {}
       if (meta) meta.setAttribute('content', theme === 'dark' ? '#121416' : '#ECEDEA');
       btn.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
-
+      syncPalette();
+      if (ikArm) {
+        if (ikArm.active && typeof ikArm._kick === 'function') ikArm._kick();
+        else if (typeof ikArm._staticPose === 'function') ikArm._staticPose(ikArm.status || 'IDLE');
+      }
     }
 
     apply(document.documentElement.getAttribute('data-theme') || 'light');
@@ -988,111 +1130,557 @@ html,body{overflow-x:clip}
     });
   }
 
-  function initArmSketch() {
-    var canvas = document.getElementById('arm-stage');
-    if (!canvas || !canvas.getContext) return;
-    var ctx = canvas.getContext('2d');
-    if (!ctx) return;
-    var inputs = Array.prototype.slice.call(document.querySelectorAll('.joint-control input'));
-    var defaults = [35, -50, 80, -30, 25, 45];
-    var readout = document.getElementById('arm-readout');
-    var dragging = null;
-    var rad = Math.PI / 180;
-    function add(a, b, scale) { return a.map(function (n, i) { return n + b[i] * scale; }); }
-    function combine(a, b, ca, cb) { return a.map(function (n, i) { return n * ca + b[i] * cb; }); }
-    function pose() {
-      var q = inputs.map(function (input) { return Number(input.value) * rad; });
-      var x = [1, 0, 0], y = [0, 1, 0], z = [0, 0, 1];
-      function rz(a) { var c = Math.cos(a), s = Math.sin(a), old = x; x = combine(x, y, c, s); y = combine(old, y, -s, c); }
-      function ry(a) { var c = Math.cos(a), s = Math.sin(a), old = x; x = combine(x, z, c, -s); z = combine(old, z, s, c); }
-      function rx(a) { var c = Math.cos(a), s = Math.sin(a), old = y; y = combine(y, z, c, s); z = combine(old, z, -s, c); }
-      var points = [[0, 0, 0], [0, 0, 55]];
-      rz(q[0]); ry(q[1]); points.push(add(points.at(-1), x, 145));
-      ry(q[2]); points.push(add(points.at(-1), x, 125));
-      ry(q[3]); points.push(add(points.at(-1), x, 25));
-      rz(q[4]); points.push(add(points.at(-1), x, 25));
-      rx(q[5]); points.push(add(points.at(-1), x, 32));
-      return { points: points, axes: [x, y, z] };
-    }
-    function draw() {
-      var style = getComputedStyle(document.documentElement);
-      var color = function (name) { return style.getPropertyValue(name).trim(); };
-      var ink = color('--ink'), muted = color('--ink-70'), line = color('--line-2'), accent = color('--accent'), panel = color('--panel');
-      var scale = canvas.width / 500;
-      ctx.setTransform(scale, 0, 0, scale, 0, 0);
-      ctx.clearRect(0, 0, 500, 400);
-      ctx.fillStyle = panel; ctx.fillRect(0, 0, 500, 400);
-      function project(p) { return [250 + .66 * p[0] - .39 * p[1], 310 + .225 * p[0] + .26 * p[1] - .82 * p[2]]; }
-      function path(a, b, stroke, width, dash) {
-        var u = project(a), v = project(b);
-        ctx.beginPath(); ctx.moveTo(u[0], u[1]); ctx.lineTo(v[0], v[1]);
-        ctx.strokeStyle = stroke; ctx.lineWidth = width; ctx.lineCap = 'round';
-        ctx.setLineDash(dash || []); ctx.stroke(); ctx.setLineDash([]);
-      }
-      ctx.lineWidth = 1;
-      for (var n = -200; n <= 400; n += 50) {
-        path([n, -200, 0], [n, 200, 0], color('--line'), .7);
-        path([-200, n, 0], [400, n, 0], color('--line'), .7);
-      }
-      path([0, 0, 0], [85, 0, 0], muted, 1.5);
-      path([0, 0, 0], [0, 85, 0], muted, 1.5);
-      path([0, 0, 0], [0, 0, 85], accent, 1.5);
-      var state = pose(), points = state.points;
-      var widths = [15, 14, 12, 10, 9, 7];
-      for (var i = 0; i < points.length - 1; i++) {
-        path(points[i], points[i + 1], line, widths[i] + 6);
-        path(points[i], points[i + 1], ink, widths[i]);
-      }
-      points.slice(0, -1).forEach(function (p, i) {
-        var v = project(p); ctx.beginPath(); ctx.arc(v[0], v[1], i < 3 ? 7 : 5, 0, Math.PI * 2);
-        ctx.fillStyle = panel; ctx.fill(); ctx.lineWidth = 2.5; ctx.strokeStyle = i > 2 ? accent : ink; ctx.stroke();
-      });
-      var tip = points.at(-1), tip2 = project(tip);
-      [ink, accent, muted].forEach(function (c, i) { path(tip, add(tip, state.axes[i], 32), c, 2.5); });
-      ctx.beginPath(); ctx.arc(tip2[0], tip2[1], 4, 0, Math.PI * 2); ctx.fillStyle = accent; ctx.fill();
-      ctx.font = '11px JetBrains Mono, monospace'; ctx.fillStyle = muted;
-      ctx.fillText('WORLD / XYZ', 18, 28); ctx.fillText('6 REVOLUTE JOINTS', 18, 382);
-      ctx.fillText('TCP', tip2[0] + 12, tip2[1] - 10);
-      var roll = Math.atan2(state.axes[1][2], state.axes[2][2]) / rad;
-      var pitch = Math.atan2(-state.axes[0][2], Math.hypot(state.axes[0][0], state.axes[0][1])) / rad;
-      var yaw = Math.atan2(state.axes[0][1], state.axes[0][0]) / rad;
-      readout.textContent = 'XYZ ' + tip.map(Math.round).join(', ') + ' · RPY ' + [roll, pitch, yaw].map(Math.round).join('°, ') + '°';
-    }
-    function resize() {
-      var width = Math.max(1, canvas.getBoundingClientRect().width);
-      var pixels = Math.min(window.devicePixelRatio || 1, 2) * width;
-      canvas.width = Math.round(pixels);
-      canvas.height = Math.round(pixels * .8);
-      draw();
-    }
-    inputs.forEach(function (input) {
-      input.addEventListener('input', function () {
-        input.parentElement.querySelector('output').textContent = input.value + '°';
-        draw();
-      });
-    });
-    document.getElementById('arm-reset').addEventListener('click', function () {
-      inputs.forEach(function (input, i) { input.value = defaults[i]; input.parentElement.querySelector('output').textContent = defaults[i] + '°'; });
-      draw();
-    });
-    canvas.addEventListener('pointerdown', function (event) {
-      dragging = { id: event.pointerId, x: event.clientX, y: event.clientY };
-      canvas.setPointerCapture(event.pointerId);
-    });
-    canvas.addEventListener('pointermove', function (event) {
-      if (!dragging || dragging.id !== event.pointerId) return;
-      inputs[0].value = Math.max(-170, Math.min(170, Number(inputs[0].value) + (event.clientX - dragging.x) * .6));
-      inputs[1].value = Math.max(-110, Math.min(110, Number(inputs[1].value) - (event.clientY - dragging.y) * .6));
-      inputs.slice(0, 2).forEach(function (input) { input.parentElement.querySelector('output').textContent = input.value + '°'; });
-      dragging.x = event.clientX; dragging.y = event.clientY; draw();
-    });
-    canvas.addEventListener('pointerup', function () { dragging = null; });
-    canvas.addEventListener('pointercancel', function () { dragging = null; });
-    if (window.ResizeObserver) new ResizeObserver(resize).observe(canvas);
-    else window.addEventListener('resize', resize);
-    resize();
-    document.getElementById('theme-toggle').addEventListener('click', draw);
+  /* ==========================================================================
+     DEMO 1 - Inverse-kinematics arm (FABRIK solver)
+     --------------------------------------------------------------------------
+     A 3-segment planar arm reaches toward a target the visitor controls by
+     tap / drag / arrow keys. FABRIK = Forward And Backward Reaching Inverse
+     Kinematics: cheap, stable, and easy to read. Per-joint angle limits keep
+     the pose physically plausible.
+     ======================================================================== */
+  function IKArm(figure) {
+    var canvas = figure.querySelector('canvas');
+    var ctx = canvas && canvas.getContext ? canvas.getContext('2d') : null;
+    if (!ctx) return; // no canvas support -> static SVG fallback stays visible
+
+    this.figure = figure;
+    this.canvas = canvas;
+    this.ctx = ctx;
+    this.stateEl = document.getElementById('ik-state');
+    this.readEl  = document.getElementById('ik-read');
+
+    // Kinematic config: link-length ratios and per-joint angle limits (rad).
+    this.ratios = [0.40, 0.34, 0.26];
+    this.limits = [1.75, 2.55, 2.55];
+    this.segs   = this.ratios.length;
+
+    // Runtime state.
+    this.points = null;      // joint positions, base -> tip
+    this.target = null;      // where the tip is trying to reach
+    this.smooth = null;      // eased target (prevents jitter)
+    this.trail  = [];        // fading tip trail
+    this.status = 'IDLE';
+    this.armed = false;      // is the solver actively tracking a target?
+    this.active = false;     // is the rAF loop running?
+    this.dragging = false;
+    this.hoverTarget = false;
+    this.settle = 0;
+    this.latency = 0;
+    this.visible = true;
+    this.atLimit = false;
+
+    this._loop = this._loop.bind(this);
+    this._init();
   }
+
+  IKArm.prototype._init = function () {
+    var self = this;
+
+    this._fit();
+    if (window.ResizeObserver) {
+      this._ro = new ResizeObserver(function () { self._fit(); });
+      this._ro.observe(this.canvas);
+    } else {
+      window.addEventListener('resize', function () { self._fit(); });
+    }
+    // Pause the loop when the figure scrolls out of view (battery friendly).
+    if (window.IntersectionObserver) {
+      this._io = new IntersectionObserver(function (e) {
+        self.visible = e[0].isIntersecting;
+        if (!self.visible) { cancelAnimationFrame(self._raf); self.active = false; }
+        else if (self.armed) self._kick();
+      }, { threshold: 0.01 });
+      this._io.observe(this.canvas);
+    }
+
+    // Device-specific hint copy.
+    var hint = document.getElementById('ik-hint');
+    if (hint) hint.lastChild.textContent = TOUCH ? 'DRAG TARGET' : 'DRAG \u00b7 \u2191\u2193\u2190\u2192 KEYS';
+
+    // Reduced motion keeps controls usable, solving directly without easing.
+
+    var fig = this.figure;
+    document.querySelectorAll('[data-ik-preset]').forEach(function (button) {
+      button.addEventListener('click', function () {
+        var mode = button.dataset.ikPreset;
+        self.limits = mode === 'limited' ? [0.5, 0.6, 0.6] : [1.75, 2.55, 2.55];
+        var offsets = mode === 'limited' ? [-0.5, -0.5] : (mode === 'unreachable' ? [-0.95, -0.5] : [0.3, -0.65]);
+        self.target = mode === 'reset' ? { x: self.rest.x, y: self.rest.y } : {
+          x: self.base.x + offsets[0] * self.R,
+          y: self.base.y + offsets[1] * self.R
+        };
+        document.querySelectorAll('[data-ik-preset][aria-pressed]').forEach(function (b) {
+          b.setAttribute('aria-pressed', String(b === button && mode !== 'reset'));
+        });
+        var explanations = {
+          reachable: 'Nominal pick: the target sits inside the reach envelope and within normal joint limits, so tip error collapses to approximately zero. That is a feasible single pose — not yet a sequenced workcell.',
+          limited: 'Joint-limited approach: the target is still inside the reach circle, but tighter joint stops prevent the tip from arriving. Distance alone would have incorrectly passed this pose.',
+          unreachable: 'Out-of-reach place: the commanded tip is farther than the sum of link lengths. No joint configuration can close the gap; the layout itself is wrong for this arm.',
+          reset: 'Diagnosis cleared. Place a new tool target to re-run the check, or load a scenario above.'
+        };
+        var expl = document.getElementById('ik-explanation');
+        if (expl) expl.textContent = explanations[mode];
+        self.scenarioHeld = mode !== 'reset';
+        if (mode === 'reset') { self.armed = false; self._kick(); }
+        else self._arm();
+      });
+    });
+    // Mouse: arm on hover, disarm on leave. Touch keeps the last target (a tap
+    // sets it and it stays put - no need to hold).
+    fig.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') self._arm(); });
+    fig.addEventListener('pointerleave', function (e) { if (e.pointerType === 'mouse' && !self.scenarioHeld) self._disarm(); });
+    fig.addEventListener('focus', function () { self._arm(); });
+    fig.addEventListener('blur', function () { if (!TOUCH && !self.scenarioHeld) self._disarm(); });
+    fig.addEventListener('pointerdown', function (e) {
+      self.scenarioHeld = false;
+      self._arm(); self.dragging = true;
+      try { fig.setPointerCapture(e.pointerId); } catch (_) {}
+      self._targetFrom(e); self._kick(); self._cursor();
+    });
+    fig.addEventListener('pointermove', function (e) {
+      if (!self.armed) return;
+      self.hoverTarget = self._nearTarget(e);
+      if (self.dragging) { self._targetFrom(e); self._kick(); }
+      self._cursor();
+    });
+    this._onUp = function () { if (self.dragging) { self.dragging = false; self._cursor(); } };
+    window.addEventListener('pointerup', this._onUp);
+    window.addEventListener('pointercancel', this._onUp);
+    fig.addEventListener('keydown', function (e) { self._onKey(e); });
+
+    this._staticPose('IDLE');
+    // Start with a purposeful diagnosis rather than an idle toy state.
+    var start = typeof document.querySelector === 'function'
+      ? document.querySelector('[data-ik-preset="reachable"]')
+      : null;
+    if (start && typeof start.click === 'function') {
+      this.scenarioHeld = true;
+      start.click();
+    }
+  };
+
+  /* --- geometry setup ---------------------------------------------------- */
+  IKArm.prototype._fit = function () {
+    var r = this.canvas.getBoundingClientRect();
+    if (r.width < 2 || r.height < 2) return;
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    this.canvas.width  = Math.round(r.width * dpr);
+    this.canvas.height = Math.round(r.height * dpr);
+    this.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    this.w = r.width; this.h = r.height;
+    this.base = { x: r.width * 0.5, y: r.height * 0.87 };
+    this.R = Math.min(r.width * 0.46, r.height * 0.78);       // total reach
+    this.L = this.ratios.map(function (x) { return x * this.R; }, this);
+    this.rest = { x: this.base.x + this.R * 0.18, y: this.base.y - this.R * 0.62 };
+
+    if (!this.points) this._seed();
+    if (REDUCED) this._staticPose('STATIC');
+    else if (!this.active) this._staticPose(this.armed ? this.status : 'IDLE');
+  };
+
+  IKArm.prototype._seed = function () {
+    var pts = [{ x: this.base.x, y: this.base.y }], ang = -Math.PI / 2 + 0.3, cur = { x: this.base.x, y: this.base.y };
+    for (var i = 0; i < this.segs; i++) {
+      ang += i ? -0.4 : 0;
+      cur = { x: cur.x + Math.cos(ang) * this.L[i], y: cur.y + Math.sin(ang) * this.L[i] };
+      pts.push({ x: cur.x, y: cur.y });
+    }
+    this.points = pts;
+    this.smooth = { x: this.rest.x, y: this.rest.y };
+  };
+
+  /* --- input helpers ----------------------------------------------------- */
+  IKArm.prototype._targetFrom = function (e) {
+    var r = this.canvas.getBoundingClientRect();
+    this.target = { x: e.clientX - r.left, y: e.clientY - r.top };
+  };
+  IKArm.prototype._nearTarget = function (e) {
+    var p = this.rawTarget || this.smooth; if (!p) return false;
+    var r = this.canvas.getBoundingClientRect();
+    return Math.hypot((e.clientX - r.left) - p.x, (e.clientY - r.top) - p.y) < 24;
+  };
+  IKArm.prototype._cursor = function () {
+    this.figure.style.cursor = this.dragging ? 'grabbing' : (this.hoverTarget ? 'grab' : 'crosshair');
+  };
+  IKArm.prototype._onKey = function (e) {
+    if (e.key === 'Home') { e.preventDefault(); this._arm(); this.target = { x: this.rest.x, y: this.rest.y }; this._kick(); return; }
+    var step = Math.max(6, this.R * 0.04), d = null;
+    if (e.key === 'ArrowUp') d = { x: 0, y: -step };
+    else if (e.key === 'ArrowDown') d = { x: 0, y: step };
+    else if (e.key === 'ArrowLeft') d = { x: -step, y: 0 };
+    else if (e.key === 'ArrowRight') d = { x: step, y: 0 };
+    if (!d) return;
+    e.preventDefault();
+    this.scenarioHeld = false;
+    this._arm();
+    if (!this.target) this.target = { x: (this.smooth || this.rest).x, y: (this.smooth || this.rest).y };
+    var pad = 10;
+    this.target = {
+      x: Math.max(pad, Math.min(this.w - pad, this.target.x + d.x)),
+      y: Math.max(pad, Math.min(this.h - pad, this.target.y + d.y))
+    };
+    this._kick();
+  };
+
+  /* --- loop lifecycle ---------------------------------------------------- */
+  IKArm.prototype._arm = function () {
+    this.armed = true; this.settle = 0; this.trail = []; this.verdictReady = false;
+    if (!this.target) this.target = { x: this.rest.x, y: this.rest.y };
+    this._kick();
+  };
+  IKArm.prototype._disarm = function () {
+    this.armed = false; this.settle = 0; this.verdictReady = false; this._kick();
+  };
+  IKArm.prototype._kick = function () {
+    this.settle = 0;
+    this.verdictReady = false;
+    if (!this.visible) return;
+    if (REDUCED) {
+      var T = this.armed ? (this.target || this.rest) : this.rest;
+      this.smooth = { x: T.x, y: T.y }; this.rawTarget = T; this.trail = [];
+      for (var i = 0; i < 18; i++) this._fabrik(T);
+      this.status = this.armed ? this._solutionStatus(T) : 'IDLE';
+      this.verdictReady = true;
+      this._draw(); this._hud(); return;
+    }
+    this._hud();
+    if (!this.active) { this.active = true; this._raf = requestAnimationFrame(this._loop); }
+  };
+  IKArm.prototype._solutionStatus = function (T) {
+    var reach = this.L.reduce(function (a, b) { return a + b; }, 0);
+    if (Math.hypot(this.base.x - T.x, this.base.y - T.y) > reach) return 'UNREACHABLE';
+    var tip = this.points[this.segs];
+    return Math.hypot(tip.x - T.x, tip.y - T.y) <= 1 ? 'SOLVED' : 'LIMITED';
+  };
+
+  IKArm.prototype._loop = function () {
+    if (!this.active) return;
+    if (this.visible && this.points) {
+      var T = this.armed ? (this.target || this.rest) : this.rest;
+      if (!this.smooth) this.smooth = { x: this.rest.x, y: this.rest.y };
+      this.smooth.x += (T.x - this.smooth.x) * 0.18;   // ease toward target
+      this.smooth.y += (T.y - this.smooth.y) * 0.18;
+      this.rawTarget = T;
+
+      var t0 = performance.now();
+      this._fabrik(this.smooth);
+      this.latency += ((performance.now() - t0) - this.latency) * 0.2;
+
+      if (this.armed) {
+        this.status = this._solutionStatus(T);
+        var tip = this.points[this.segs];
+        this.trail.push({ x: tip.x, y: tip.y });
+        if (this.trail.length > 34) this.trail.shift();
+      } else if (this.trail.length) {
+        this.trail.shift();
+      }
+
+      // Hold the published verdict until easing finishes (or the pointer releases).
+      if (this.dragging) this.verdictReady = false;
+
+      this._draw();
+      this._hud();
+
+      // Stop the loop once settled (armed pose held, or returned to rest).
+      if (!this.dragging) {
+        var tgt = this.armed ? (this.target || this.rest) : this.rest;
+        var d = Math.hypot(this.smooth.x - tgt.x, this.smooth.y - tgt.y);
+        if (d < 0.6) this.settle++; else this.settle = 0;
+        if (this.settle > 8) {
+          this.active = false;
+          this.verdictReady = true;
+          if (!this.armed) { this.status = 'IDLE'; this.trail = []; }
+          this._draw(); this._hud();
+          return;
+        }
+      }
+    }
+    this._raf = requestAnimationFrame(this._loop);
+  };
+
+  IKArm.prototype._staticPose = function (status) {
+    if (!this.points) this._seed();
+    this.smooth = { x: this.rest.x, y: this.rest.y };
+    this.rawTarget = this.smooth; this.trail = [];
+    for (var k = 0; k < 18; k++) this._fabrik(this.smooth); // let it converge
+    this.status = status || 'IDLE';
+    this._draw(); this._hud();
+  };
+
+  /* --- the solver -------------------------------------------------------- */
+  IKArm.prototype._norm = function (a) { return Math.atan2(Math.sin(a), Math.cos(a)); };
+
+  IKArm.prototype._fabrik = function (T) {
+    var P = this.points, L = this.L, n = this.segs, base = this.base;
+    var reach = L.reduce(function (a, b) { return a + b; }, 0);
+    var dist = Math.hypot(base.x - T.x, base.y - T.y);
+
+    if (dist > reach) {
+      // Target out of range: stretch straight toward it.
+      P[0] = { x: base.x, y: base.y };
+      for (var i = 0; i < n; i++) {
+        var r = Math.hypot(P[i].x - T.x, P[i].y - T.y) || 1e-6, lam = L[i] / r;
+        P[i + 1] = { x: P[i].x + (T.x - P[i].x) * lam, y: P[i].y + (T.y - P[i].y) * lam };
+        this._clamp(i);
+      }
+      return;
+    }
+    // Iterate backward (tip->base) then forward (base->tip).
+    for (var it = 0; it < 6; it++) {
+      P[n] = { x: T.x, y: T.y };
+      for (var b = n - 1; b >= 0; b--) {
+        var rb = Math.hypot(P[b + 1].x - P[b].x, P[b + 1].y - P[b].y) || 1e-6, lb = L[b] / rb;
+        P[b] = { x: P[b + 1].x + (P[b].x - P[b + 1].x) * lb, y: P[b + 1].y + (P[b].y - P[b + 1].y) * lb };
+      }
+      P[0] = { x: base.x, y: base.y };
+      for (var f = 0; f < n; f++) {
+        var rf = Math.hypot(P[f].x - P[f + 1].x, P[f].y - P[f + 1].y) || 1e-6, lf = L[f] / rf;
+        P[f + 1] = { x: P[f].x + (P[f + 1].x - P[f].x) * lf, y: P[f].y + (P[f + 1].y - P[f].y) * lf };
+        this._clamp(f);
+      }
+    }
+  };
+
+  // Constrain joint i's bend to +/- limit relative to the previous link.
+  IKArm.prototype._clamp = function (i) {
+    var P = this.points, L = this.L;
+    var ref = i === 0 ? -Math.PI / 2 : Math.atan2(P[i].y - P[i - 1].y, P[i].x - P[i - 1].x);
+    var delta = this._norm(Math.atan2(P[i + 1].y - P[i].y, P[i + 1].x - P[i].x) - ref);
+    var lim = this.limits[i];
+    if (delta > lim) delta = lim; else if (delta < -lim) delta = -lim;
+    var a = ref + delta;
+    P[i + 1] = { x: P[i].x + Math.cos(a) * L[i], y: P[i].y + Math.sin(a) * L[i] };
+  };
+
+  /* --- rendering --------------------------------------------------------- */
+  IKArm.prototype._draw = function () {
+    var ctx = this.ctx, w = this.w, h = this.h, P = this.points;
+    var base = this.base, end = P[P.length - 1], T = this.rawTarget || this.smooth;
+    var unreach = this.status === 'UNREACHABLE';
+    this.atLimit = false;
+
+    ctx.clearRect(0, 0, w, h);
+    ctx.fillStyle = C.paper; ctx.fillRect(0, 0, w, h);
+
+    // background dot grid
+    ctx.fillStyle = C.faint;
+    var gs = 26;
+    for (var x = (w % gs) / 2; x < w; x += gs)
+      for (var y = (h % gs) / 2; y < h; y += gs) ctx.fillRect(x, y, 1, 1);
+
+    // reach envelope
+    ctx.strokeStyle = unreach ? 'rgba(226,74,0,0.42)' : C.faint;
+    ctx.lineWidth = 1; ctx.setLineDash([2, 5]);
+    ctx.beginPath(); ctx.arc(base.x, base.y, this.R, Math.PI * 1.03, Math.PI * 1.97); ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle = C.ink2;
+    ctx.font = '10px ui-monospace, SFMono-Regular, Menlo, monospace';
+    ctx.fillText('REACH ENVELOPE', base.x + this.R * 0.42, base.y - this.R * 0.78);
+
+    // target marker + tip-to-target lead line
+    if (this.status === 'SOLVED' || this.status === 'LIMITED' || unreach) {
+      ctx.strokeStyle = unreach ? C.accent : C.line; ctx.setLineDash([2, 4]);
+      ctx.beginPath(); ctx.moveTo(end.x, end.y); ctx.lineTo(T.x, T.y); ctx.stroke(); ctx.setLineDash([]);
+      this._cross(T, 6, unreach ? C.accent : C.line);
+      if (this.dragging || this.hoverTarget) {
+        ctx.strokeStyle = C.accent; ctx.lineWidth = 1.5;
+        ctx.beginPath(); ctx.arc(T.x, T.y, this.dragging ? 11 : 9, 0, 7); ctx.stroke();
+      }
+    }
+    ctx.setLineDash([]);
+
+    if (this.trail.length > 1 && this.status !== 'IDLE' && this.status !== 'STATIC') this._drawTrail();
+    this._drawBase(base);
+
+    // links
+    ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.strokeStyle = C.ink;
+    for (var i = 0; i < P.length - 1; i++) {
+      ctx.lineWidth = 9 - i * 1.7;
+      ctx.beginPath(); ctx.moveTo(P[i].x, P[i].y); ctx.lineTo(P[i + 1].x, P[i + 1].y); ctx.stroke();
+    }
+
+    if (this.status !== 'IDLE' && this.status !== 'STATIC') this._drawJointArcs();
+    for (var j = 0; j < P.length; j++) this._joint(P[j], j === 0 ? 6 : 5);
+    this._effector(end);
+
+    // idle affordance: dashed grab ring on the tip so it reads as movable
+    if (this.status === 'IDLE') {
+      ctx.save(); ctx.globalAlpha = 0.55; ctx.strokeStyle = C.accent; ctx.lineWidth = 1.4; ctx.setLineDash([3, 4]);
+      ctx.beginPath(); ctx.arc(end.x, end.y, 13, 0, 7); ctx.stroke(); ctx.restore();
+    }
+  };
+  IKArm.prototype._drawTrail = function () {
+    var ctx = this.ctx, T = this.trail, n = T.length;
+    ctx.lineCap = 'round';
+    for (var i = 1; i < n; i++) {
+      ctx.strokeStyle = 'rgba(226,74,0,' + ((i / n) * 0.5).toFixed(3) + ')';
+      ctx.lineWidth = 1.6;
+      ctx.beginPath(); ctx.moveTo(T[i - 1].x, T[i - 1].y); ctx.lineTo(T[i].x, T[i].y); ctx.stroke();
+    }
+  };
+  IKArm.prototype._drawJointArcs = function () {
+    var ctx = this.ctx, P = this.points, r = 15;
+    for (var i = 0; i < this.segs; i++) {
+      var ref = i === 0 ? -Math.PI / 2 : Math.atan2(P[i].y - P[i - 1].y, P[i].x - P[i - 1].x);
+      var cur = Math.atan2(P[i + 1].y - P[i].y, P[i + 1].x - P[i].x);
+      var lim = this.limits[i];
+      var near = Math.abs(this._norm(cur - ref)) >= lim * 0.94;
+      if (near) this.atLimit = true;
+      ctx.strokeStyle = near ? 'rgba(226,74,0,0.55)' : C.line; ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.arc(P[i].x, P[i].y, r, ref - lim, ref + lim); ctx.stroke();
+      ctx.strokeStyle = near ? C.accent : C.line; ctx.lineWidth = near ? 2 : 1.4;
+      ctx.beginPath();
+      ctx.moveTo(P[i].x + Math.cos(cur) * (r - 4), P[i].y + Math.sin(cur) * (r - 4));
+      ctx.lineTo(P[i].x + Math.cos(cur) * (r + 3), P[i].y + Math.sin(cur) * (r + 3));
+      ctx.stroke();
+    }
+  };
+  IKArm.prototype._cross = function (p, r, c) {
+    var ctx = this.ctx; ctx.strokeStyle = c; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(p.x - r, p.y); ctx.lineTo(p.x + r, p.y); ctx.moveTo(p.x, p.y - r); ctx.lineTo(p.x, p.y + r); ctx.stroke();
+  };
+  IKArm.prototype._joint = function (p, r) {
+    var ctx = this.ctx;
+    ctx.fillStyle = C.paper; ctx.strokeStyle = C.ink; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.arc(p.x, p.y, r, 0, 7); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = C.ink; ctx.beginPath(); ctx.arc(p.x, p.y, 1.3, 0, 7); ctx.fill();
+  };
+  IKArm.prototype._drawBase = function (b) {
+    var ctx = this.ctx, bw = 46, bh = 13, top = b.y + 4;
+    ctx.save(); ctx.beginPath(); ctx.rect(b.x - bw / 2, top, bw, bh);
+    ctx.fillStyle = C.paper; ctx.fill(); ctx.clip();
+    ctx.strokeStyle = C.line; ctx.lineWidth = 1; ctx.beginPath();
+    for (var x = -bh; x < bw; x += 6) { ctx.moveTo(b.x - bw / 2 + x, top + bh); ctx.lineTo(b.x - bw / 2 + x + bh, top); }
+    ctx.stroke(); ctx.restore();
+    ctx.strokeStyle = C.ink; ctx.lineWidth = 2; ctx.strokeRect(b.x - bw / 2, top, bw, bh);
+  };
+  IKArm.prototype._effector = function (p) {
+    var ctx = this.ctx; ctx.strokeStyle = C.accent; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.arc(p.x, p.y, 6.5, 0, 7); ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(p.x - 11, p.y); ctx.lineTo(p.x - 6, p.y); ctx.moveTo(p.x + 6, p.y); ctx.lineTo(p.x + 11, p.y);
+    ctx.moveTo(p.x, p.y - 11); ctx.lineTo(p.x, p.y - 6); ctx.moveTo(p.x, p.y + 6); ctx.lineTo(p.x, p.y + 11);
+    ctx.stroke();
+    ctx.fillStyle = C.accent; ctx.beginPath(); ctx.arc(p.x, p.y, 1.6, 0, 7); ctx.fill();
+  };
+
+  /* --- HUD readout ------------------------------------------------------- */
+  IKArm.prototype._angles = function () {
+    var P = this.points, out = [];
+    for (var i = 1; i < P.length; i++) {
+      var ref = i === 1 ? -Math.PI / 2 : Math.atan2(P[i - 1].y - P[i - 2].y, P[i - 1].x - P[i - 2].x);
+      var deg = Math.round(this._norm(Math.atan2(P[i].y - P[i - 1].y, P[i].x - P[i - 1].x) - ref) * 180 / Math.PI);
+      out.push((deg >= 0 ? '+' : '') + deg + '\u00B0');
+    }
+    return out;
+  };
+  IKArm.prototype._jointReport = function () {
+    var P = this.points, out = [];
+    if (!P || P.length < 2) return out;
+    for (var i = 0; i < this.segs; i++) {
+      var ref = i === 0 ? -Math.PI / 2 : Math.atan2(P[i].y - P[i - 1].y, P[i].x - P[i - 1].x);
+      var delta = this._norm(Math.atan2(P[i + 1].y - P[i].y, P[i + 1].x - P[i].x) - ref);
+      var lim = this.limits[i];
+      out.push({
+        index: i + 1,
+        deg: delta * 180 / Math.PI,
+        limDeg: lim * 180 / Math.PI,
+        at: Math.abs(delta) >= lim - 0.02
+      });
+    }
+    return out;
+  };
+  IKArm.prototype._diagnose = function () {
+    var verdict = document.getElementById('ik-verdict');
+    var reason = document.getElementById('ik-reason');
+    var reachEl = document.getElementById('ik-reach');
+    var errorEl = document.getElementById('ik-error');
+    var jointsEl = document.getElementById('ik-joints');
+    var anglesEl = document.getElementById('ik-angles');
+    if (!verdict) return;
+
+    // Do not publish SOLVED / LIMITED / UNREACHABLE until easing has finished.
+    if (!this.verdictReady && (this.armed || this.active || this.dragging)) {
+      verdict.textContent = 'Calculating…';
+      verdict.setAttribute('data-state', 'SOLVING');
+      if (reason) {
+        reason.textContent = 'Waiting for the tip target and joint solve to settle before reporting feasibility.';
+      }
+      if (reachEl) reachEl.textContent = '…';
+      if (errorEl) errorEl.textContent = '…';
+      if (jointsEl) jointsEl.textContent = '…';
+      if (anglesEl) anglesEl.textContent = '…';
+      return;
+    }
+
+    var labels = {
+      IDLE: 'Waiting for a target',
+      STATIC: 'Static pose · reduced motion',
+      SOLVED: 'Feasible tip pose',
+      LIMITED: 'Blocked by joint limits',
+      UNREACHABLE: 'Outside reach envelope'
+    };
+    var reasons = {
+      IDLE: 'Choose a scenario or place a tool target on the drawing. The panel updates with the solver’s verdict.',
+      STATIC: 'Reduced-motion mode keeps the diagnosis without animated easing. Load a scenario to inspect reach versus limits.',
+      SOLVED: 'Tip error is within the solver tolerance. Link lengths are preserved and no joint is forced past its stop for this target.',
+      LIMITED: 'The target is inside the reach envelope, but at least one joint is hard against its limit. Changing joint travel — or the pose — is required.',
+      UNREACHABLE: 'Commanded tip distance exceeds the sum of link lengths. No joint solution exists; the fixture or target must move closer.'
+    };
+    var status = this.status || 'IDLE';
+    verdict.textContent = labels[status] || status;
+    verdict.setAttribute('data-state', status);
+    if (reason) reason.textContent = reasons[status] || '';
+
+    if (status === 'IDLE' || status === 'STATIC' || !this.points) {
+      if (reachEl) reachEl.textContent = '—';
+      if (errorEl) errorEl.textContent = '—';
+      if (jointsEl) jointsEl.textContent = '—';
+      if (anglesEl) anglesEl.textContent = '—';
+      return;
+    }
+
+    var tip = this.points[this.segs];
+    var target = this.rawTarget || this.smooth || tip;
+    var tipDist = Math.hypot(tip.x - this.base.x, tip.y - this.base.y);
+    var cmdDist = Math.hypot(target.x - this.base.x, target.y - this.base.y);
+    var error = Math.hypot(tip.x - target.x, tip.y - target.y);
+    var joints = this._jointReport();
+    var limited = joints.filter(function (j) { return j.at; }).map(function (j) { return 'J' + j.index; });
+
+    if (reachEl) {
+      reachEl.textContent = Math.round(cmdDist) + ' / ' + Math.round(this.R) + ' px · tip ' + Math.round(tipDist);
+    }
+    if (errorEl) errorEl.textContent = error.toFixed(1) + ' px';
+    if (jointsEl) jointsEl.textContent = limited.length ? limited.join(', ') : 'none';
+    if (anglesEl) anglesEl.textContent = this._angles().join(' ');
+  };
+  IKArm.prototype._hud = function () {
+    var publishing = this.verdictReady || REDUCED || this.status === 'IDLE' || this.status === 'STATIC';
+    if (this.stateEl) {
+      if (!publishing && (this.armed || this.active || this.dragging)) {
+        this.stateEl.textContent = 'SOLVING';
+        this.stateEl.style.color = C.ink2;
+      } else {
+        this.stateEl.textContent = this.status;
+        this.stateEl.style.color = this.status === 'UNREACHABLE' ? C.accentInk : (this.status === 'SOLVED' ? C.ink : C.ink2);
+      }
+    }
+    this._diagnose();
+    if (!this.readEl) return;
+    if (!publishing && (this.armed || this.active || this.dragging)) {
+      this.readEl.textContent = 'settling tip target \u00b7 diagnosis pending';
+      return;
+    }
+    if (this.status === 'STATIC') { this.readEl.textContent = '\u03B8 static \u00b7 reduced-motion'; return; }
+    if (this.status === 'IDLE')   { this.readEl.textContent = '\u03B8 \u00b7 \u00b7 \u00b7 \u00b7 TCP \u00b7,\u00b7 \u00b7 idle'; return; }
+    var end = this.points[this.points.length - 1];
+    var tx = Math.round(end.x - this.base.x), ty = Math.round(this.base.y - end.y);
+    var target = this.rawTarget || this.smooth;
+    var error = target ? Math.hypot(end.x - target.x, end.y - target.y) : 0;
+    this.readEl.textContent = '\u03B8 ' + this._angles().join(' ') + ' \u00b7 tip ' + tx + ',' + ty + ' px \u00b7 error ' + error.toFixed(1) + ' px';
+  };
 
   /* ==========================================================================
      Small utility - copy email to clipboard, with a legacy fallback.
@@ -1127,7 +1715,8 @@ html,body{overflow-x:clip}
   function boot() {
     try { initThemeToggle(); } catch (e) {}
     try { initProjectFilters(); } catch (e) {}
-    try { initArmSketch(); } catch (e) {}
+    var ik = document.getElementById('ik');
+    try { if (ik) ikArm = new IKArm(ik); } catch (e) { /* static fallback remains */ }
     try { initCopyEmail(); } catch (e) {}
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);

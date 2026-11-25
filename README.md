@@ -12,9 +12,9 @@ Static personal website for software engineering, robot integration, and test au
 - xArm Robot Learning: Isaac Lab PPO cube-lift training with randomized states and parallel simulation.
 - CUNY Connect: Next.js/Supabase networking, realtime messaging and validated/cached recommendations.
 - GlanceScribe: team-built Healthcare track winner; live media, browser audio transcription, transcript-based SOAP drafts, and FFmpeg.
-- Project filters for robotics and software work, with an interactive six-joint arm illustration in the hero.
+- Project filters for robotics and software work, with the restored interactive pose-check arm and diagnosis panel.
 
-The project preserves its HTML/CSS/JavaScript stack and light/dark engineering-drawing design. The hero uses a simplified 3D kinematic chain, not a calibrated robot model or controller. No frontend framework or runtime package installation is required.
+The project preserves its HTML/CSS/JavaScript stack and light/dark engineering-drawing design. The restored hero uses a three-link planar FABRIK illustration with joint limits, not a calibrated six-axis robot model or controller. No frontend framework or runtime package installation is required.
 
 ## Files and public output
 
@@ -34,7 +34,7 @@ python3 -m http.server 8000 --bind 127.0.0.1 --directory dist
 
 Validation checks inline JavaScript syntax, local links, anchors, duplicate IDs, and selected content.
 
-Browser QA should cover desktop/mobile, both themes, the six joint sliders and pointer drag, project filters, disclosures and email copy. Verify there are no resume-download links. Video uses `preload="none"`; the external demonstration iframe is lazy-loaded. No API keys or backend credentials are needed.
+Browser QA should cover desktop/mobile, both themes, target drag and keyboard input, scenario buttons, project filters, disclosures and email copy. Verify there are no resume-download links. Video uses `preload="none"`; the external demonstration iframe is lazy-loaded. No API keys or backend credentials are needed.
 
 ## Publishing
 
